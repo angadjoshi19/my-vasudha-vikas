@@ -210,6 +210,91 @@
 
         .donation-card { background: var(--white); border-radius: 10px; padding: 30px; max-width: 500px; margin: 30px auto; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 5px solid #27AE60; }
         footer { background-color: var(--primary); color: var(--white); text-align: center; padding: 20px; margin-top: 40px; }
+        /* ==========================================
+           MOBILE RESPONSIVENESS MEDIA QUERY ENGINE
+           ========================================== */
+        @media screen and (max-width: 768px) {
+            /* 1. Adjust main page side compression */
+            .page-section {
+                padding: 20px 5%;
+            }
+            
+            /* 2. Stack header navigation elements vertically */
+            header {
+                flex-direction: column;
+                padding: 10px 5%;
+                gap: 10px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+            nav a {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+
+            /* 3. Scale down hero text sizes and compress spacing */
+            .hero {
+                padding: 40px 15px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+
+            /* 4. Fluid aspect-ratio sizing for the image slider */
+            .carousel-container {
+                max-width: 100%;
+                margin: 15px auto;
+            }
+            .carousel-slide {
+                height: 250px; /* Reduces fixed box height so containment looks natural */
+            }
+            .carousel-caption {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+            .prev, .next {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            /* 5. Fluid scaling for the public awareness banner image container */
+            main#home div[style*="background-color: var(--gray-fill)"] img {
+                height: auto !important;
+                max-height: 240px;
+            }
+
+            /* 6. Enforce dynamic sizing on modal viewports */
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 15px;
+            }
+            .modal-carousel {
+                height: 240px;
+            }
+
+            /* 7. Grid Matrix optimization for mobile screens */
+            .grid {
+                grid-template-columns: 1fr; /* Forces cards into a clean single column layout */
+                gap: 20px;
+            }
+            .card img {
+                height: 180px;
+            }
+
+            /* 8. Make form and summary outputs fluid */
+            .booking-container {
+                padding: 20px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
     </style>
 </head>
 <body>
