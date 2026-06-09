@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Vasudha Vikas | Environmental Conservation Hub</title>
+    <title>MY वसुधा विकास | Environmental Conservation Hub</title>
     <style>
         :root {
-            --primary: #1E8449;
-            --primary-dark: #145A32;
+            --primary: #2dbe69;
+            --primary-dark: #239956;
             --secondary: #D35400;
             --light-bg: #E8F8F5;
             --card-bg: #FDF2E9;
@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             color: var(--dark-text);
-            background-color: #f5fcf5;
+            background-color: #cde0cd;
             line-height: 1.6;
         }
 
@@ -79,7 +79,7 @@
         .page-section {
             display: none;
             padding: 40px 10%;
-            animation: fadeIn 0.4s ease-in-out;
+            animation: fadeOut 1.5s ease-in-out;
         }
 
         .page-section.active {
@@ -112,11 +112,13 @@
             margin-bottom: 30px;
             border-radius: 0 0 20px 20px;
         }
-        .hero h1 { font-size: 3rem; margin: 0 0 10px 0; color: white; }
+        .hero h1 { font-size: 3rem; margin: 0 0 10px 0; color: rgb(253, 253, 252); }
+        .hero h3 {margin: 0 0 10px 0; color: rgb(238, 254, 19);}
+        .hero h4 {margin: 0 0 10px 0; color:rgb(238, 235, 245);}
         .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 20px; }
         .hero .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .hero .btn { background: var(--secondary); color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; cursor: pointer; border: none; font-size: 1rem; }
-        .hero .btn:hover { background: #e65c00; }
+        .hero .btn:hover { background: #ff6600; }
         .hero .btn-alt { background: transparent; border: 2px solid white; }
         .hero .btn-alt:hover { background: rgba(255,255,255,0.2); }
 
@@ -317,8 +319,10 @@
    <main id="home" class="page-section active" style="padding-top: 0; padding-left: 0; padding-right: 0;">
         <div class="hero">
             <h1>MY वसुधा विकास</h1>
-            <h2>(विधायक कार्य संघ, अकोला)</h2>
-            <p>A leading grassroots environment protection movement dedicating over 14 years to single-use plastic eradication, regional afforestation development, and upcycled resource management circles.</p>
+            <h3>(विधायक कार्य संघ, अकोला)</h3>
+            <strong>"प्लॅस्टिकमुक्त महाराष्ट्र , प्रयत्न आमचे, सहकार्य तुमचे!"</strong>
+
+            <p>A leading grassroots environment protection movement dedicating over 15 years to single-use plastic eradication, regional afforestation development, and upcycled resource management circles.</p>
             <div class="btn-group">
                 <button class="btn" onclick="showPage('programs')">Our Programs</button>
                 <button class="btn" onclick="showPage('booking')">Rent Steel Utensils for Free</button>
@@ -381,7 +385,7 @@
             <div class="grid" style="margin-bottom: 40px;">
                 <div class="card" style="border-top-color: var(--primary);">
                     <h4>Central Hub / Branch 1</h4>
-                    <p><strong>Location:</strong> Vrindavan Nagar, Akola<br><strong>In-Charge:</strong> Dr. Yogesh Paliwal<br><strong>Contact:</strong> 8329990369</p>
+                    <p><strong>Location:</strong> Vrindavan Nagar, Near Sudhir Colony, Akola<br><strong>In-Charge:</strong> Dr. Yogesh Paliwal<br><strong>Contact:</strong> 8329990369</p>
                 </div>
                 <div class="card" style="border-top-color: var(--primary);">
                     <h4>Branch 2</h4>
@@ -394,10 +398,6 @@
                 <div class="card" style="border-top-color: var(--primary);">
                     <h4>Branch 4</h4>
                     <p><strong>Location:</strong> Akot Fail, Akola<br><strong>In-Charge:</strong> Meeratai Gotarkar<br><strong>Contact:</strong> 9657726407</p>
-                </div>
-                <div class="card" style="border-top-color: var(--primary);">
-                    <h4>Core Operations Contact</h4>
-                    <p><strong>In-Charge:</strong> Bharat Patel<br><strong>Contact:</strong>7620378995</p>
                 </div>
             </div>
         </div>
@@ -767,7 +767,7 @@
 
         // Localized Branch Outlets Node Contacts Directory
         const contactsDirectory = {
-            "Vrindavan Nagar": "<strong>Outlet Hub:</strong> Vrindavan Nagar, Akola<br><strong>In-Charge Head:</strong> Dr. Yogesh Paliwal<br><strong>Mobile Number:</strong> 8329990369",
+            "Vrindavan Nagar, Near Sudhir Colony": "<strong>Outlet Hub:</strong> Vrindavan Nagar, Near Sudhir Colony , Akola<br><strong>In-Charge Head:</strong> Dr. Yogesh Paliwal<br><strong>Mobile Number:</strong> 8329990369",
             "Tapadiya Nagar": "<strong>Outlet Hub:</strong> Tapadiya Nagar, Akola<br><strong>In-Charge Head:</strong> Dinesh Badgujar<br><strong>Mobile Number:</strong> 7757098968",
             "Malkapur": "<strong>Outlet Hub:</strong> Kothari Vatika, Malkapur<br><strong>In-Charge Head:</strong> Managed by Bhagwan Rane",
             "Akot Fail": "<strong>Outlet Hub:</strong> Akot Fail, Akola<br><strong>In-Charge Head:</strong> Managed by Meeratai Gotarkar"
@@ -780,7 +780,7 @@
             document.getElementById('loaderBooking').style.display = 'block';
             
             // Local Preview Safe Guard Logic
-            if (!scriptURL || scriptURL.includes('YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')) {
+            if (!scriptURL || scriptURL.includes('https://script.google.com/macros/s/AKfycbxI4W4PthnjaGEiiugnOOhjIuShSwLwQuZZcxkM6h6WW8qRb4cVRRK9RCPaaMKKomQV_A/exec')) {
                 document.getElementById('loaderBooking').style.display = 'none';
                 triggerBookingOutput();
                 return;
@@ -798,6 +798,7 @@
         });
 
         function triggerBookingOutput() {
+            <p>Do Contact the Given number to confirm your booking</p>
             const name = document.getElementById('orgName').value;
             const mobile = document.getElementById('mobileNumber').value;
             const guests = parseInt(document.getElementById('guestCount').value);
@@ -824,7 +825,7 @@
             e.preventDefault();
             document.getElementById('loaderDonate').style.display = 'block';
 
-            if (!scriptURL || scriptURL.includes('YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')) {
+            if (!scriptURL || scriptURL.includes('https://script.google.com/macros/s/AKfycbxI4W4PthnjaGEiiugnOOhjIuShSwLwQuZZcxkM6h6WW8qRb4cVRRK9RCPaaMKKomQV_A/exec')) {
                 document.getElementById('loaderDonate').style.display = 'none';
                 triggerDonationOutput();
                 return;
