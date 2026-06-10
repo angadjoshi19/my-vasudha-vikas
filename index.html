@@ -975,6 +975,7 @@
         }
 
         // Form 2 Pipeline Processing Logic with Integrated Responsive Custom QR Engine
+        // Form 2 Pipeline Processing Logic with Stabilized Mobile UPI Redirect & Desktop QR 
         const donationForm = document.forms['donationForm'];
         donationForm.addEventListener('submit', e => {
             e.preventDefault();
@@ -985,11 +986,16 @@
                 const amount = document.getElementById('donorAmount').value;
                 const donorName = document.getElementById('donorName').value;
                 
+                // CRITICAL: Swap this placeholder out with your exact verified UPI address
                 const upiId = "9371061910@upi"; 
-                const merchantName = "";
+                const merchantName = "Angad Akhilesh Joshi";
                 const cleanMerchantName = encodeURIComponent(merchantName);
-                // Build valid NPCI deep link standard layout
-                const upiString = `upi://pay?pa=${upiId}&tn=Donation%20from%20${encodeURIComponent(donorName)}`;
+                
+                // 1. Universal Standard Deep Link (Works reliably across all mobile banking apps)
+                const universalUpiLink = `upi://pay?pa=${upiId}&pn=${cleanMerchantName}&am=${amount}&cu=INR`;
+                
+                // 2. Specific Google Pay Intent Structure fallback hook string
+                const gpayLink = `upi://pay?pa=${upiId}&pn=${cleanMerchantName}&cu=INR`;
                 
                 // Initialize View Elements
                 const pgModal = document.getElementById('paymentGatewayModal');
@@ -1005,21 +1011,24 @@
                 setTimeout(() => {
                     loaderSec.style.display = 'none';
                     
-                    // Context check routing pass
+                    // Client device environment check path routing pass
                     const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
                     
                     if (isMobile) {
-                        // Setup dynamic targets for Google Pay and generic handlers on mobile devices
-                        document.getElementById('bhimDeepLink').href = `upi://pay?pa=${upiId};
+                        // Bind clean intent strings that won't trigger security blocks inside apps
+                        document.getElementById('gpayDeepLink').href = gpayLink;
+                        document.getElementById('bhimDeepLink').href = universalUpiLink;
                         mobileSec.style.display = 'block';
-                        document.getElementById('qrAmountText').innerText = `Amount: ₹ ${amount}`;
-                        desktopSec.style.display = 'block';
+                        
+                        // AUTO-REDIRECT TRIGGER: Automatically tries to fire the system handler immediately 
+                        // giving the user a fast, smooth transition experience.
+                        window.location.href = universalUpiLink;
                     } else {
                         // Desktop Fallback presents the static placeholder space for custom image injection
-                        document.getElementById('qrAmountText').innerText = `Amount: ₹ ${amount}`;
+                        document.getElementById('qrAmountText').innerText = `Amount to Pay: ₹ ${amount}`;
                         desktopSec.style.display = 'block';
                     }
-                }, 1000);
+                }, 800);
                 
                 document.getElementById('pgConfirmSuccessBtn').onclick = () => {
                     pgModal.style.display = 'none';
@@ -1029,7 +1038,6 @@
                 executeDataSubmissionPipeline();
             }
         });
-
         function closePaymentGateway() {
             document.getElementById('paymentGatewayModal').style.display = 'none';
         }
