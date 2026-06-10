@@ -992,7 +992,7 @@
                 const cleanMerchantName = encodeURIComponent(merchantName);
                 
                 // Stripped Clean Deep-Links (Forcing user manual entry inside app to bypass security errors)
-                const manualUpiLink = `upi://pay?pa=${upiId}@VPA&cu=INR`;
+                const manualUpiLink = `upi://pay?pa=${upiId}&cu=INR`;
                 
                 // Initialize View Elements
                 const pgModal = document.getElementById('paymentGatewayModal');
