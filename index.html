@@ -989,7 +989,7 @@
                 const merchantName = "";
                 const cleanMerchantName = encodeURIComponent(merchantName);
                 // Build valid NPCI deep link standard layout
-                const upiString = `upi://pay?pa=${upiId}&pn=${cleanMerchantName}&am=${amount}&cu=INR&tn=Donation%20from%20${encodeURIComponent(donorName)}`;
+                const upiString = `upi://pay?pa=${upiId}&tn=Donation%20from%20${encodeURIComponent(donorName)}`;
                 
                 // Initialize View Elements
                 const pgModal = document.getElementById('paymentGatewayModal');
