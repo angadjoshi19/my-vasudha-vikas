@@ -986,17 +986,6 @@
                 const amount = document.getElementById('donorAmount').value;
                 const donorName = document.getElementById('donorName').value;
                 
-                // CRITICAL: Swap this placeholder out with your exact verified UPI address
-                const upiId = "9422919455@axl"; 
-                const merchantName = "YOGESH DEVIDANJI PALIWAL";
-                const cleanMerchantName = encodeURIComponent(merchantName);
-                
-                // App-Specific Deep Links to ensure seamless bypass of browser security blocks
-                const standardPayload = `pay?pa=${upiId}&pn=${cleanMerchantName}&cu=INR`;
-                const universalLink = `upi://${standardPayload}`;
-                const gpayIntentLink = `tez://${standardPayload}`; 
-                const phonepeIntentLink = `phonepe://${standardPayload}`; 
-                
                 // Initialize View Elements
                 const pgModal = document.getElementById('paymentGatewayModal');
                 const loaderSec = document.getElementById('pgLoaderSection');
@@ -1016,15 +1005,8 @@
                     
                     if (isMobile) {
                         // Map precise app protocol handles so the browser triggers external app calls instantly
-                        document.getElementById('gpayDeepLink').href = gpayIntentLink;
-                        
-                        // We will repurpose the BHIM button to act as a Universal handler option
-                        const bhimBtn = document.getElementById('bhimDeepLink');
-                        bhimBtn.innerHTML = "<i class='fas fa-wallet'></i> Other UPI App (PhonePe/BHIM)";
-                        bhimBtn.href = universalLink;
                         document.getElementById('qrAmountText').innerText = `Amount to Pay: ₹ ${amount}`;
                         desktopSec.style.display = 'block';
-                        mobileSec.style.display = 'block';
                     } else {
                         // Desktop Fallback presents the static placeholder space for custom image injection[cite: 1]
                         document.getElementById('qrAmountText').innerText = `Amount to Pay: ₹ ${amount}`;
