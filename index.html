@@ -1010,9 +1010,10 @@
                     
                     if (isMobile) {
                         // Setup dynamic targets for Google Pay and generic handlers on mobile devices
-                        document.getElementById('gpayDeepLink').href = `upi://pay?pa=${upiId}&am=${amount}&cu=INR`;
-                        document.getElementById('bhimDeepLink').href = upiString;
+                        document.getElementById('bhimDeepLink').href = `upi://pay?pa=${upiId};
                         mobileSec.style.display = 'block';
+                        document.getElementById('qrAmountText').innerText = `Amount: ₹ ${amount}`;
+                        desktopSec.style.display = 'block';
                     } else {
                         // Desktop Fallback presents the static placeholder space for custom image injection
                         document.getElementById('qrAmountText').innerText = `Amount: ₹ ${amount}`;
