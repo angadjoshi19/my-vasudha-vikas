@@ -678,7 +678,7 @@
                 <p style="font-size:0.95rem; color:#555;">Scan this QR code using any UPI app (Google Pay, BHIM, PhonePe) to complete your donation:</p>
                 
                 <!-- STATIC IMAGE PLACEHOLDER FOR CUSTOM QR CODE -->
-                <img id="staticQRImg" src="QR CODE ANGAD.jpeg" alt="UPI Donation QR Code" class="qr-code-img">
+                <img id="staticQRImg" src="QR CODE YPALIWAL.jpeg" alt="UPI Donation QR Code" class="qr-code-img">
                 
                 <p style="font-size:1.1rem; font-weight:bold; color:var(--secondary);" id="qrAmountText">Amount: ₹0</p>
             </div>
@@ -987,12 +987,12 @@
                 const donorName = document.getElementById('donorName').value;
                 
                 // CRITICAL: Swap this placeholder out with your exact verified UPI address
-                const upiId = "9371061910@upi"; 
-                const merchantName = "Angad Akhilesh Joshi";
+                const upiId = "9422919455@axl"; 
+                const merchantName = "YOGESH DEVIDANJI PALIWAL";
                 const cleanMerchantName = encodeURIComponent(merchantName);
                 
                 // Stripped Clean Deep-Links (Forcing user manual entry inside app to bypass security errors)
-                const manualUpiLink = `upi://pay?pa=${upiId}&pn=&cu=`;
+                const manualUpiLink = `upi://pay?pa=${upiId}@VPA&cu=INR`;
                 
                 // Initialize View Elements
                 const pgModal = document.getElementById('paymentGatewayModal');
