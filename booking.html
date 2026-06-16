@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Steel Utensils | MY वसुधा विकास</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <div class="logo" onclick="window.location.href='index.html'">
+        <img src="logo.png" alt="My Vasudha Vikas Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="programs.html" id="nav-programs">Our Programs</a></li>
+            <li><a href="booking.html" id="nav-booking">Book Steel Utensils</a></li>
+            <li><a href="awards.html" id="nav-awards">Awards</a></li>
+            <li><a href="donate.html" id="nav-donate">Donate</a></li>
+            <li><a href="about.html" id="nav-about">About Us</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+
+    <main class="page-section">
+        <div class="page-intro-header">
+            <h2>Late Shri Hargovind Paliwal Memorial Steel Utensil Bank</h2>
+            <p>Our flagship resource library completely eliminates toxic single-use plastic and thermocol waste from public dining gatherings, weddings, and community feasts. By filling out your expected guest count below, our allocation engine will dynamically calculate your total stainless steel equipment parameters and display the dedicated branch head contact details to schedule your completely free pickup configuration.</p>
+        </div>
+
+        <div class="booking-container">
+            <h2>Utensil Reservation Dashboard</h2>
+            <form id="steelBankForm" name="bookingForm">
+                <input type="hidden" name="targetSheet" value="Sheet1">
+                
+                <div class="form-group">
+                    <label>Your Name:</label>
+                    <input type="text" name="name" id="orgName" required placeholder="Enter full name">
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number:</label>
+                    <input type="tel" name="mobile" id="mobileNumber" required placeholder="Enter 10-digit number" pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
+                    <label>Expected Guest Count:</label>
+                    <input type="number" name="guests" id="guestCount" required min="10" placeholder="E.g., 500">
+                </div>
+                <div class="form-group">
+                    <label>Nearest Distribution Outlet Center:</label>
+                    <select name="branch" id="branchSelect" required>
+                        <option value="" disabled selected>-- Select an Outlet center --</option>
+                        <option value="Vrindavan Nagar">Vrindavan Nagar Center (Dr. Yogesh Paliwal)</option>
+                        <option value="Tapadiya Nagar">Tapadiya Nagar Center (Dinesh Badgujar)</option>
+                        <option value="Malkapur">Malkapur Center (Bhagwan Rane)</option>
+                        <option value="Akot Fail">Akot Fail Center (Meeratai Gotarkar)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date on which Utensils are Required:</label>
+                    <input type="date" name="required_date" id="requiredDate" required>
+                </div>
+                <button type="submit" class="submit-btn">Submit to System </button>
+                <div id="loaderBooking" class="loader-text">Processing data stream safely... Please wait.</div>
+            </form>
+
+            <div id="booking-output" class="status-box">
+                <h3 style="color: var(--primary);">Allocation Model Verified</h3>
+                <p><strong>Organizer Name:</strong> <span id="outName"></span> | <strong>Mobile:</strong> <span id="outMobile"></span></p>
+                <p>Calculated reusable items needed for your <span id="outGuests"></span> visitors:</p>
+                <ul>
+                    <li><strong>Requirement Date:</strong> <span id="outDateReq" style="font-weight: bold; color: var(--secondary);"></span></li>
+                    <li><strong>Stainless Steel Plates (Thalis):</strong> <span id="outPlates"></span> units</li>
+                    <li><strong>Stainless Steel Tumbler Glasses:</strong> <span id="outGlasses"></span> units</li>
+                    <li><strong>Stainless Steel Catering Spoons:</strong> <span id="outSpoons"></span> units</li>
+                    <li><strong>Upcycled Serving Bowls (Donas saved):</strong> <span id="outBowls"></span> units</li>
+                </ul>
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 5px; border-left: 4px solid #2980b9;">
+                    <p style="margin:0; font-weight: bold; color: #145A32;">📋 REGISTRATION RECORDED — PLEASE CONNECT WITH YOUR OUTLET HEAD:</p>
+                    <p style="margin: 8px 0 0 0; font-size: 1.05rem;" id="outBranchContact"></p>
+                    <p style="font-size: 0.85em; margin: 8px 0 0 0; color: #555;"><em>Note: All utensils are provided completely free of charge. Kindly wash and return them safely after use.</em></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('nav-booking').classList.add('active');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxsyJ19V1Hz0zOMPBsvNnb9DJBFv9LfUIADtlD5znlw1IrgO2rTQxa8wFF46lb_dtHFSQ/exec';
+
+        const contactsDirectory = {
+            "Vrindavan Nagar": "<strong>Outlet Hub:</strong> Vrindavan Nagar, Near Sudhir Colony, Akola<br><strong>In-Charge Head:</strong> Dr. Yogesh Paliwal<br><strong>Contact:</strong> 8329990369",
+            "Tapadiya Nagar": "<strong>Outlet Hub:</strong> Tapadiya Nagar, Akola<br><strong>In-Charge Head:</strong> Dinesh Badgujar<br><strong>Contact:</strong> 7757098968",
+            "Malkapur": "<strong>Outlet Hub:</strong> Kothari Vatika, Malkapur, Akola<br><strong>In-Charge Head:</strong> Bhagwan Rane<br><strong>Contact:</strong> 9527366565",
+            "Akot Fail": "<strong>Outlet Hub:</strong> Akot Fail, Akola<br><strong>In-Charge Head:</strong> Meeratai Gotarkar<br><strong>Contact:</strong> 9657726407"
+        };
+
+        const bookingForm = document.forms['bookingForm'];
+        bookingForm.addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('loaderBooking').style.display = 'block';
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(bookingForm)})
+              .then(response => {
+                  document.getElementById('loaderBooking').style.display = 'none';
+                  triggerBookingOutput();
+              })
+              .catch(error => {
+                  document.getElementById('loaderBooking').style.display = 'none';
+                  triggerBookingOutput(); 
+              });
+        });
+
+        function triggerBookingOutput() {
+            const name = document.getElementById('orgName').value;
+            const mobile = document.getElementById('mobileNumber').value;
+            const guests = parseInt(document.getElementById('guestCount').value);
+            const branchKey = document.getElementById('branchSelect').value;
+            const reqDate = document.getElementById('requiredDate').value;
+
+            document.getElementById('outName').innerText = name;
+            document.getElementById('outMobile').innerText = mobile;
+            document.getElementById('outGuests').innerText = guests;
+            document.getElementById('outPlates').innerText = guests;
+            document.getElementById('outGlasses').innerText = guests;
+            document.getElementById('outSpoons').innerText = guests;
+            document.getElementById('outBowls').innerText = guests * 2;
+            document.getElementById('outDateReq').innerText = reqDate;
+            
+            document.getElementById('outBranchContact').innerHTML = contactsDirectory[branchKey];
+            document.getElementById('booking-output').style.display = 'block';
+            bookingForm.reset();
+        }
+    </script>
+</body>
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>MY वसुधा विकास</h4>
+            <p>Grassroots environmental conservation movement dedicated to single-use plastic eradication and sustainable circular economies.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/myvasudhavikas/" target="_blank" class="insta-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Myवसुधाविकास" target="_blank" class="youtube-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Navigation</h4>
+            <ul>
+                <li><a href="index.html">Home Dashboard</a></li>
+                <li><a href="programs.html">Our Initiatives</a></li>
+                <li><a href="booking.html">Utensil Bank</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="donate.html">Donate Support</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Details</h4>
+            <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
+            <p><strong>Phone:</strong> +91 8329990369</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p><strong>"प्लॅस्टिक कॅरीबॅगची सवय सोडा, जीवनाशी नाते जोडा"</strong></p>
+        <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
+    </div>
+</footer>
+</html>

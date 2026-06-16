@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Us / Donate | MY वसुधा विकास</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <div class="logo" onclick="window.location.href='index.html'">
+        <img src="logo.png" alt="My Vasudha Vikas Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="programs.html" id="nav-programs">Our Programs</a></li>
+            <li><a href="booking.html" id="nav-booking">Book Steel Utensils</a></li>
+            <li><a href="awards.html" id="nav-awards">Awards</a></li>
+            <li><a href="donate.html" id="nav-donate">Donate</a></li>
+            <li><a href="about.html" id="nav-about">About Us</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+
+    <main class="page-section">
+        <div class="page-intro-header" style="border-bottom-color: #27AE60;">
+            <h2>Resource Contribution Dashboard</h2>
+            <p>Welcome to our dedicated Donation Dashboard. Every contribution is securely managed and strictly routed into our resource lifecycles:
+            <br>• <strong>Fabric Waste:</strong> Upcycled by our volunteers into free, durable cloth carrier bags.
+            <br>• <strong>Milk Packets:</strong> Down-cut and upcycled into protective nursery pots to grow young afforestation saplings.
+            <br>• <strong>Financial Dropbox Support:</strong> 100% of funds directly finance automated maintenance systems and fuel local resource transport networks crossways to 120 villages in Maharashtra.
+            </p>
+        </div>
+        
+        <div class="booking-container" style="border-color: #27AE60; background-color: #f7fff7;">
+            <h2>Donation Registry Form</h2>
+            <form id="donationForm" name="donationForm">
+                <input type="hidden" name="targetSheet" value="Sheet2">
+                
+                <div class="form-group">
+                    <label>Donor Full Name:</label>
+                    <input type="text" name="name" id="donorName" required placeholder="Enter full name">
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number:</label>
+                    <input type="tel" name="mobile" id="donorMobile" required placeholder="Enter 10-digit number" pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
+                    <label>Donation Category:</label>
+                    <select name="category" id="donorCategory" onchange="toggleDonationFields()" required>
+                        <option value="" disabled selected>-- Select Category --</option>
+                        <option value="Financial Support">Financial Support </option>
+                        <option value="Fabric Material (Sarees/Bedsheets)">Fabric Material (Sarees/Bedsheets)</option>
+                        <option value="Milk Packets (Upcycled Nursery Pots)">Milk Packets (Upcycled Nursery Pots)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="moneyDropbox" style="display:none;">
+                    <label>Contribution Amount (INR):</label>
+                    <input type="number" name="amount" id="donorAmount" min="1" placeholder="E.g., 500">
+                </div>
+
+                <div class="form-group" id="materialDropbox" style="display:none;">
+                    <label>Estimated Item Quantity:</label>
+                    <input type="number" name="quantity" id="donorQty" min="1" placeholder="E.g., 25">
+                </div>
+
+                <button type="submit" id="donateSubmitBtn" class="submit-btn" style="background-color: #27AE60;">Log Contribution Entry</button>
+                <div id="loaderDonate" class="loader-text" style="color: #27AE60;">Logging contribution to central servers... Please wait.</div>
+            </form>
+
+            <div id="donation-output" class="status-box" style="border-left-color: #27AE60;">
+                <h3 style="color: #27AE60;">Contribution Made Successfully!</h3>
+                <p>Thank you, <strong id="lblDonorName"></strong>. Your data has been processed into our master registry.</p>
+                <p><strong>Category Type:</strong> <span id="lblCategory"></span></p>
+                <p id="lblDetailLine"></p>
+                
+                <div style="background: #eafaf1; padding: 15px; border-radius: 5px; border-left: 4px solid #27AE60; margin-top: 15px;">
+                    <p style="margin:0; font-weight: bold; color: #145A32;">📋 HEADQUARTERS COORDINATION & DROPBOX CONTACT DETAILS:</p>
+                    <p style="margin: 6px 0 0 0; line-height: 1.5; font-size: 1.05rem;">
+                        <strong>Founders / In-Charge:</strong> Dr. Yogesh Paliwal & Dr. Manisha Paliwal<br>
+                        <strong>Primary Contact Number:</strong> 8329990369<br>
+                        <strong>Central Drop Location Hub:</strong> Vrindavan Nagar Center, Akola City
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="paymentGatewayModal" class="pg-modal">
+        <div class="pg-box">
+            <h3 style="margin-top:0; color:var(--dark-text);"><i class="fas fa-qrcode" style="color:var(--primary);"></i> Secure UPI Donation</h3>
+            <div id="pgLoaderSection">
+                <p style="font-size:0.95rem; color:#555;">Preparing payment interface configurations...</p>
+                <div class="pg-spinner"></div>
+            </div>
+            <div id="pgDesktopQR" style="display:none;">
+                <p style="font-size:0.95rem; color:#555;">Scan this QR code using any UPI app (Google Pay, BHIM, PhonePe) to complete your donation:</p>
+                <img id="staticQRImg" src="QR CODE YPALIWAL.jpeg" alt="UPI Donation QR Code" class="qr-code-img">
+                <p style="font-size:1.1rem; font-weight:bold; color:var(--secondary);" id="qrAmountText">Amount: ₹0</p>
+            </div>
+            <p style="font-size: 0.85rem; color:#7f8c8d; margin-bottom:15px;">Once payment is made inside your UPI app, click below to confirm verification and save entry.</p>
+            <button id="pgConfirmSuccessBtn" class="submit-btn" style="background-color:var(--primary);">I Have Done the Payment</button>
+            <button onclick="closePaymentGateway()" class="submit-btn" style="background-color:#7f8c8d; margin-top:10px;">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('nav-donate').classList.add('active');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxsyJ19V1Hz0zOMPBsvNnb9DJBFv9LfUIADtlD5znlw1IrgO2rTQxa8wFF46lb_dtHFSQ/exec';
+
+        function toggleDonationFields() {
+            const category = document.getElementById('donorCategory').value;
+            const moneyBox = document.getElementById('moneyDropbox');
+            const materialBox = document.getElementById('materialDropbox');
+            const submitBtn = document.getElementById('donateSubmitBtn');
+
+            if (category === "Financial Support") {
+                moneyBox.style.display = "block";
+                document.getElementById('donorAmount').setAttribute('required', 'true');
+                materialBox.style.display = "none";
+                document.getElementById('donorQty').removeAttribute('required');
+                submitBtn.innerText = "Proceed to Secure UPI Payment";
+                submitBtn.style.backgroundColor = "#2dbe69";
+            } else {
+                moneyBox.style.display = "none";
+                document.getElementById('donorAmount').removeAttribute('required');
+                materialBox.style.display = "block";
+                document.getElementById('donorQty').setAttribute('required', 'true');
+                submitBtn.innerText = "Log Contribution Entry";
+                submitBtn.style.backgroundColor = "#27AE60";
+            }
+        }
+
+        const donationForm = document.forms['donationForm'];
+        donationForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const category = document.getElementById('donorCategory').value;
+            
+            if (category === "Financial Support") {
+                const amount = document.getElementById('donorAmount').value;
+                const pgModal = document.getElementById('paymentGatewayModal');
+                const loaderSec = document.getElementById('pgLoaderSection');
+                const desktopSec = document.getElementById('pgDesktopQR');
+                
+                pgModal.style.display = 'flex';
+                loaderSec.style.display = 'block';
+                desktopSec.style.display = 'none';
+                
+                setTimeout(() => {
+                    loaderSec.style.display = 'none';
+                    document.getElementById('qrAmountText').innerText = `Amount to Pay: ₹ ${amount}`;
+                    desktopSec.style.display = 'block';
+                }, 600);
+                
+                document.getElementById('pgConfirmSuccessBtn').onclick = () => {
+                    pgModal.style.display = 'none';
+                    executeDataSubmissionPipeline();
+                };
+            } else {
+                executeDataSubmissionPipeline();
+            }
+        });
+
+        function closePaymentGateway() { document.getElementById('paymentGatewayModal').style.display = 'none'; }
+
+        function executeDataSubmissionPipeline() {
+            document.getElementById('loaderDonate').style.display = 'block';
+            fetch(scriptURL, { method: 'POST', body: new FormData(donationForm)})
+              .then(response => {
+                  document.getElementById('loaderDonate').style.display = 'none';
+                  triggerDonationOutput();
+              })
+              .catch(error => {
+                  document.getElementById('loaderDonate').style.display = 'none';
+                  triggerDonationOutput();
+              });
+        }
+
+        function triggerDonationOutput() {
+            const name = document.getElementById('donorName').value;
+            const category = document.getElementById('donorCategory').value;
+            const amt = document.getElementById('donorAmount').value;
+            const qty = document.getElementById('donorQty').value;
+
+            document.getElementById('lblDonorName').innerText = name;
+            document.getElementById('lblCategory').innerText = category;
+            
+            let detailLine = "";
+            if(category === "Financial Support") {
+                detailLine = `<strong>UPI Gateway Authorization Logged:</strong> ₹ ${amt} INR.`;
+            } else {
+                detailLine = `<strong>Logged Resource Volume:</strong> ${qty} units.`;
+            }
+            document.getElementById('lblDetailLine').innerHTML = detailLine;
+
+            document.getElementById('donation-output').style.display = 'block';
+            donationForm.reset();
+            document.getElementById('donateSubmitBtn').innerText = "Log Contribution Entry";
+            document.getElementById('donateSubmitBtn').style.backgroundColor = "#27AE60";
+            document.getElementById('moneyDropbox').style.display = "none";
+            document.getElementById('materialDropbox').style.display = "none";
+        }
+    </script>
+</body>
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>MY वसुधा विकास</h4>
+            <p>Grassroots environmental conservation movement dedicated to single-use plastic eradication and sustainable circular economies.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/myvasudhavikas/" target="_blank" class="insta-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Myवसुधाविकास" target="_blank" class="youtube-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Navigation</h4>
+            <ul>
+                <li><a href="index.html">Home Dashboard</a></li>
+                <li><a href="programs.html">Our Initiatives</a></li>
+                <li><a href="booking.html">Utensil Bank</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="donate.html">Donate Support</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Details</h4>
+            <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
+            <p><strong>Phone:</strong> +91 8329990369</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p><strong>"प्लॅस्टिक कॅरीबॅगची सवय सोडा, जीवनाशी नाते जोडा"</strong></p>
+        <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
+    </div>
+</footer>
+</html>
