@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Environmental Programs | MY वसुधा विकास</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <div class="logo" onclick="window.location.href='index.html'">
+        <img src="logo.png" alt="My Vasudha Vikas Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="programs.html" id="nav-programs">Our Programs</a></li>
+            <li><a href="booking.html" id="nav-booking">Book Steel Utensils</a></li>
+            <li><a href="awards.html" id="nav-awards">Awards</a></li>
+            <li><a href="donate.html" id="nav-donate">Donate</a></li>
+            <li><a href="about.html" id="nav-about">About Us</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+
+    <main class="page-section">
+        <div class="page-intro-header">
+            <h2>Our Environmental Action Programs</h2>
+            <p>Welcome to our initiatives gallery. This panel documents the primary operational modules run across Maharashtra to foster a circular economy and completely eliminate disposable packaging structures. Click any module below to check its full description, structural public benefits, and verified community impact records.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <img src="WhatsApp Image 2026-05-30 at 21.39.14.jpeg" alt="Steel Utensil Bank">
+                <h3>Steel Utensil Bank</h3>
+                <button class="card-btn" onclick="openModal('steel')">View Gallery & Full Report</button>
+            </div>
+            <div class="card">
+                <img src="WhatsApp Image 2026-05-30 at 21.38.22.jpeg" alt="Cloth Bag Initiative">
+                <h3>Cloth Bag & Sapling Initiative</h3>
+                <button class="card-btn" onclick="openModal('cloth')">View Gallery & Full Report</button>
+            </div>
+            <div class="card">
+                <img src="WhatsApp Image 2026-06-02 at 22.31.57.jpeg" alt="Eco-Friendly Haldi Kumkum">
+                <h3>Eco-Friendly Haldi Kumkum</h3>
+                <button class="card-btn" onclick="openModal('haldi')">View Gallery & Full Report</button>
+            </div>
+            <div class="card">
+                <img src="WhatsApp Image 2026-06-01 at 05.17.54.jpeg" alt="Plastic-Free Bhandaras">
+                <h3>Plastic-Free Bhandaras</h3>
+                <button class="card-btn" onclick="openModal('bhandara')">View Gallery & Full Report</button>
+            </div>
+            <div class="card">
+                <img src="WhatsApp Image 2026-05-31 at 08.25.27.jpeg" alt="School Awareness Drives">
+                <h3>School Awareness Drives</h3>
+                <button class="card-btn" onclick="openModal('school')">View Gallery & Full Report</button>
+            </div>
+            <div class="card">
+                <img src="WhatsApp Image 2026-05-30 at 21.08.40.jpeg" alt="Bicycle Awareness Drives">
+                <h3>Bicycle Awareness Drives</h3>
+                <button class="card-btn" onclick="openModal('bicycle')">View Gallery & Full Report</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="programModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" class="modal-header">Title</h2>
+            <div class="modal-carousel" id="modalCarouselInner"></div>
+            <button class="mc-prev" onclick="changeModalSlide(-1)">&#10094;</button>
+            <button class="mc-next" onclick="changeModalSlide(1)">&#10095;</button>
+            <div style="background: var(--light-bg); padding: 15px; border-radius: 5px; margin-top:15px; margin-bottom: 15px;">
+                <strong>Program Description:</strong>
+                <p id="modalDesc" style="margin-top:5px; text-align:justify;"></p>
+            </div>
+            <div style="margin-bottom: 12px;">
+                <strong>Key Community Benefits:</strong> <span id="modalBenefits" style="color: var(--primary); display:block; margin-top:3px;"></span>
+            </div>
+            <div>
+                <strong>Strategic Environmental Impacts:</strong> <span id="modalImpacts" style="font-weight: bold; color: var(--secondary); display:block; margin-top:3px;"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('nav-programs').classList.add('active');
+        
+        const programData = {
+            'steel': {
+                title: "Late Shri Hargovind Paliwal Memorial Steel Utensil Bank",
+                images: ["WhatsApp Image 2026-05-30 at 21.39.jpeg","WhatsApp Image 2026-05-30 at 21.39.14.jpeg","WhatsApp Image 2026-05-18 at 21.32.30.jpeg","WhatsApp Image 2026-06-01 at 05.20.21.jpeg","WhatsApp Image 2026-05-30 at 21.08.51.jpeg"],
+                desc: "A completely free equipment rental engine lending medical-grade steel utilities (plates, tumblers, bowls) to public banquet entities, minimizing consumer ingestion of plastic toxins. It addresses microplastic shedding risks. Operations function via 4 nodes across Akola city.",
+                benefits: "Eliminates substantial catering waste investments for low-income brackets and religious institutions.",
+                impacts: "Successfully intercepted and prevented 6,000,000 plastic trash variations across 300+ events scaling into 120 villages in Maharashtra."
+            },
+            'cloth': {
+                title: "Free Cloth Bag & Sapling Distribution Framework",
+                images: ["WhatsApp Image 2026-05-30 at 21.38.22.jpeg","WhatsApp Image 2026-05-31 at 08.25..jpeg","WhatsApp Image 2026-05-31 at 08.25.31.jpeg"],
+                desc: "Processes consumer clothing residues (old sarees, curtains, bedsheets) into long-lasting green storage bags carrying environmental messaging. Features a permanent public stand outside our property for shoppers.",
+                benefits: "Enforces direct textile circular economies, saving raw garment pieces from trash dumps.",
+                impacts: "Distributed over 42,000 carriers across municipal zones, mobilizing massive public textile donations from local families."
+            },
+            'haldi': {
+                title: "Eco-Friendly Haldi Kumkum (Plant Distribution Drives)",
+                images: ["WhatsApp Image 2026-06-02 at 22.31.57.jpeg","WhatsApp Image 2026-06-02 at 22.52.42.jpeg","WhatsApp Image 2026-06-02 at 22.31.58.jpeg","WhatsApp Image 2026-06-02 at 22.37.20.jpeg"],
+                desc: "Transforms standard festive gifting cycles by substituting cheap plastic variables with healthy living, home-nurtured plant containers cultivated by our volunteers for a month prior to distribution.",
+                benefits: "Integrates clean environmental stewardship directly inside classic cultural celebrations.",
+                impacts: "Nurtured and gifted 51 home plant variants per cycle, boosting domestic neighborhood green oxygen footprints."
+            },
+            'bhandara': {
+                title: "Hanuman Jayanti Plastic-Free Bhandara Management",
+                images: ["WhatsApp Image 2026-06-01 at 05.17.54.jpeg","WhatsApp Image 2026-06-01 at 05.18.17.jpeg","WhatsApp Image 2026-06-01 at 05.20.21.jpeg"],
+                desc: "Provides logistics deployment mapping across town mass feeding conventions during holy peaks to suppress single-use thermocol systems.",
+                benefits: "Proves high-volume public dining can successfully function via clean steel recycling loops.",
+                impacts: "Enforced zero-waste execution across 8 concurrent city nodes, creating digital models copied across states."
+            },
+            'school': {
+                title: "School Student Awareness Initiatives",
+                images: ["WhatsApp Image 2026-05-31 at 08.25.27.jpeg","WhatsApp Image 2026-05-31 at 08.25.28.jpeg","WhatsApp Image 2026-05-30 at 21.08.501.jpeg","WhatsApp Image 2026-06-02 at 23.13.48.jpeg","WhatsApp Image 2026-06-02 at 23.13.49.jpeg"],
+                desc: "Conducts lifecycle workshops and educational interaction circuits directly inside academic structures like Bharat Vidyalay and Prabhat Kids School.",
+                benefits: "Builds core ecological conservation habits in young minds, turning them into home environmental ambassadors.",
+                impacts: "Enrolled thousands of youngsters who signed pledges to refuse single-use plastic elements."
+            },
+            'bicycle': {
+                title: "Bicycle Awareness Drives",
+                images: ["WhatsApp Image 2026-06-02 at 23.04.01.jpeg","WhatsApp Image 2026-05-30 at 21.08..jpeg"],
+                desc: "Mobilizes zero-emission publicity via street visibility operations using a custom tandem bicycle frame showing bilingual placards.",
+                benefits: "Acts as a mobile, non-intrusive advertisement mechanism targeting motorists in high-density transit corridors.",
+                impacts: "14+ continuous years of persistent public presence driving deep individual accountability dialogues."
+            }
+        };
+
+        let currentModalSlide = 0;
+        let modalSlideElements = [];
+
+        function openModal(key) {
+            const data = programData[key];
+            document.getElementById("modalTitle").innerText = data.title;
+            document.getElementById("modalDesc").innerText = data.desc;
+            document.getElementById("modalBenefits").innerText = data.benefits;
+            document.getElementById("modalImpacts").innerText = data.impacts;
+            
+            const wrapper = document.getElementById("modalCarouselInner");
+            wrapper.innerHTML = "";
+            
+            data.images.forEach((src, idx) => {
+                let div = document.createElement("div");
+                div.className = "modal-slide";
+                if(idx === 0) div.classList.add("active");
+                div.innerHTML = `<img src="${src}" alt="Field Operational Picture">`;
+                wrapper.appendChild(div);
+            });
+
+            modalSlideElements = document.querySelectorAll('.modal-slide');
+            currentModalSlide = 0;
+            document.getElementById("programModal").style.display = "block";
+        }
+
+        function closeModal() { document.getElementById("programModal").style.display = "none"; }
+
+        function changeModalSlide(dir) {
+            if(modalSlideElements.length === 0) return;
+            modalSlideElements[currentModalSlide].classList.remove('active');
+            currentModalSlide = (currentModalSlide + dir + modalSlideElements.length) % modalSlideElements.length;
+            modalSlideElements[currentModalSlide].classList.add('active');
+        }
+    </script>
+</body>
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>MY वसुधा विकास</h4>
+            <p>Grassroots environmental conservation movement dedicated to single-use plastic eradication and sustainable circular economies.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/myvasudhavikas/" target="_blank" class="insta-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Myवसुधाविकास" target="_blank" class="youtube-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Navigation</h4>
+            <ul>
+                <li><a href="index.html">Home Dashboard</a></li>
+                <li><a href="programs.html">Our Initiatives</a></li>
+                <li><a href="booking.html">Utensil Bank</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="donate.html">Donate Support</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Details</h4>
+            <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
+            <p><strong>Phone:</strong> +91 8329990369</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p><strong>"प्लॅस्टिक कॅरीबॅगची सवय सोडा, जीवनाशी नाते जोडा"</strong></p>
+        <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
+    </div>
+</footer>
+</html>
