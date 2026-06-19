@@ -45,7 +45,7 @@
         </select>
 
         <label style="font-weight: 600; font-size: 0.9rem;">Operational Access Identifier (ID)</label>
-        <input type="text" id="authProfileIdentificationString" class="auth-input-field" placeholder="Enter assigned identity ID code">
+        <input type="text" id="authProfileIdentificationString" class="auth-input-field" placeholder="Enter identity ID code">
 
         <label style="font-weight: 600; font-size: 0.9rem;">Secure Cryptographic Key Passphrase</label>
         <input type="password" id="authProfilePassphraseKey" class="auth-input-field" placeholder="••••••••">
@@ -59,7 +59,7 @@
             <div>
                 <h2 style="margin: 0; color: #2e7d32;"><i class="fa-solid fa-gauge-high"></i> Administrative Control Terminal</h2>
                 <div style="margin-top: 5px; display: flex; align-items: center;">
-                    <span style="font-size: 0.9rem; color: #5f6368;">Authorized Session: <strong id="activeSessionIdentityToken" class="tab-indicator-badge"></strong></span>
+                    <span style="font-size: 0.9rem; color: #5f6368;">Session: <strong id="activeSessionIdentityToken" class="tab-indicator-badge"></strong></span>
                     <span id="syncIndicator" class="sync-status-indicator status-synced"><i class="fa-solid fa-cloud-check"></i> Connected</span>
                 </div>
             </div>
@@ -82,13 +82,13 @@
         <!-- HONORS & EXCELLENCE AWARDS MANAGEMENT CELL -->
         <div class="control-panel-grid-card">
             <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-trophy"></i> Honors & Excellence Awards Management</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Add, edit, or remove entries displayed on the public accolades page, along with image filenames and expand descriptions.</p>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Add, edit, or remove entries displayed on the public accolades page.</p>
             
             <div class="management-form-layout">
                 <input type="hidden" id="awardEditId">
                 <input type="text" id="awardTitleInput" placeholder="Award Title (e.g., Eco-Warrior Medal)">
                 <input type="text" id="awardImgInput" placeholder="Image Filename (e.g., award1.jpeg)">
-                <textarea id="awardDescInput" rows="2" placeholder="Detailed Expandable Description Copy..."></textarea>
+                <textarea id="awardDescInput" rows="2" placeholder="Detailed Description Copy..."></textarea>
                 <div>
                     <button class="interactive-action-btn-primary" style="margin: 0; width: 100%; padding: 10px;" onclick="saveAwardRecordItem()"><i class="fa-solid fa-floppy-disk"></i> Save Award</button>
                     <button class="destructive-btn" style="margin-top: 5px; width: 100%; display: none;" id="cancelAwardEditBtn" onclick="clearAwardFormInputs()">Cancel Edit</button>
@@ -111,7 +111,7 @@
         <!-- PRESS & NEWSPAPER CUTTINGS MANAGEMENT CELL -->
         <div class="control-panel-grid-card">
             <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-newspaper"></i> Newspaper Cuttings & Press Catalog</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Manage publication clips and newspaper cuttings cleanly without cluttering description contexts.</p>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Manage publication clips cleanly without cluttering descriptions.</p>
             
             <div class="management-form-layout">
                 <input type="hidden" id="pressEditId">
@@ -138,8 +138,8 @@
         <!-- PUBLIC LIVE ANNOUNCEMENT CREATION CONTROLLER MODULE -->
         <div class="control-panel-grid-card">
             <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-bullhorn"></i> Broadcast Live Emergency/Event Announcement Banner</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Disseminate critical environmental news feeds or structural schedule alerts updates across the primary public home screen layer interface instantly.</p>
-            <textarea id="announcementInputBodyText" rows="2" style="width:100%; padding:10px; border:1px solid #dadce0; border-radius:4px; box-sizing:border-box;" placeholder="Type new notification copy context framework here..."></textarea>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Update environmental alerts across the public home interface instantly.</p>
+            <textarea id="announcementInputBodyText" rows="2" style="width:100%; padding:10px; border:1px solid #dadce0; border-radius:4px; box-sizing:border-box;" placeholder="Type announcement message here..."></textarea>
             <div style="margin-top: 10px; display: flex; gap: 10px;">
                 <button class="interactive-action-btn-primary" style="margin: 0;" onclick="publishLiveAnnouncementItemStream()"><i class="fa-solid fa-paper-plane"></i> Publish To Homepage</button>
                 <button class="destructive-btn" onclick="purgeLiveAnnouncementStream()"><i class="fa-solid fa-eraser"></i> Wipe Active Announcement</button>
@@ -149,7 +149,7 @@
         <!-- MODERATION ENGINE -->
         <div class="control-panel-grid-card">
             <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-shield-halved"></i> Moderation Engine: Filter Community Reviews</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Prune spam logs, address community feedback comments, and maintain data pipeline sanity.</p>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Prune spam logs and manage community feedback comments safely.</p>
             <div id="adminReviewManagementTargetWorkspaceFeed">
                 <div style="padding: 20px; text-align: center; color: #7f8c8d;">
                     <i class="fa-solid fa-spinner fa-spin"></i> Initializing synchronized cloud databases...
@@ -192,7 +192,7 @@
                 
                 pullGlobalDatabaseState();
             } else {
-                alert("Invalid configuration credentials. Please double check authority parameters.");
+                alert("Invalid configuration credentials.");
             }
         }
 
@@ -223,7 +223,7 @@
                     setSyncStatus(true);
                 })
                 .catch(err => {
-                    console.error("Pipeline breakdown fallback execution initiated:", err);
+                    console.error("Local recovery arrays activated:", err);
                     renderAwardsDashboardTable();
                     renderPressDashboardTable();
                     renderAdministrationMasterFeed();
@@ -239,10 +239,11 @@
             const announcement = localStorage.getItem('vasudha_live_announcement') ? 
                                  JSON.parse(localStorage.getItem('vasudha_live_announcement')) : null;
 
+            // Transmitted as text/plain to circumvent multi-level JSON structure stripping in Apps Script
             fetch(SCRIPT_WEB_APP_URL, {
                 method: "POST",
                 mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "text/plain" },
                 body: JSON.stringify({
                     action: targetAction || "syncAdminData",
                     awards: awards,
@@ -253,13 +254,13 @@
             }).then(() => {
                 setTimeout(() => setSyncStatus(true), 1200);
             }).catch(err => {
-                alert("Data sync error into pipeline stream: " + err);
+                console.error("Pipeline failure:", err);
                 setSyncStatus(true);
             });
         }
 
         /* ========================================================
-           AWARDS LOGIC BLOCKS
+           AWARDS SUBSYSTEM ENGINE
            ======================================================== */
         function renderAwardsDashboardTable() {
             const awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
@@ -270,7 +271,7 @@
                 tbody.innerHTML += `
                     <tr>
                         <td><img src="${item.img}" class="thumb-preview" onerror="this.src='logo.png';"></td>
-                        <td><strong>${item.title}</strong><br><small style="color:#7f8c8d;">Path: ${item.img}</small></td>
+                        <td><strong>${item.title}</strong><br><small style="color:#7f8c8d;">Image: ${item.img}</small></td>
                         <td>${item.desc}</td>
                         <td>
                             <button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px; font-size:0.8rem;" onclick="editAwardRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -287,7 +288,7 @@
             const img = document.getElementById('awardImgInput').value.trim();
             const desc = document.getElementById('awardDescInput').value.trim();
 
-            if(!title || !img || !desc) return alert("Please fill all required award fields.");
+            if(!title || !img || !desc) return alert("Please fill out all award text entries.");
 
             let awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
 
@@ -316,7 +317,7 @@
         }
 
         function deleteAwardRecordItem(id) {
-            if(confirm("Confirm removal of this award record entry?")) {
+            if(confirm("Permanently wipe this award entry?")) {
                 let awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
                 awards = awards.filter(item => item.id != id);
                 localStorage.setItem('vasudha_awards_db', JSON.stringify(awards));
@@ -334,7 +335,7 @@
         }
 
         /* ========================================================
-           PRESS CLIPPINGS LOGIC BLOCKS
+           PRESS SUBSYSTEM ENGINE
            ======================================================== */
         function renderPressDashboardTable() {
             const press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
@@ -345,7 +346,7 @@
                 tbody.innerHTML += `
                     <tr>
                         <td><img src="${item.img}" class="thumb-preview" onerror="this.src='logo.png';"></td>
-                        <td><strong>${item.title}</strong><br><small style="color:#7f8c8d;">Path: ${item.img}</small></td>
+                        <td><strong>${item.title}</strong><br><small style="color:#7f8c8d;">Image: ${item.img}</small></td>
                         <td>
                             <button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px; font-size:0.8rem;" onclick="editPressRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button>
                             <button class="destructive-btn" style="padding:4px 8px; font-size:0.8rem;" onclick="deletePressRecordItem(${item.id})"><i class="fa-solid fa-trash"></i></button>
@@ -360,7 +361,7 @@
             const title = document.getElementById('pressTitleInput').value.trim();
             const img = document.getElementById('pressImgInput').value.trim();
 
-            if(!title || !img) return alert("Please specify title and image fields.");
+            if(!title || !img) return alert("Please fill out both press fields.");
 
             let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
 
@@ -388,7 +389,7 @@
         }
 
         function deletePressRecordItem(id) {
-            if(confirm("Wipe this newspaper cutting asset link?")) {
+            if(confirm("Delete this press item?")) {
                 let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
                 press = press.filter(item => item.id != id);
                 localStorage.setItem('vasudha_press_db', JSON.stringify(press));
@@ -405,7 +406,7 @@
         }
 
         /* ========================================================
-           REVIEW REVIEWS MODERATION SUITE LOGICS
+           REVIEW MODERATION LOGIC ENGINE
            ======================================================== */
         function renderAdministrationMasterFeed() {
             const reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
@@ -413,7 +414,7 @@
             container.innerHTML = "";
 
             if(reviews.length === 0) {
-                container.innerHTML = `<p style="color:#7f8c8d; font-style:italic; font-size:0.9rem;">No feedback comments loaded from database layers.</p>`;
+                container.innerHTML = `<p style="color:#7f8c8d; font-style:italic; font-size:0.9rem;">No reviews logged in database layers.</p>`;
                 return;
             }
 
@@ -440,7 +441,7 @@
                         
                         <div style="margin-top:8px; padding-left:15px; border-left:2px dashed #bdc3c7;">
                             <div style="display:flex; gap:8px; margin-bottom:8px;">
-                                <input type="text" id="adminReplyTextNode-${review.id}" placeholder="Type response directly to user..." style="flex-grow:1; padding:5px; font-size:0.85rem; border:1px solid #dadce0; border-radius:4px;">
+                                <input type="text" id="adminReplyTextNode-${review.id}" placeholder="Type message reply..." style="flex-grow:1; padding:5px; font-size:0.85rem; border:1px solid #dadce0; border-radius:4px;">
                                 <button class="interactive-action-btn-primary" style="margin:0; padding:4px 12px; font-size:0.85rem;" onclick="executeAdminReplyInjection(${review.id})">Reply As System Office</button>
                             </div>
                             ${existingRepliesHtml}
@@ -452,7 +453,7 @@
         }
 
         function executePurgeReviewRow(id) {
-            if(confirm("Confirm deletion? This permanently removes the review across public viewports.")) {
+            if(confirm("Confirm user commentary node deletion?")) {
                 let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
                 reviews = reviews.filter(r => r.id !== id);
                 localStorage.setItem('vasudha_reviews_db', JSON.stringify(reviews));
@@ -464,7 +465,7 @@
         function executeAdminReplyInjection(id) {
             const inputField = document.getElementById(`adminReplyTextNode-${id}`);
             const text = inputField.value.trim();
-            if(!text) return alert("Please specify a reply message.");
+            if(!text) return alert("Message box cannot stay blank.");
 
             let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
             const idx = reviews.findIndex(r => r.id === id);
@@ -483,7 +484,7 @@
         }
 
         function deleteTargetSubReplyRow(reviewId, replyIndex) {
-            if(confirm("Delete this response record item?")) {
+            if(confirm("Remove this response entry?")) {
                 let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
                 const idx = reviews.findIndex(r => r.id === reviewId);
                 if(idx !== -1) {
@@ -496,11 +497,11 @@
         }
 
         /* ========================================================
-           ANNOUNCEMENT PUBLISHER LOGICS
+           ANNOUNCEMENT PUBLISHER SYSTEM
            ======================================================== */
         function publishLiveAnnouncementItemStream() {
             const text = document.getElementById('announcementInputBodyText').value.trim();
-            if(!text) return alert("Announcement message body cannot be empty.");
+            if(!text) return alert("Announcement context cannot stay empty.");
 
             const transmissionPayload = {
                 content: text,
@@ -509,15 +510,15 @@
             };
 
             localStorage.setItem('vasudha_live_announcement', JSON.stringify(transmissionPayload));
-            alert("New broadcast staged successfully. Synchronizing directly to cloud systems...");
+            alert("Broadcast saved locally. Syncing to cloud layers...");
             pushGlobalDatabaseState("syncAnnouncementData");
         }
 
         function purgeLiveAnnouncementStream() {
-            if(confirm("Wipe clear the active homepage announcement billboard display window?")) {
+            if(confirm("Wipe clear the homepage notification ticker?")) {
                 localStorage.removeItem('vasudha_live_announcement');
                 document.getElementById('announcementInputBodyText').value = "";
-                alert("Staging cleared. Removing notice from production environments...");
+                alert("Billboard cleared. Dispatching deletions to database endpoints...");
                 pushGlobalDatabaseState("syncAnnouncementData");
             }
         }
@@ -527,32 +528,8 @@
     <div class="footer-grid">
         <div class="footer-col">
             <h4>MY वसुधा विकास</h4>
-            <p>Grassroots environmental conservation movement dedicated to single-use plastic eradication and sustainable circular economies.</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/myvasudhavikas/" target="_blank" class="insta-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@Myवसुधाविकास" target="_blank" class="youtube-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
+            <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
         </div>
-        <div class="footer-col">
-            <h4>Quick Navigation</h4>
-            <ul>
-                <li><a href="index.html">Home Dashboard</a></li>
-                <li><a href="programs.html">Our Initiatives</a></li>
-                <li><a href="booking.html">Utensil Bank</a></li>
-                <li><a href="awards.html">Awards</a></li>
-                <li><a href="donate.html">Donate Support</a></li>
-                <li><a href="about.html">About Us</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Contact Details</h4>
-            <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
-            <p><strong>Phone:</strong> +91 8329990369</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p><strong>"प्लॅस्टिक कॅरीबॅगची सवय सोडा, जीवनाशी नाते जोडा"</strong></p>
-        <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
     </div>
 </footer>
 </html>
