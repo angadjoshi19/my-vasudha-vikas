@@ -103,7 +103,7 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            justify-content: space-between; /* Keeps badges perfectly flush */
+            justify-content: space-between;
         }
 
         .card-body-content h3 {
@@ -247,13 +247,15 @@
         <!-- HONORS SECTION -->
         <div style="text-align: center;"><h2 class="section-divider-title">Honors & Excellence Awards</h2></div>
         <div class="awards-dynamic-grid" id="awardsContainer">
-            <!-- Populated via JavaScript Engine -->
+            <div style="text-align: center; grid-column: 1/-1; padding: 20px; color: var(--text-muted);">
+                <i class="fa-solid fa-spinner fa-spin"></i> Fetching live records from cloud database...
+            </div>
         </div>
 
         <!-- PRESS SECTION -->
         <div style="text-align: center;"><h2 class="section-divider-title">Media Tracking & Newspaper Cuttings</h2></div>
         <div class="press-dynamic-grid" id="pressContainer">
-            <!-- Populated via JavaScript Engine -->
+            <!-- Populated dynamically -->
         </div>
     </main>
 
@@ -274,27 +276,17 @@
     <script>
         document.getElementById('nav-awards').classList.add('active');
 
-        // Cloud Extraction Sync Pipeline Link
-        const scriptDatabaseURL = 'https://script.google.com/macros/s/AKfycbRdnvZ2xZE74W0VbRMAXE941DINC5KK6bG9EaFH11DD8drP-HNiJpEMhntgeqqBb1juQ/exec';
+        // Target Integration Hook
+        const SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz3k0dW1WNOl0aYeNmy1T0OaWqVb5Gn8gIjbhkzdkyUK3nKk5uQjmkmK_Er62ug_q2BOQ/exec';
 
-        // Complete 13 Foundational System Award Objects
+        // Native Hardcoded Core Fallbacks
         const fallbackAwards = [
             { img: "WhatsApp Image 2026-06-02 at 22.54.48.jpeg", title: "Elite Women Empowerment Laurel", desc: "Dr. Manisha Paliwal receiving the state excellence shield at the Young India Business Club's International Women's Day convention." },
             { img: "WhatsApp Image 2026-06-02 at 22.55.43.jpeg", title: "Institutional Academic Citations", desc: "Dr. Yogesh Paliwal receiving special commendation awards from Smt. L.R.T. College of Commerce during their university NSS camps." },
             { img: "WhatsApp Image 2026-06-02 at 22.39.24.jpeg", title: "Socio-Cultural Civic Honors", desc: "Public felicitation of the founders for managing zero-waste festive feeding programs and preserving urban municipal cleanliness." },
-            { img: "WhatsApp Image 2026-05-30 at 21.15.221.jpeg", title: "Sankalp Mitra Anniversary Honor", desc: "Felicitation by Sankalp Mitra on their 9th Anniversary, commemorating 15 years of continuous street advocacy and plastic eradication struggles." },
-            { img: "award5.jpeg", title: "District Environment Protector Shield", desc: "Honored by the municipal corporation management layout for driving localized garbage footprint reduction metrics." },
-            { img: "award6.jpeg", title: "Savitribai Phule Excellence Award", desc: "Recognizing visionary grassroots public healthcare execution methodologies across decentralized tracking cells." },
-            { img: "award7.jpeg", title: "Eco-Warrior State Recognition", desc: "Presented during the Maharashtra State Conservation Summit for scaling free utensil banks across multiple districts." },
-            { img: "award8.jpeg", title: "Rotary Green Leadership Citation", desc: "Commended for generating local sustainable job markets for cleaning community resource sets." },
-            { img: "award9.jpeg", title: "Vasundha Mitra Gaurav Puraskar", desc: "Awarded for diverting hundreds of thousands of single-use items from toxic landfill path ecosystems." },
-            { img: "award10.jpeg", title: "Social Transformative Health Shield", desc: "Commending preventative clinic frameworks correlating synthetic microplastic minimization with long-term human biology safety." },
-            { img: "award11.jpeg", title: "Civic Swachhata Commendation", desc: "Awarded by district administrative heads for keeping localized public feast layouts completely waste-free." },
-            { img: "award12.jpeg", title: "Tarun Bharat Environment Award", desc: "Media house citation honoring direct on-road environmental defense loops and educational student campaigns." },
-            { img: "award13.jpeg", title: "Grassroots Circularity Pioneer Prize", desc: "Honoring the development and implementation of upcycled canvas storage utility networks." }
+            { img: "WhatsApp Image 2026-05-30 at 21.15.221.jpeg", title: "Sankalp Mitra Anniversary Honor", desc: "Felicitation by Sankalp Mitra on their 9th Anniversary, commemorating 15 years of continuous street advocacy and plastic eradication struggles." }
         ];
 
-        // Press Section - Cleaned of descriptions
         const fallbackPress = [
             { img: "press1.jpeg", title: "Dainik Bhaskar Feature" },
             { img: "press2.jpeg", title: "Lokmat Chronology Snippet" },
@@ -306,15 +298,20 @@
         });
 
         function loadSyncContent() {
-            // Pull real-time overrides from localStorage if present
-            const localAwards = localStorage.getItem('vasudha_awards_db');
-            const localPress = localStorage.getItem('vasudha_press_db');
-
-            const awardsData = localAwards ? JSON.parse(localAwards) : fallbackAwards;
-            const pressData = localPress ? JSON.parse(localPress) : fallbackPress;
-
-            renderMatrixGrid(awardsData, 'awardsContainer', true);
-            renderMatrixGrid(pressData, 'pressContainer', false);
+            fetch(`${SCRIPT_WEB_APP_URL}?action=getAwardsData`)
+                .then(res => res.json())
+                .then(data => {
+                    const finalAwards = (data.awards && data.awards.length) ? data.awards : fallbackAwards;
+                    const finalPress = (data.press && data.press.length) ? data.press : fallbackPress;
+                    
+                    renderMatrixGrid(finalAwards, 'awardsContainer', true);
+                    renderMatrixGrid(finalPress, 'pressContainer', false);
+                })
+                .catch(err => {
+                    console.warn("Cloud connection error. Loading local fallbacks:", err);
+                    renderMatrixGrid(fallbackAwards, 'awardsContainer', true);
+                    renderMatrixGrid(fallbackPress, 'pressContainer', false);
+                });
         }
 
         function renderMatrixGrid(itemsArray, containerId, includeDescription) {
