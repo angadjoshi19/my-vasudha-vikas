@@ -6,6 +6,220 @@
     <title>Accolades & Milestones | MY वसुधा विकास</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ========================================================
+           HIGH-CONTRAST UNIFORM DESIGN LAYOUT
+           ======================================================== */
+        :root {
+            --primary-green: #1b5e20;
+            --accent-green: #2e7d32;
+            --text-dark: #111111;
+            --text-muted: #4a4a4a;
+            --card-border: #cccccc;
+            --light-bg: #f4f9f4;
+        }
+
+        .page-intro-header {
+            text-align: center;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-intro-header h2 {
+            font-size: 2.4rem;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .section-divider-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin: 50px 0 30px 0;
+            font-weight: 700;
+            border-bottom: 3px solid var(--primary-green);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* 2-Column Responsive Matrix Grid Framework */
+        .awards-dynamic-grid, .press-dynamic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Fixed-Height Column Alignments */
+        .interactive-card {
+            background: #ffffff;
+            border: 2px solid var(--card-border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: var(--accent-green);
+        }
+
+        /* Standardized Image Wrapper Box */
+        .card-img-wrapper {
+            width: 100%;
+            height: 280px;
+            background-color: #eef1f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
+            border-bottom: 2px solid var(--card-border);
+        }
+
+        .card-img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Core Body Text Container */
+        .card-body-content {
+            padding: 22px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between; /* Keeps badges perfectly flush */
+        }
+
+        .card-body-content h3 {
+            margin: 0 0 12px 0;
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .card-body-content p {
+            margin: 0 0 15px 0;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.5;
+        }
+
+        .expand-hint-badge {
+            margin-top: auto;
+            padding-top: 12px;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-top: 1px dashed #e0e0e0;
+        }
+
+        /* SYSTEM LIGHTBOX OVERLAY MODAL */
+        .system-lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-inner-box {
+            background-color: #ffffff;
+            max-width: 650px;
+            width: 100%;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close-trigger {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: #ffffff;
+            cursor: pointer;
+            z-index: 2100;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .modal-close-trigger:hover { color: #ffd700; }
+
+        .modal-img-frame {
+            width: 100%;
+            background-color: #eef1f2;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img-frame img {
+            max-width: 100%;
+            max-height: 420px;
+            object-fit: contain;
+        }
+
+        .modal-caption-text {
+            padding: 25px;
+            background: #ffffff;
+            border-top: 4px solid var(--primary-green);
+        }
+
+        .modal-caption-text h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary-green);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .modal-caption-text p {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .awards-dynamic-grid, .press-dynamic-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .card-img-wrapper { height: 240px; }
+        }
+    </style>
 </head>
 <header>
     <div class="logo" onclick="window.location.href='index.html'">
@@ -24,38 +238,126 @@
 </header>
 <body>
 
-    <main class="page-section">
+    <main class="page-section" style="padding-bottom: 60px;">
         <div class="page-intro-header">
             <h2>Milestones, Accolades & Press Citations</h2>
-            <p>True environmental transformation demands relentless, consistent dedication. This gallery tracks the various state-level awards, academic citations, media features, and inter-organizational honors that our founders and volunteer networks have received over our 14+ year anti-plastic crusade.</p>
+            <p>True environmental transformation demands relentless, consistent dedication. This platform tracks the various state-level awards, academic citations, media features, and newspaper cuttings received during our plastic eradication campaign.</p>
         </div>
 
-        <div class="grid">
-            <div class="card">
-                <img src="WhatsApp Image 2026-06-02 at 22.54.48.jpeg" alt="Young India Business Club Award">
-                <h3>Elite Women Empowerment Laurel</h3>
-                <p>Dr. Manisha Paliwal receiving the state excellence shield at the Young India Business Club's International Women's Day convention.</p>
-            </div>
-            <div class="card">
-                <img src="WhatsApp Image 2026-06-02 at 22.55.43.jpeg" alt="University NSS Camp">
-                <h3>Institutional Academic Citations</h3>
-                <p>Dr. Yogesh Paliwal receiving special commendation awards from Smt. L.R.T. College of Commerce during their university NSS camps.</p>
-            </div>
-            <div class="card">
-                <img src="WhatsApp Image 2026-06-02 at 22.39.24.jpeg" alt="Vishal Hindu Sammelan Award">
-                <h3>Socio-Cultural Civic Honors</h3>
-                <p>Public felicitation of the founders for managing zero-waste festive feeding programs and preserving urban municipal cleanliness.</p>
-            </div>
-            <div class="card">
-                <img src="WhatsApp Image 2026-05-30 at 21.15.221.jpeg" alt="Sankalp Mitra Media Print">
-                <h3>Sankalp Mitra Anniversary Honor</h3>
-                <p>Felicitation by Sankalp Mitra on their 9th Anniversary, commemorating 15 years of continuous street advocacy and plastic eradication struggles.</p>
-            </div>
+        <!-- HONORS SECTION -->
+        <div style="text-align: center;"><h2 class="section-divider-title">Honors & Excellence Awards</h2></div>
+        <div class="awards-dynamic-grid" id="awardsContainer">
+            <!-- Populated via JavaScript Engine -->
+        </div>
+
+        <!-- PRESS SECTION -->
+        <div style="text-align: center;"><h2 class="section-divider-title">Media Tracking & Newspaper Cuttings</h2></div>
+        <div class="press-dynamic-grid" id="pressContainer">
+            <!-- Populated via JavaScript Engine -->
         </div>
     </main>
 
+    <!-- LIGHTBOX MODAL OVERLAY -->
+    <div class="system-lightbox-modal" id="lightboxModal" onclick="closeSystemModal()">
+        <span class="modal-close-trigger" onclick="closeSystemModal()">&times;</span>
+        <div class="modal-inner-box" onclick="event.stopPropagation()">
+            <div class="modal-img-frame">
+                <img id="modalImg" src="" alt="">
+            </div>
+            <div class="modal-caption-text" id="modalCaptionContainer">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDesc"></p>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.getElementById('nav-awards').classList.add('active');
+
+        // Cloud Extraction Sync Pipeline Link
+        const scriptDatabaseURL = 'https://script.google.com/macros/s/AKfycbRdnvZ2xZE74W0VbRMAXE941DINC5KK6bG9EaFH11DD8drP-HNiJpEMhntgeqqBb1juQ/exec';
+
+        // Complete 13 Foundational System Award Objects
+        const fallbackAwards = [
+            { img: "WhatsApp Image 2026-06-02 at 22.54.48.jpeg", title: "Elite Women Empowerment Laurel", desc: "Dr. Manisha Paliwal receiving the state excellence shield at the Young India Business Club's International Women's Day convention." },
+            { img: "WhatsApp Image 2026-06-02 at 22.55.43.jpeg", title: "Institutional Academic Citations", desc: "Dr. Yogesh Paliwal receiving special commendation awards from Smt. L.R.T. College of Commerce during their university NSS camps." },
+            { img: "WhatsApp Image 2026-06-02 at 22.39.24.jpeg", title: "Socio-Cultural Civic Honors", desc: "Public felicitation of the founders for managing zero-waste festive feeding programs and preserving urban municipal cleanliness." },
+            { img: "WhatsApp Image 2026-05-30 at 21.15.221.jpeg", title: "Sankalp Mitra Anniversary Honor", desc: "Felicitation by Sankalp Mitra on their 9th Anniversary, commemorating 15 years of continuous street advocacy and plastic eradication struggles." },
+            { img: "award5.jpeg", title: "District Environment Protector Shield", desc: "Honored by the municipal corporation management layout for driving localized garbage footprint reduction metrics." },
+            { img: "award6.jpeg", title: "Savitribai Phule Excellence Award", desc: "Recognizing visionary grassroots public healthcare execution methodologies across decentralized tracking cells." },
+            { img: "award7.jpeg", title: "Eco-Warrior State Recognition", desc: "Presented during the Maharashtra State Conservation Summit for scaling free utensil banks across multiple districts." },
+            { img: "award8.jpeg", title: "Rotary Green Leadership Citation", desc: "Commended for generating local sustainable job markets for cleaning community resource sets." },
+            { img: "award9.jpeg", title: "Vasundha Mitra Gaurav Puraskar", desc: "Awarded for diverting hundreds of thousands of single-use items from toxic landfill path ecosystems." },
+            { img: "award10.jpeg", title: "Social Transformative Health Shield", desc: "Commending preventative clinic frameworks correlating synthetic microplastic minimization with long-term human biology safety." },
+            { img: "award11.jpeg", title: "Civic Swachhata Commendation", desc: "Awarded by district administrative heads for keeping localized public feast layouts completely waste-free." },
+            { img: "award12.jpeg", title: "Tarun Bharat Environment Award", desc: "Media house citation honoring direct on-road environmental defense loops and educational student campaigns." },
+            { img: "award13.jpeg", title: "Grassroots Circularity Pioneer Prize", desc: "Honoring the development and implementation of upcycled canvas storage utility networks." }
+        ];
+
+        // Press Section - Cleaned of descriptions
+        const fallbackPress = [
+            { img: "press1.jpeg", title: "Dainik Bhaskar Feature" },
+            { img: "press2.jpeg", title: "Lokmat Chronology Snippet" },
+            { img: "press3.jpeg", title: "Sakal Regional Coverage" }
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSyncContent();
+        });
+
+        function loadSyncContent() {
+            // Pull real-time overrides from localStorage if present
+            const localAwards = localStorage.getItem('vasudha_awards_db');
+            const localPress = localStorage.getItem('vasudha_press_db');
+
+            const awardsData = localAwards ? JSON.parse(localAwards) : fallbackAwards;
+            const pressData = localPress ? JSON.parse(localPress) : fallbackPress;
+
+            renderMatrixGrid(awardsData, 'awardsContainer', true);
+            renderMatrixGrid(pressData, 'pressContainer', false);
+        }
+
+        function renderMatrixGrid(itemsArray, containerId, includeDescription) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            itemsArray.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'interactive-card';
+                card.onclick = () => openSystemModal(item.img, item.title, includeDescription ? item.desc : '');
+                
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${item.img}" alt="${item.title}" onerror="this.src='logo.png';">
+                    </div>
+                    <div class="card-body-content">
+                        <h3>${item.title}</h3>
+                        ${includeDescription ? `<p>${item.desc}</p>` : ''}
+                        <div class="expand-hint-badge"><i class="fa-solid fa-expand"></i> Click to View Full Image</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openSystemModal(imgSrc, title, desc) {
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalTitle').innerText = title;
+            
+            const descElem = document.getElementById('modalDesc');
+            if(desc) {
+                descElem.innerText = desc;
+                descElem.style.display = 'block';
+            } else {
+                descElem.style.display = 'none';
+            }
+            
+            document.getElementById('lightboxModal').style.display = 'flex';
+        }
+
+        function closeSystemModal() {
+            document.getElementById('lightboxModal').style.display = 'none';
+        }
     </script>
 </body>
 <footer>
@@ -83,6 +385,7 @@
             <h4>Contact Details</h4>
             <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
             <p><strong>Phone:</strong> +91 8329990369</p>
+            <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
         </div>
     </div>
     <div class="footer-bottom">
