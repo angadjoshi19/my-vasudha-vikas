@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - MY वसुधा विकास</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-auth-shield-container { max-width: 420px; margin: 80px auto; padding: 30px; background: #fff; border: 1px solid #dadce0; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .admin-dashboard-layout { max-width: 1100px; margin: 30px auto; padding: 20px; display: none; }
+        .control-panel-grid-card { background: #fff; border: 1px solid #dadce0; border-radius: 8px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .auth-input-field { width: 100%; padding: 10px; margin: 8px 0 16px 0; border: 1px solid #dadce0; border-radius: 4px; box-sizing: border-box; }
+        .tab-indicator-badge { font-size: 0.75rem; padding: 3px 8px; background: #2e7d32; color: #fff; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .management-review-row { border-bottom: 1px solid #dadce0; padding: 15px 0; }
+        .destructive-btn { background: #d32f2f; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; }
+        .destructive-btn:hover { background: #b71c1c; }
+        .sheet-external-link-banner { background: #e8f0fe; border: 1px solid #aecbfa; border-radius: 6px; padding: 15px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+        
+        /* Form styling for custom entity panels */
+        .management-form-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; }
+        .management-form-layout input, .management-form-layout textarea { padding: 8px; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.9rem; width: 100%; box-sizing: border-box; }
+        .data-table-view { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
+        .data-table-view th, .data-table-view td { border: 1px solid #dadce0; padding: 10px; text-align: left; }
+        .data-table-view th { background: #f1f3f4; color: #202124; }
+        .thumb-preview { height: 40px; border-radius: 4px; object-fit: contain; }
+    </style>
+</head>
+<body style="background-color: #f8f9fa;">
+
+    <!-- 1. IDENTITIES LOGIN INTERACTION PANEL CARD LAYER -->
+    <div class="admin-auth-shield-container" id="authGateGuardDisplayView">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="logo.png" alt="Logo" style="height: 60px; object-fit: contain;">
+            <h3 style="margin: 10px 0 5px 0; color: #2e7d32;">Internal Systems Administration</h3>
+            <p style="color: #5f6368; font-size: 0.85rem; margin: 0;">Owner & Manager Authorization Terminal Gate</p>
+        </div>
+        
+        <label style="font-weight: 600; font-size: 0.9rem;">Administrative Profile Role Type</label>
+        <select id="authRoleProfileSelect" class="auth-input-field">
+            <option value="owner">System Account Owner (Access: Global Control)</option>
+            <option value="manager">Operations General Manager (Access: Standard Operations)</option>
+        </select>
+
+        <label style="font-weight: 600; font-size: 0.9rem;">Operational Access Identifier (ID)</label>
+        <input type="text" id="authProfileIdentificationString" class="auth-input-field" placeholder="Enter assigned identity ID code">
+
+        <label style="font-weight: 600; font-size: 0.9rem;">Secure Cryptographic Key Passphrase</label>
+        <input type="password" id="authProfilePassphraseKey" class="auth-input-field" placeholder="••••••••">
+
+        <button class="interactive-action-btn-primary" style="width: 100%; margin: 5px 0 0 0;" onclick="authenticateAccessCredentials()">Verify Authority Credentials</button>
+        <p style="text-align: center; margin-top: 15px;"><a href="index.html" style="font-size: 0.85rem; color: #5f6368; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Return back to Public Homepage</a></p>
+    </div>
+
+    <!-- 2. INTERNAL PROTECTED CONTROL SUITE LAYER WORKSPACE -->
+    <div class="admin-dashboard-layout" id="protectedDashboardWorkspaceDisplayView">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #2e7d32; padding-bottom: 10px;">
+            <div>
+                <h2 style="margin: 0; color: #2e7d32;"><i class="fa-solid fa-gauge-high"></i> Administrative Control Terminal</h2>
+                <span style="font-size: 0.9rem; color: #5f6368;">Authorized Session: <strong id="activeSessionIdentityToken" class="tab-indicator-badge"></strong></span>
+            </div>
+            <button class="destructive-btn" style="background:#5f6368;" onclick="invalidateActiveSessionTerm()"><i class="fa-solid fa-power-off"></i> Secure Terminal Logout</button>
+        </div>
+
+        <!-- CLOUD UTENSILS TRACKING & REGISTRATION MATRIX LINK -->
+        <div class="sheet-external-link-banner">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <i class="fa-solid fa-table-list style-sheet-icon" style="font-size: 2rem; color: #1a73e8;"></i>
+                <div>
+                    <h4 style="margin: 0; color: #1a73e8;">Vasudha Vikas Operations Log Allocation Ledger</h4>
+                    <p style="margin: 3px 0 0 0; font-size: 0.85rem; color: #5f6368;">Access real-time inventory listings, financial donation track records, and steel utensil reservations database.</p>
+                </div>
+            </div>
+            <a href="https://docs.google.com/spreadsheets/d/1P3_Q8eR_dYt_R-3e-clpqubVmyGc0veNCCIkUSjoKmU/edit?usp=sharing" target="_blank" class="interactive-action-btn-primary" style="margin: 0; text-decoration: none; display: inline-block; text-align: center;">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Google Sheet
+            </a>
+        </div>
+
+        <!-- HONORS & EXCELLENCE AWARDS MANAGEMENT CELL -->
+        <div class="control-panel-grid-card">
+            <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-trophy"></i> Honors & Excellence Awards Management</h3>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Add, edit, or remove entries displayed on the public accolades page, along with image filenames and expand descriptions.</p>
+            
+            <div class="management-form-layout">
+                <input type="hidden" id="awardEditId">
+                <input type="text" id="awardTitleInput" placeholder="Award Title (e.g., Eco-Warrior Medal)">
+                <input type="text" id="awardImgInput" placeholder="Image Filename (e.g., award1.jpeg)">
+                <textarea id="awardDescInput" rows="2" placeholder="Detailed Expandable Description Copy..."></textarea>
+                <div>
+                    <button class="interactive-action-btn-primary" style="margin: 0; width: 100%; padding: 10px;" onclick="saveAwardRecordItem()"><i class="fa-solid fa-floppy-disk"></i> Save Award</button>
+                    <button class="destructive-btn" style="margin-top: 5px; width: 100%; display: none;" id="cancelAwardEditBtn" onclick="clearAwardFormInputs()">Cancel Edit</button>
+                </div>
+            </div>
+
+            <table class="data-table-view">
+                <thead>
+                    <tr>
+                        <th>Preview</th>
+                        <th>Award Title</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="awardsManagementTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- PRESS & NEWSPAPER CUTTINGS MANAGEMENT CELL -->
+        <div class="control-panel-grid-card">
+            <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-newspaper"></i> Newspaper Cuttings & Press Catalog</h3>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Manage publication clips and newspaper cuttings cleanly without cluttering description contexts.</p>
+            
+            <div class="management-form-layout">
+                <input type="hidden" id="pressEditId">
+                <input type="text" id="pressTitleInput" placeholder="Publication/Clipping Title (e.g., Dainik Bhaskar News)">
+                <input type="text" id="pressImgInput" placeholder="Image Filename (e.g., cutting1.jpeg)">
+                <div>
+                    <button class="interactive-action-btn-primary" style="margin: 0; width: 100%; padding: 10px;" onclick="savePressRecordItem()"><i class="fa-solid fa-floppy-disk"></i> Save Clipping</button>
+                    <button class="destructive-btn" style="margin-top: 5px; width: 100%; display: none;" id="cancelPressEditBtn" onclick="clearPressFormInputs()">Cancel Edit</button>
+                </div>
+            </div>
+
+            <table class="data-table-view">
+                <thead>
+                    <tr>
+                        <th>Preview</th>
+                        <th>Clipping Title</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="pressManagementTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- PUBLIC LIVE ANNOUNCEMENT CREATION CONTROLLER MODULE -->
+        <div class="control-panel-grid-card">
+            <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-bullhorn"></i> Broadcast Live Emergency/Event Announcement Banner</h3>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Disseminate critical environmental news feeds or structural schedule alerts updates across the primary public home screen layer interface instantly.</p>
+            <textarea id="announcementInputBodyText" rows="2" style="width:100%; padding:10px; border:1px solid #dadce0; border-radius:4px; box-sizing:border-box;" placeholder="Type new notification copy context framework here..."></textarea>
+            <div style="margin-top: 10px; display: flex; gap: 10px;">
+                <button class="interactive-action-btn-primary" style="margin: 0;" onclick="publishLiveAnnouncementItemStream()"><i class="fa-solid fa-paper-plane"></i> Publish To Homepage</button>
+                <button class="destructive-btn" onclick="purgeLiveAnnouncementStream()"><i class="fa-solid fa-eraser"></i> Wipe Active Announcement</button>
+            </div>
+        </div>
+
+        <!-- MODERATION & FALSE REVIEWS REMOVAL TERMINATION MATRIX MODULE -->
+        <div class="control-panel-grid-card">
+            <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-shield-halved"></i> Moderation Engine: Filter Community Reviews & Reviews</h3>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Prune spam logs, address community feedback comments, and maintain data pipeline sanity.</p>
+            <div id="adminReviewManagementTargetWorkspaceFeed"></div>
+        </div>
+    </div>
+
+    <!-- Script Processing Engine Elements -->
+    <script>
+        const MASTER_AUTH_REGISTRY = {
+            owner: { id: "owner@akola", pass: "vasudhaOwner2026" },
+            manager: { id: "manager@akola", pass: "vasudhaManager2026" }
+        };
+
+        let currentAuthenticatedRoleType = null;
+
+        // Default Data Initialization Fallbacks if empty
+        const defaultAwards = [
+            { id: 1, img: "WhatsApp Image 2026-06-02 at 22.54.48.jpeg", title: "Elite Women Empowerment Laurel", desc: "Dr. Manisha Paliwal receiving the state excellence shield at the Young India Business Club's International Women's Day convention." },
+            { id: 2, img: "WhatsApp Image 2026-06-02 at 22.55.43.jpeg", title: "Institutional Academic Citations", desc: "Dr. Yogesh Paliwal receiving special commendation awards from Smt. L.R.T. College of Commerce during their university NSS camps." },
+            { id: 3, img: "WhatsApp Image 2026-06-02 at 22.39.24.jpeg", title: "Socio-Cultural Civic Honors", desc: "Public felicitation of the founders for managing zero-waste festive feeding programs and preserving urban municipal cleanliness." },
+            { id: 4, img: "WhatsApp Image 2026-05-30 at 21.15.221.jpeg", title: "Sankalp Mitra Anniversary Honor", desc: "Felicitation by Sankalp Mitra on their 9th Anniversary, commemorating 15 years of continuous street advocacy and plastic eradication struggles." }
+        ];
+
+        const defaultPress = [
+            { id: 1, img: "press1.jpeg", title: "Dainik Bhaskar Feature" },
+            { id: 2, img: "press2.jpeg", title: "Lokmat Chronology Snippet" },
+            { id: 3, img: "press3.jpeg", title: "Sakal Regional Coverage" }
+        ];
+
+        function authenticateAccessCredentials() {
+            const selectedRole = document.getElementById('authRoleProfileSelect').value;
+            const inputID = document.getElementById('authProfileIdentificationString').value.trim();
+            const inputPass = document.getElementById('authProfilePassphraseKey').value;
+
+            if(inputID === MASTER_AUTH_REGISTRY[selectedRole].id && inputPass === MASTER_AUTH_REGISTRY[selectedRole].pass) {
+                currentAuthenticatedRoleType = selectedRole;
+                document.getElementById('authGateGuardDisplayView').style.display = "none";
+                document.getElementById('protectedDashboardWorkspaceDisplayView').style.display = "block";
+                document.getElementById('activeSessionIdentityToken').innerText = selectedRole;
+                
+                // Initialize custom dynamic database states
+                if(!localStorage.getItem('vasudha_awards_db')) localStorage.setItem('vasudha_awards_db', JSON.stringify(defaultAwards));
+                if(!localStorage.getItem('vasudha_press_db')) localStorage.setItem('vasudha_press_db', JSON.stringify(defaultPress));
+
+                renderAdministrationMasterFeed();
+                renderAwardsDashboardTable();
+                renderPressDashboardTable();
+            } else {
+                alert("Invalid configuration credentials. Please double check authorization ID or passkey assignment sequences.");
+            }
+        }
+
+        function invalidateActiveSessionTerm() {
+            currentAuthenticatedRoleType = null;
+            document.getElementById('authProfileIdentificationString').value = "";
+            document.getElementById('authProfilePassphraseKey').value = "";
+            document.getElementById('protectedDashboardWorkspaceDisplayView').style.display = "none";
+            document.getElementById('authGateGuardDisplayView').style.display = "block";
+        }
+
+        /* ========================================================
+           AWARDS DATA ACCESS MANAGEMENT CORE LOGICS
+           ======================================================== */
+        function renderAwardsDashboardTable() {
+            const awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
+            const tbody = document.getElementById('awardsManagementTableBody');
+            tbody.innerHTML = '';
+            
+            awards.forEach(item => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><img src="${item.img}" class="thumb-preview" onerror="this.src='logo.png';"></td>
+                        <td><strong>${item.title}</strong><br><small style="color:#7f8c8d;">Path: ${item.img}</small></td>
+                        <td>${item.desc}</td>
+                        <td>
+                            <button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px; font-size:0.8rem;" onclick="editAwardRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="destructive-btn" style="padding:4px 8px; font-size:0.8rem;" onclick="deleteAwardRecordItem(${item.id})"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function saveAwardRecordItem() {
+            const id = document.getElementById('awardEditId').value;
+            const title = document.getElementById('awardTitleInput').value.trim();
+            const img = document.getElementById('awardImgInput').value.trim();
+            const desc = document.getElementById('awardDescInput').value.trim();
+
+            if(!title || !img || !desc) return alert("Please fill all required award item fields completely.");
+
+            let awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
+
+            if(id) {
+                // Update operation
+                awards = awards.map(item => item.id == id ? { id: parseInt(id), title, img, desc } : item);
+            } else {
+                // Create operation
+                awards.push({ id: Date.now(), title, img, desc });
+            }
+
+            localStorage.setItem('vasudha_awards_db', JSON.stringify(awards));
+            clearAwardFormInputs();
+            renderAwardsDashboardTable();
+        }
+
+        function editAwardRecordItem(id) {
+            const awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
+            const match = awards.find(item => item.id == id);
+            if(match) {
+                document.getElementById('awardEditId').value = match.id;
+                document.getElementById('awardTitleInput').value = match.title;
+                document.getElementById('awardImgInput').value = match.img;
+                document.getElementById('awardDescInput').value = match.desc;
+                document.getElementById('cancelAwardEditBtn').style.display = 'inline-block';
+            }
+        }
+
+        function deleteAwardRecordItem(id) {
+            if(confirm("Are you sure you want to completely remove this award record entry?")) {
+                let awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
+                awards = awards.filter(item => item.id != id);
+                localStorage.setItem('vasudha_awards_db', JSON.stringify(awards));
+                renderAwardsDashboardTable();
+            }
+        }
+
+        function clearAwardFormInputs() {
+            document.getElementById('awardEditId').value = '';
+            document.getElementById('awardTitleInput').value = '';
+            document.getElementById('awardImgInput').value = '';
+            document.getElementById('awardDescInput').value = '';
+            document.getElementById('cancelAwardEditBtn').style.display = 'none';
+        }
+
+        /* ========================================================
+           PRESS CLIPPINGS MANAGEMENT CORE LOGICS (NO DESCRIPTION)
+           ======================================================== */
+        function renderPressDashboardTable() {
+            const press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
+            const tbody = document.getElementById('pressManagementTableBody');
+            tbody.innerHTML = '';
+            
+            press.forEach(item => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><img src="${item.img}" class="thumb-preview" onerror="this.src='logo.png';"></td>
+                        <td><strong>${item.title}</strong><br><small style="color:#7f8c8d;">Path: ${item.img}</small></td>
+                        <td>
+                            <button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px; font-size:0.8rem;" onclick="editPressRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="destructive-btn" style="padding:4px 8px; font-size:0.8rem;" onclick="deletePressRecordItem(${item.id})"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function savePressRecordItem() {
+            const id = document.getElementById('pressEditId').value;
+            const title = document.getElementById('pressTitleInput').value.trim();
+            const img = document.getElementById('pressImgInput').value.trim();
+
+            if(!title || !img) return alert("Please clarify title and media image targets.");
+
+            let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
+
+            if(id) {
+                press = press.map(item => item.id == id ? { id: parseInt(id), title, img } : item);
+            } else {
+                press.push({ id: Date.now(), title, img });
+            }
+
+            localStorage.setItem('vasudha_press_db', JSON.stringify(press));
+            clearPressFormInputs();
+            renderPressDashboardTable();
+        }
+
+        function editPressRecordItem(id) {
+            const press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
+            const match = press.find(item => item.id == id);
+            if(match) {
+                document.getElementById('pressEditId').value = match.id;
+                document.getElementById('pressTitleInput').value = match.title;
+                document.getElementById('pressImgInput').value = match.img;
+                document.getElementById('cancelPressEditBtn').style.display = 'inline-block';
+            }
+        }
+
+        function deletePressRecordItem(id) {
+            if(confirm("Wipe this newspaper cutting asset link directly from viewports?")) {
+                let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
+                press = press.filter(item => item.id != id);
+                localStorage.setItem('vasudha_press_db', JSON.stringify(press));
+                renderPressDashboardTable();
+            }
+        }
+
+        function clearPressFormInputs() {
+            document.getElementById('pressEditId').value = '';
+            document.getElementById('pressTitleInput').value = '';
+            document.getElementById('pressImgInput').value = '';
+            document.getElementById('cancelPressEditBtn').style.display = 'none';
+        }
+
+        /* ========================================================
+           SYSTEM REVIEW REVIEWS MODERATION SUITE LOGICS
+           ======================================================== */
+        function loadDatabaseStorageState() {
+            return JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
+        }
+
+        function writeDatabaseStorageState(arr) {
+            localStorage.setItem('vasudha_reviews_db', JSON.stringify(arr));
+            renderAdministrationMasterFeed();
+        }
+
+        function renderAdministrationMasterFeed() {
+            const reviews = loadDatabaseStorageState();
+            const container = document.getElementById('adminReviewManagementTargetWorkspaceFeed');
+            container.innerHTML = "";
+
+            if(reviews.length === 0) {
+                container.innerHTML = `<p style="color:#7f8c8d; font-style:italic; font-size:0.9rem;">No feedback comments currently logged in local platform storage files.</p>`;
+                return;
+            }
+
+            reviews.forEach(review => {
+                let existingRepliesHtml = "";
+                if(review.replies) {
+                    review.replies.forEach((rep, rIdx) => {
+                        existingRepliesHtml += `
+                            <div style="background:#f1f3f4; padding:6px 10px; margin-top:5px; border-radius:4px; font-size:0.85rem; display:flex; justify-content:space-between; align-items:center;">
+                                <span><strong>${rep.author}:</strong> ${rep.text}</span>
+                                <button style="background:none; border:none; color:#c0392b; cursor:pointer;" onclick="deleteTargetSubReplyRow(${review.id}, ${rIdx})"><i class="fa-solid fa-circle-xmark"></i> Delete</button>
+                            </div>
+                        `;
+                    });
+                }
+
+                const blockCard = `
+                    <div class="management-review-row">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                            <span><strong style="color:#2e7d32;">${review.author}</strong> <small style="color:#7f8c8d;">(${review.timestamp})</small> — Rating: <strong>${review.rating}/5★</strong></span>
+                            <button class="destructive-btn" onclick="executePurgeReviewRow(${review.id})"><i class="fa-solid fa-trash-can"></i> Remove Comment</button>
+                        </div>
+                        <p style="margin:5px 0; font-size:0.9rem; color:#333; background:#fff; padding:8px; border:1px solid #e0e0e0; border-radius:4px;">${review.text}</p>
+                        
+                        <div style="margin-top:8px; padding-left:15px; border-left:2px dashed #bdc3c7;">
+                            <div style="display:flex; gap:8px; margin-bottom:8px;">
+                                <input type="text" id="adminReplyTextNode-${review.id}" placeholder="Type official response directly to user..." style="flex-grow:1; padding:5px; font-size:0.85rem; border:1px solid #dadce0; border-radius:4px;">
+                                <button class="interactive-action-btn-primary" style="margin:0; padding:4px 12px; font-size:0.85rem;" onclick="executeAdminReplyInjection(${review.id})">Reply As System Office</button>
+                            </div>
+                            ${existingRepliesHtml}
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', blockCard);
+            });
+        }
+
+        function executePurgeReviewRow(id) {
+            if(confirm("Confirm deletion process operations? This permanently removes the target user submission commentary node across public endpoints.")) {
+                let db = loadDatabaseStorageState();
+                db = db.filter(r => r.id !== id);
+                writeDatabaseStorageState(db);
+            }
+        }
+
+        function executeAdminReplyInjection(id) {
+            const inputField = document.getElementById(`adminReplyTextNode-${id}`);
+            const text = inputField.value.trim();
+            if(!text) return alert("Please clarify response text parameter variables first before posting.");
+
+            const db = loadDatabaseStorageState();
+            const idx = db.findIndex(r => r.id === id);
+            if(idx !== -1) {
+                if(!db[idx].replies) db[idx].replies = [];
+                db[idx].replies.push({
+                    id: Date.now(),
+                    author: currentAuthenticatedRoleType === "owner" ? "MY वसुधा विकास (Owner)" : "MY वसुधा विकास (Manager)",
+                    text: text
+                });
+                inputField.value = "";
+                writeDatabaseStorageState(db);
+            }
+        }
+
+        function deleteTargetSubReplyRow(reviewId, replyIndex) {
+            if(confirm("Delete this nested response record item context?")) {
+                const db = loadDatabaseStorageState();
+                const idx = db.findIndex(r => r.id === reviewId);
+                if(idx !== -1) {
+                    db[idx].replies.splice(replyIndex, 1);
+                    writeDatabaseStorageState(db);
+                }
+            }
+        }
+
+        // Announcement Publisher Engine Logics
+        function publishLiveAnnouncementItemStream() {
+            const text = document.getElementById('announcementInputBodyText').value.trim();
+            if(!text) return alert("Announcement context layer cannot stand void during operational deployment loops.");
+
+            const transmissionPayload = {
+                content: text,
+                role: currentAuthenticatedRoleType === "owner" ? "Director/Owner Panel" : "Management Desk",
+                date: new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+            };
+
+            localStorage.setItem('vasudha_live_announcement', JSON.stringify(transmissionPayload));
+            document.getElementById('announcementInputBodyText').value = "";
+            alert("New communication profile synchronized live successfully onto primary consumer homepage.");
+        }
+
+        function purgeLiveAnnouncementStream() {
+            if(confirm("Wipe clear the active homepage announcement billboard display window?")) {
+                localStorage.removeItem('vasudha_live_announcement');
+                alert("Homepage announcement slate successfully cleared.");
+            }
+        }
+    </script>
+</body>
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>MY वसुधा विकास</h4>
+            <p>Grassroots environmental conservation movement dedicated to single-use plastic eradication and sustainable circular economies.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/myvasudhavikas/" target="_blank" class="insta-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Myवसुधाविकास" target="_blank" class="youtube-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Navigation</h4>
+            <ul>
+                <li><a href="index.html">Home Dashboard</a></li>
+                <li><a href="programs.html">Our Initiatives</a></li>
+                <li><a href="booking.html">Utensil Bank</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="donate.html">Donate Support</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Details</h4>
+            <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
+            <p><strong>Phone:</strong> +91 8329990369</p>
+            <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p><strong>"प्लॅस्टिक कॅरीबॅगची सवय सोडा, जीवनाशी नाते जोडा"</strong></p>
+        <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
+    </div>
+</footer>
+</html>
