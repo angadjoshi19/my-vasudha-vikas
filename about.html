@@ -114,6 +114,15 @@
             gap: 25px;
             margin-top: 25px;
         }
+        
+        /* Specific tight layout rules for locking the 3 Mentors on 1 line */
+        .mentors-row-lock {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 25px;
+        }
+
         .profile-card-dynamic {
             background: var(--white);
             border-radius: 12px;
@@ -146,24 +155,31 @@
             margin-bottom: 12px;
         }
 
-        /* Double Green Sided Boxes Grid (Volunteers) */
-        .double-sided-grid {
+        /* Double Image Dynamic Awareness Grid - FIXED FOR FULL UNMASKED HEAD VISIBILITY */
+        .awareness-media-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
+            gap: 25px;
+            max-width: 100%;
+            margin: 30px 0;
         }
-        .double-sided-item {
-            background: #ffffff;
-            padding: 14px 20px;
-            border-radius: 6px;
-            border-left: 5px solid #2cc771;
-            border-right: 5px solid #2cc771;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--dark-text);
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+        .awareness-media-card {
+            background: #eef1f2; /* High-contrast backdrop support */
+            border: 2px solid #cccccc;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 10px; /* Safe cushion area */
+        }
+        .awareness-media-card img {
+            max-width: 100%;
+            height: 480px;
+            object-fit: contain; /* ENTIRE PHOTO RENDERED WITHOUT TRUNCATING FACES */
+            display: block;
         }
 
         /* Saint Saying Centered Beautiful Banner Styling */
@@ -223,9 +239,10 @@
         }
 
         @media screen and (max-width: 768px) {
-            .double-sided-grid { grid-template-columns: 1fr; }
             .about-header-banner h2 { font-size: 1.7rem; }
             .contact-flow-container { flex-direction: column; }
+            .mentors-row-lock, .awareness-media-grid { grid-template-columns: 1fr; gap: 20px; }
+            .awareness-media-card img { height: 350px; }
         }
     </style>
 </head>
@@ -249,13 +266,11 @@
 
     <main class="page-section" style="background: var(--about-bg-gradient); padding-bottom: 60px;">
         
-        <!-- Header Banner Fluid Block -->
         <div class="about-header-banner">
             <h2>About Our Movement</h2>
             <p><strong>MY वसुधा विकास </strong> is a leading social organization working tirelessly with the mission to build a completely healthy society. Our main objective is to march towards prosperity at zero cost while deeply strengthening the relationship between people and the environment.</p>
         </div>
 
-        <!-- Contact details section with social media integration -->
         <div class="info-block-dynamic" style="border-left-color: var(--about-secondary);">
             <h3>Contact Details & Social Media</h3>
             <div class="contact-flow-container">
@@ -292,13 +307,11 @@
             </div>
         </div>
 
-        <!-- Core Mission Module -->
         <div class="info-block-dynamic">
             <h3>Our Core Mission</h3>
             <p>Dr. Manisha Paliwal and Dr. Yogesh Paliwal are homeopathic doctors who are deeply dedicated environmental enthusiasts. They have established a large-scale initiative to eradicate single-use plastic from society. In 2025, they launched the <strong>"Plastic Disposable-Free Maharashtra Campaign"</strong>, which brought about a massive revolution in a short span of time. The campaign is achieving unprecedented success in waste management and in stopping plastic waste before it even reaches the ground.</p>
         </div>
 
-        <!-- Backstory Chronology Module -->
         <div class="info-block-dynamic">
             <h3>The Inspiring Journey</h3>
             <p>In 2003, Dr. Manisha Paliwal was diagnosed with a very serious illness called 'Multiple Sclerosis'. During this challenging journey, she lost her eyesight three times and recovered it, and experienced severe paralysis-like symptoms in her body six times. However, through sheer willpower and correct treatments, she successfully overcame the disease.</p>
@@ -307,7 +320,6 @@
             <p style="margin-top: 15px;">To find a permanent and practical solution to this problem, she started sewing bags out of old fabrics (sarees, bedsheets, curtains) right at her home and began distributing them to people for free upon request.</p>
         </div>
 
-        <!-- Statistics Core Counter Displays -->
         <div class="info-block-dynamic" style="border-left-color: var(--about-secondary);">
             <h3>Key Milestones</h3>
             <p>The following significant figures have been achieved up to May 31, 2026, through this ongoing and continuous work:</p>
@@ -347,7 +359,6 @@
             </div>
         </div>
 
-        <!-- Interactive Strategy Mapping Columns -->
         <div class="grid">
             <div class="info-block-dynamic" style="margin-bottom:0;">
                 <h3>1. वृक्ष संस्कार अभियान | सीड बँक व प्लॅस्टिक बँक</h3>
@@ -361,7 +372,6 @@
             </div>
         </div>
 
-         <!-- SAINT TUKARAM MAHARAJ BANNER — CENTER ALIGNED & NEW COLOR SUITE -->
         <div class="saint-quote-container">
             <p class="saint-quote-main">"आधी बीज एकले, एका बीजापोटी, तरु कोटी कोटी जन्मले"</p>
             <span class="saint-quote-author">- संत तुकाराम महाराज</span>
@@ -369,26 +379,33 @@
             <span class="saint-quote-author">-MY वसुधा विकास </span>
         </div>
 
-        <!-- Disposable Free Campaigns -->
+        <!-- TWO IMAGE FIELD ACTION GRID WITH UNTRUNCATED BOUNDARIES -->
+        <div class="awareness-media-grid">
+            <div class="awareness-media-card">
+                <img src="WhatsApp Image 2026-05-31 at 08.25.32.jpeg" alt="Eradicating Single-Use Plastics Public Campaign Standee Awareness Setup">
+            </div>
+            <div class="awareness-media-card">
+                <img src="WhatsApp Image 2026-05-30 at 21.08..jpeg" alt="Dr. Manisha and Dr. Yogesh Paliwal Riding Special Tandem Bicycle For Awareness">
+            </div>
+        </div>
+
         <div class="info-block-dynamic">
             <h3>Plastic Disposable-Free Akola Campaign</h3>
             <p>Launched in 2025 with just 300 plates, glasses, and spoons, this initiative received an overwhelming response from the residents of Akola. The organization provides utensils free of charge to prevent disposable waste generated during domestic functions or public feasts (Bhandaras). Our policy is: <strong>"The money that was meant to be spent on buying disposables should instead be given to the local workers who clean the steel utensils after the event"</strong>, which prevents pollution and generates local employment for the underprivileged.</p>
             <p style="margin-top: 12px;">Currently, the organization's central bank owns <strong>1,100 plates, 1,000 glasses, 250 tea cups, 200 snack plates, and 800 spoons</strong>. Driven by this inspiration, this sustainable philosophy has reached over 120 villages, including Satara, Washim, Parbhani, Mumbai, Thane, Palghar, Mahableshwar, and Belagavi (Karnataka).</p>
         </div>
 
-        <!-- Advocacy Tandem Mechanism Block -->
         <div class="info-block-dynamic">
             <h3>Health Advisory & Public Awareness</h3>
             <p>To promote environmental protection and personal wellness, this couple uses bicycles in their daily life. Every morning, they step out on a special Tandem bicycle. Along the way, they stop citizens carrying plastic bags, present them with a cloth bag, and educate them. Furthermore, public awareness placards are installed on their bicycles, scooters, and outside their house. They have distributed over 200 such awareness placards to local vegetable vendors completely free of charge.</p>
             <p style="margin-top:12px;">They regularly organize awareness campaigns on the harmful effects of plastic and the crucial importance of environmental conservation. They also visit numerous schools to guide students. In 2024, Dr. Manisha Paliwal formed a formal group under the name <strong>MY वसुधा विकास</strong> to bring like-minded individuals together to scale this impactful work.</p>
         </div>
 
-        <!-- MENTORS SECTION — PLACED ABOVE LEADERSHIP WITH IMAGES -->
         <div class="info-block-dynamic" style="margin-top: 40px;">
             <h3 style="color: var(--about-secondary); border-bottom-color: #f39c12;"><i class="fas fa-graduation-cap"></i> Our Core Mentors</h3>
             <p style="font-size:1rem; color:#555;">We are immensely guided by the wisdom, support, and vision of our honorable mentors:</p>
             
-            <div class="profile-grid-dynamic">
+            <div class="mentors-row-lock">
                 <div class="profile-card-dynamic" style="border-top-color: var(--about-secondary);">
                     <img src="jpatil.jpeg" alt="Mr. Jayprakash Patil">
                     <h4>Mr. Jayprakash Patil</h4>
@@ -401,10 +418,15 @@
                     <div class="designation" style="color: var(--about-primary);">Core Mentor</div>
                     <p style="font-size: 0.9rem; color:#666;">Visionary Guide & Community Mentor</p>
                 </div>
+                <div class="profile-card-dynamic" style="border-top-color: var(--about-secondary);">
+                    <img src="Dinesh Badgujar.jpeg" alt="Mr. Dinesh Badgujar">
+                    <h4>Mr. Dinesh Badgujar</h4>
+                    <div class="designation" style="color: var(--about-primary);">Core Mentor</div>
+                    <p style="font-size: 0.9rem; color:#666;">Dedicated Pillar & Strategic Mentor</p>
+                </div>
             </div>
         </div>
 
-        <!-- REORGANIZED EXECUTIVE DIRECTORY - COHESIVE HIERARCHY ALIGNMENT -->
         <h2 class="text-center" style="margin-top: 45px; color: var(--about-primary); font-weight: 700;"><i class="fas fa-users-cog"></i> Our Team Leadership</h2>
         <p class="text-center" style="max-width: 750px; margin: 0 auto 25px auto; font-size:1rem; color:#555;">Following the heartfelt insistence of all companions and robust public participation, <strong>MY वसुधा विकास</strong> was formally registered in 2026. The main office bearers and executive body managing the operations are as follows:</p>
 
@@ -463,39 +485,6 @@
             </div>
         </div>
 
-        <!-- VOLUNTEERS — EMBEDDED WITH DOUBLE-SIDED GREEN ACCENT BORDERS -->
-        <div class="info-block-dynamic" style="margin-top: 40px;">
-            <h3><i class="fas fa-hands-helping"></i> Active Volunteer Network</h3>
-            <p style="margin-bottom: 20px; color:#555;">Our highly respected, active members who contribute their invaluable services to every social and environmental project:</p>
-            
-            <div class="double-sided-grid">
-                <div class="double-sided-item">Mrs. Pornima Deshmukh</div>
-                <div class="double-sided-item">Mrs. Maya Dabare</div>
-                <div class="double-sided-item">Mr. Dinesh Badgujar</div>
-                <div class="double-sided-item">Mr. Bhagwan Rane</div>
-                <div class="double-sided-item">Mrs. Anita Rane</div>
-                <div class="double-sided-item">Mrs. Bhavana Joshi</div>
-                <div class="double-sided-item">Mrs. Sushma Gokhale</div>
-                <div class="double-sided-item">Mr. Vijay Gokhale</div>
-                <div class="double-sided-item">Mrs. Swati Kalaskar</div>
-                <div class="double-sided-item">Mrs. Kalpana Dalvi</div>
-                <div class="double-sided-item">Dr. Chhaya Deshmukh</div>
-                <div class="double-sided-item">Mrs. Vidya Thackeray</div>
-                <div class="double-sided-item">Mr. Sandeep Joshi</div>
-                <div class="double-sided-item">Mrs. Sarita Patel</div>
-                <div class="double-sided-item">Mrs. Anita Kawade</div>
-                <div class="double-sided-item">Miss. Tejaswita Badgujar</div>
-                <div class="double-sided-item">Mr. Ashish Paliwal</div>
-                <div class="double-sided-item">Mr. Angad Joshi</div>
-                <div class="double-sided-item">Mrs. Manjusha Gaikwad</div>
-                <div class="double-sided-item">Mrs. Abhilasha Kharkar</div>
-                <div class="double-sided-item">Mr. Dilip Deshmukh</div>
-                <div class="double-sided-item">Mr. Meera Gotarkar</div>
-        </div>
-        <p style="font-size: 0.95rem; font-style: italic; margin-top: 20px; color: #666; text-align:center;">...and many more dedicated individuals and city coordinators standing firmly with Akola City.</p>
-        </div>
-
-        <!-- UNIFIED SLOGANS DESIGN ENGINE USING COHESIVE SYSTEM COLORS -->
         <div class="slogan-unified-box">
             <p class="slogan-unified-text">"प्लॅस्टिक कॅरीबॅग ची सवय सोडा, जीवनाशी नाते जोडा"</p>
             <p class="slogan-unified-text">"झाडे लावा, झाडे जगवा | वृक्ष = मोक्ष"</p>
@@ -538,6 +527,7 @@
             <h4>Contact Details</h4>
             <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
             <p><strong>Phone:</strong> +91 8329990369</p>
+            <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
         </div>
     </div>
     <div class="footer-bottom">
