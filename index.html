@@ -92,7 +92,7 @@
                     <div class="carousel-caption">Eco-Friendly Haldi Kumkum </div>
                 </div>
                 <div class="carousel-slide">
-                    <img src="WhatsApp Image 2026-06-02 at 22.54.48.jpeg" alt="Institutional Recognitions">
+                    <img src="WhatsApp Image 2026-06-02 fa-solid fa-star" src="WhatsApp Image 2026-06-02 at 22.54.48.jpeg" alt="Institutional Recognitions">
                     <div class="carousel-caption">State-Level Excellence Awards Distribution Ceremony</div>
                 </div>
                 <button class="prev" onclick="moveHomeSlide(-1)">&#10094;</button>
@@ -120,7 +120,7 @@
                                 <i class="fa-solid fa-star text-star-gold"></i>
                             </div>
                             <div style="font-size: 0.85rem; color: #5f6368; margin-top: 4px;" id="totalDynamicCounterLabel">
-                                Fetching community logs...
+                                Fetching community logs from cloud matrices...
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                     </div>
 
                     <div id="dynamicCommentsInjectTargetContainer">
-                        <!-- Instantiated Dynamically via Native Storage Layer Engines -->
+                        <!-- Instantiated Dynamically via Native Cloud Pipelines -->
                     </div>
                 </div>
             </div>
@@ -168,6 +168,8 @@
     </main>
 
     <script>
+        const SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz3k0dW1WNOl0aYeNmy1T0OaWqVb5Gn8gIjbhkzdkyUK3nKk5uQjmkmK_Er62ug_q2BOQ/exec';
+
         document.getElementById('nav-home').classList.add('active');
         let homeSlideIndex = 0;
         const homeSlides = document.querySelectorAll('#homeCarousel .carousel-slide');
@@ -180,46 +182,14 @@
         function moveHomeSlide(n) { showHomeSlide(homeSlideIndex + n); }
         setInterval(() => { moveHomeSlide(1); }, 4500);
 
-        // ========================================================
-        // INTERACTIVE RATINGS, COMMENT LIKES & ENGINE CONTROLLERS
-        // ========================================================
         let activeFormRatingInput = 5;
-
-        // Structured Fallback Seed Repository Object
-        const initializationFallbackMockData = [
-            {
-                id: 1001,
-                author: "Gajanan Borale",
-                rating: 5,
-                timestamp: "3 days ago",
-                text: "The steel utensils booking option saved our home family function expenses completely! Amazing eco-friendly vision execution directly in Akola.",
-                likes: 14,
-                replies: [
-                    { id: 2001, author: "Manager Office", text: "Thank you for supporting plastic alternative steps, Gajanan!", likes: 4 }
-                ]
-            }
-        ];
-
-        function getCentralRepository() {
-            let data = localStorage.getItem('vasudha_reviews_db');
-            if(!data) {
-                localStorage.setItem('vasudha_reviews_db', JSON.stringify(initializationFallbackMockData));
-                return initializationFallbackMockData;
-            }
-            return JSON.parse(data);
-        }
-
-        function saveCentralRepository(array) {
-            localStorage.setItem('vasudha_reviews_db', JSON.stringify(array));
-            renderInterfaceReviewTree();
-        }
 
         function toggleReviewsSectionAccordion() {
             const tray = document.getElementById('reviewsDropdownCollapsiblePanel');
             const icon = document.getElementById('accordionChevronStateIcon');
             const isOpen = tray.classList.toggle('visible-expanded');
             icon.innerHTML = isOpen ? '<i class="fa-solid fa-chevron-up"></i>' : '<i class="fa-solid fa-chevron-down"></i>';
-            if(isOpen) renderInterfaceReviewTree();
+            if(isOpen) pullGlobalCloudContentState();
         }
 
         function updateReviewFormStarValue(rating) {
@@ -232,15 +202,38 @@
         }
         updateReviewFormStarValue(5);
 
+        // CLOUD NETWORK DEPLOYMENT PULL LOGIC
+        function pullGlobalCloudContentState() {
+            fetch(`${SCRIPT_WEB_APP_URL}?action=getAllData`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.reviews) localStorage.setItem('vasudha_reviews_db', JSON.stringify(data.reviews));
+                    if(data.announcement) localStorage.setItem('vasudha_live_announcement', JSON.stringify(data.announcement));
+                    
+                    synchroniseStreamAnnouncements();
+                    renderInterfaceReviewTree();
+                })
+                .catch(err => {
+                    console.error("Cloud down, utilizing localized data fallback buffers:", err);
+                    renderInterfaceReviewTree();
+                });
+        }
+
         function renderInterfaceReviewTree() {
-            const database = getCentralRepository();
+            const database = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
             const target = document.getElementById('dynamicCommentsInjectTargetContainer');
             target.innerHTML = "";
+
+            if(database.length === 0) {
+                target.innerHTML = `<p style="padding:15px; color:#7f8c8d; font-style:italic; text-align:center;">No community evaluations found in storage pools.</p>`;
+                document.getElementById('totalDynamicCounterLabel').innerText = "0 shared evaluations loaded";
+                return;
+            }
 
             database.forEach(review => {
                 let ratingStars = "";
                 for(let i=1; i<=5; i++) {
-                    ratingStars += `<i class="fa-solid fa-star" style="color: ${i <= review.rating ? '#f39c12':'#e0e0e0'}; font-size:0.8rem; margin-right:2px;"></i>`;
+                    ratingStars += `<i class="fa-solid fa-star" style="color: ${i <= (review.rating || 5) ? '#f39c12':'#e0e0e0'}; font-size:0.8rem; margin-right:2px;"></i>`;
                 }
 
                 let subRepliesHtml = "";
@@ -295,26 +288,29 @@
             document.getElementById('totalDynamicCounterLabel').innerText = `Based on ${database.length} shared user evaluations`;
         }
 
+        // ASYNC FORM INTERCEPT POST OPERATIONS
         function processUserReviewSubmission() {
             const author = document.getElementById('formReviewerInputName').value.trim();
             const text = document.getElementById('formReviewerInputText').value.trim();
-            if(!author || !text) return alert("Please specify name identity and review content.");
+            if(!author || !text) return alert("Please specify name identity and review content completely.");
 
-            const database = getCentralRepository();
-            database.unshift({
-                id: Date.now(),
-                author: author,
-                rating: activeFormRatingInput,
-                timestamp: "Just now",
-                text: text,
-                likes: 0,
-                replies: []
-            });
-
-            document.getElementById('formReviewerInputName').value = "";
-            document.getElementById('formReviewerInputText').value = "";
-            updateReviewFormStarValue(5);
-            saveCentralRepository(database);
+            fetch(SCRIPT_WEB_APP_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    action: "submitUserReview",
+                    author: author,
+                    rating: activeFormRatingInput,
+                    text: text
+                })
+            }).then(() => {
+                alert("Review broadcasted successfully to cloud streams! Fetching refresh arrays...");
+                document.getElementById('formReviewerInputName').value = "";
+                document.getElementById('formReviewerInputText').value = "";
+                updateReviewFormStarValue(5);
+                pullGlobalCloudContentState();
+            }).catch(err => alert("Transmission Pipeline Intercept Fault: " + err));
         }
 
         function toggleLocalReplyBoxDisplay(id) {
@@ -325,9 +321,9 @@
         function submitPublicVisitorReply(reviewId) {
             const name = document.getElementById(`inlineReplyUser-${reviewId}`).value.trim();
             const text = document.getElementById(`inlineReplyMessage-${reviewId}`).value.trim();
-            if(!name || !text) return alert("Please complete both reply name identity and text content form inputs.");
+            if(!name || !text) return alert("Please clarify validation vectors.");
 
-            const db = getCentralRepository();
+            let db = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
             const idx = db.findIndex(r => r.id === reviewId);
             if(idx !== -1) {
                 if(!db[idx].replies) db[idx].replies = [];
@@ -337,12 +333,21 @@
                     text: text,
                     likes: 0
                 });
-                saveCentralRepository(db);
+                
+                localStorage.setItem('vasudha_reviews_db', JSON.stringify(db));
+                renderInterfaceReviewTree();
+
+                fetch(SCRIPT_WEB_APP_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ action: "syncReviewsData", reviews: db })
+                });
             }
         }
 
         function triggerLikeAction(reviewId, replyId) {
-            const db = getCentralRepository();
+            let db = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
             const rIdx = db.findIndex(r => r.id === reviewId);
             if(rIdx !== -1) {
                 if(replyId === null) {
@@ -353,15 +358,22 @@
                         db[rIdx].replies[repIdx].likes = (db[rIdx].replies[repIdx].likes || 0) + 1;
                     }
                 }
-                saveCentralRepository(db);
+                localStorage.setItem('vasudha_reviews_db', JSON.stringify(db));
+                renderInterfaceReviewTree();
+
+                fetch(SCRIPT_WEB_APP_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ action: "syncReviewsData", reviews: db })
+                });
             }
         }
 
-        // Announcement Sync Core Lifecycle Listener Hook
         function synchroniseStreamAnnouncements() {
             const activeAnnouncement = localStorage.getItem('vasudha_live_announcement');
             const targetBanner = document.getElementById('liveAnnouncementContainer');
-            if(activeAnnouncement) {
+            if(activeAnnouncement && activeAnnouncement !== "null") {
                 const parsed = JSON.parse(activeAnnouncement);
                 document.getElementById('announcementTextField').innerText = parsed.content;
                 document.getElementById('announcementMetaField').innerText = `Broadcasted by: ${parsed.role} on ${parsed.date}`;
@@ -371,10 +383,8 @@
             }
         }
         
-        // Boot execution procedures
         window.addEventListener('DOMContentLoaded', () => {
-            synchroniseStreamAnnouncements();
-            renderInterfaceReviewTree();
+            pullGlobalCloudContentState();
         });
     </script>
 </body>
@@ -403,7 +413,6 @@
             <h4>Contact Details</h4>
             <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
             <p><strong>Phone:</strong> +91 8329990369</p>
-            <!-- NEW Gate Access Node Key added cleanly inside original structural footprint parameters -->
             <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
         </div>
     </div>
