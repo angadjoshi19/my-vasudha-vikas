@@ -6,6 +6,259 @@
     <title>Book Steel Utensils | MY वसुधा विकास</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ========================================================
+           HIGH-CONTRAST PROFESSIONAL RE-DESIGN STYLES
+           ======================================================== */
+        :root {
+            --primary-green: #1b5e20; /* Deepest Forest Green for sharp readability */
+            --accent-green: #2e7d32;
+            --light-green: #e8f5e9;
+            --text-dark: #111111; /* Deep rich black */
+            --text-muted: #4a4a4a;
+            --card-border: #cccccc; /* Higher contrast borders */
+        }
+
+        /* 1. Official Framed Service Banner Poster */
+        .official-poster-container {
+            width: 100%;
+            max-width: 950px;
+            margin: 25px auto;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.18);
+            background-color: #ffffff;
+            border: 4px solid var(--primary-green);
+            box-sizing: border-box;
+        }
+
+        .official-poster-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 2. History & Core Narrative Section Layout */
+        .history-narrative-block {
+            background: #ffffff;
+            border-left: 6px solid var(--primary-green);
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 950px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-sizing: border-box;
+        }
+
+        .history-narrative-block h2 {
+            color: var(--primary-green);
+            margin-top: 0;
+            font-size: 1.9rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .history-narrative-block p {
+            font-size: 1.08rem;
+            line-height: 1.75;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .history-narrative-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Global Structural Headings */
+        .section-main-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-top: 60px;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .section-main-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        /* 3. Feast Actions Gallery Component Grid - FIXED TO GROUPS OF 2 */
+        .event-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 950px;
+            margin: 0 auto 60px auto;
+        }
+
+        .gallery-card {
+            background: #ffffff;
+            border: 2px solid var(--card-border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .gallery-image-wrapper {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background-color: #eef1f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .gallery-image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .gallery-caption {
+            padding: 15px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            text-align: center;
+            background-color: #fafafa;
+            border-top: 2px solid var(--card-border);
+        }
+
+        /* 4. Inventory Catalog Showcase Component Grid - FIXED TO GROUPS OF 2 */
+        .inventory-display-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+            max-width: 950px;
+            margin: 0 auto 70px auto;
+        }
+
+        .inventory-item-card {
+            background: #ffffff;
+            border: 2px solid #babcbe;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .inventory-item-card:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .inventory-img-box {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background-color: #eef1f2;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border-bottom: 2px solid #babcbe;
+        }
+
+        .inventory-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* FIXED STUNNING HIGH-VISIBILITY TEXT BADGE OVERLAY */
+        .quantity-count-badge {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            background-color: #0d3c0f !important;
+            color: #ffffff !important;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            border: 2px solid #ffffff !important;
+            z-index: 10;
+        }
+
+        .inventory-meta {
+            padding: 16px 12px;
+            text-align: center;
+            background-color: #ffffff;
+            margin-top: auto;
+        }
+
+        .inventory-meta h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* 5. Booking Panel Reservation Form Dashboard */
+        .booking-container {
+            max-width: 700px;
+            margin: 40px auto 70px auto;
+            background: #ffffff;
+            border: 2px solid var(--card-border);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            box-sizing: border-box;
+        }
+        
+        .form-group label {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        
+        .form-group input, .form-group select {
+            border: 2px solid #babcbe;
+            border-radius: 6px;
+            padding: 10px;
+            color: #000000;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--accent-green);
+            outline: none;
+        }
+
+        @media (max-width: 600px) {
+            .event-gallery-grid, .inventory-display-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .inventory-img-box {
+                height: 220px;
+            }
+        }
+    </style>
 </head>
 <header>
     <div class="logo" onclick="window.location.href='index.html'">
@@ -24,14 +277,132 @@
 </header>
 <body>
 
-    <main class="page-section">
-        <div class="page-intro-header">
-            <h2>Late Shri Hargovind Paliwal Memorial Steel Utensil Bank</h2>
-            <p>Our flagship resource library completely eliminates toxic single-use plastic and thermocol waste from public dining gatherings, weddings, and community feasts. By filling out your expected guest count below, our allocation engine will dynamically calculate your total stainless steel equipment parameters and display the dedicated branch head contact details to schedule your completely free pickup configuration.</p>
+    <main class="page-section" style="padding-top: 10px; padding-left: 4%; padding-right: 4%;">
+        
+        <div class="official-poster-container">
+            <img src="WhatsApp Image 2026-05-30 at 21.39.jpeg" alt="Late Shri Hargovind Paliwal Memorial Steel Utensil Bank Banner Frame">
         </div>
 
+        <div class="history-narrative-block">
+            <h2>The Visionaries Behind the Bank: Our History & Story</h2>
+            <p>While the <strong>Late Shri Hargovind Paliwal Memorial Steel Utensil Bank</strong> was officially scaled into a public project in <strong>July 2025</strong>, its transformative journey initially began back in <strong>2023</strong>. Driven by a commitment to reduce toxic plastic disposable waste, <strong>Dr. Manisha Paliwal</strong> and <strong>Dr. Yogesh Paliwal</strong> started an experimental community setup using just <strong>40 small steel glasses for tea</strong>.</p>
+            <p>The neighborhood responded with strong enthusiasm, embracing the straightforward alternative to single-use options. Recognizing this momentum, they systematically added water glasses and spoons to expand their neighborhood utility stock. This practical toolkit provided a clear alternative to corporate single-use plastic conveniences and kept synthetic waste out of localized municipal path systems.</p>
+            <p>In <strong>July 2025</strong>, the initiative stepped into its full public service framework with an expanded inventory of <strong>300 lunch/dinner compartment thalis</strong>. Today, it acts as a premier free-to-use resource library available to all organizers throughout Akola, successfully shifting consumer habits away from continuous plastic throwaway loops toward sustainable resource circularity.</p>
+        </div>
+
+        <h2 class="section-main-title">Field Action & Feast Deployments</h2>
+        <p class="section-main-subtitle">Real-time snapshots of our community utensil bank in action across regional gatherings</p>
+        
+        <div class="event-gallery-grid">
+            <div class="gallery-card">
+                <div class="gallery-image-wrapper">
+                    <img src="WhatsApp Image 2026-05-30 at 21.39.14.jpeg" alt="Official Launch Setup Picture">
+                </div>
+                <div class="gallery-caption">Official Utensil Bank Framework Launch Assembly</div>
+            </div>
+            <div class="gallery-card">
+                <div class="gallery-image-wrapper">
+                    <img src="WhatsApp Image 2026-05-18 at 21.32.30.jpeg" alt="Team Allocation Gathering">
+                </div>
+                <div class="gallery-caption">Free Allocation Hub Inventory Launch</div>
+            </div>
+            <div class="gallery-card">
+                <div class="gallery-image-wrapper">
+                    <img src="WhatsApp Image 2026-06-01 at 05.18.17.jpeg" alt="Mass community public feast lines">
+                </div>
+                <div class="gallery-caption">Community Feast Lineup: Eco-Friendly Meal Service</div>
+            </div>
+            <div class="gallery-card">
+                <div class="gallery-image-wrapper">
+                    <img src="WhatsApp Image 2026-06-01 at 05.20.21.jpeg" alt="Banquet Table Arrangement Thalis">
+                </div>
+                <div class="gallery-caption">Mass Dinner Preparation Using Zero-Waste Thalis</div>
+            </div>
+        </div>
+
+        <h2 class="section-main-title">Available Utensils Inventory</h2>
+        <p class="section-main-subtitle">Our high-grade stainless steel equipment configurations completely available for non-plastic events</p>
+
+        <div class="inventory-display-grid">
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Compartment plates 1100.jpeg" alt="Compartment plates">
+                    <span class="quantity-count-badge">Count: 1100</span>
+                </div>
+                <div class="inventory-meta"><h4>Compartment Plates</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Water glass 1100.jpeg" alt="Water glass">
+                    <span class="quantity-count-badge">Count: 1100</span>
+                </div>
+                <div class="inventory-meta"><h4>Water Glasses</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Spoons 800.jpeg" alt="Spoons">
+                    <span class="quantity-count-badge">Count: 800</span>
+                </div>
+                <div class="inventory-meta"><h4>Catering Spoons</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Mattha_Pana glass 400.jpeg" alt="Mattha Pana glass">
+                    <span class="quantity-count-badge">Count: 400</span>
+                </div>
+                <div class="inventory-meta"><h4>Mattha/Pana Glasses</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Bowls 300.jpeg" alt="Bowls">
+                    <span class="quantity-count-badge">Count: 300</span>
+                </div>
+                <div class="inventory-meta"><h4>Bowls (Wati)</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Small glass for tea 250.jpeg" alt="Small glass for tea">
+                    <span class="quantity-count-badge">Count: 250</span>
+                </div>
+                <div class="inventory-meta"><h4>Small Tea Glasses</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Round plates 200.jpeg" alt="Round plates">
+                    <span class="quantity-count-badge">Count: 200</span>
+                </div>
+                <div class="inventory-meta"><h4>Round Dinner Thalis</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Snacks plates 200.jpeg" alt="Snacks plates">
+                    <span class="quantity-count-badge">Count: 200</span>
+                </div>
+                <div class="inventory-meta"><h4>Snacks Plates</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Bags to carry the Utensils 8.jpeg" alt="Bags to carry the Utensils">
+                    <span class="quantity-count-badge">Count: 8</span>
+                </div>
+                <div class="inventory-meta"><h4>Transport Canvas Bags</h4></div>
+            </div>
+            <div class="inventory-item-card">
+                <div class="inventory-img-box">
+                    <img src="Waste Tub 3.jpeg" alt="Waste Tub">
+                    <span class="quantity-count-badge">Count: 3</span>
+                </div>
+                <div class="inventory-meta"><h4>Collection Wash Tubs</h4></div>
+            </div>
+        </div>
+
+        <!-- FORM IS PLACED DISTINCTLY AFTER IMAGES SECTIONS -->
         <div class="booking-container">
-            <h2>Utensil Reservation Dashboard</h2>
+            <h2 style="margin-top:0; color: var(--primary-green); text-align: center; font-weight: 700;">Utensil Reservation Dashboard</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; margin-top:-10px; margin-bottom:25px; font-weight: 500;">
+                Enter Your Details in this form and contact the outlet hub.
+            </p>
+            
             <form id="steelBankForm" name="bookingForm">
                 <input type="hidden" name="targetSheet" value="Sheet1">
                 
@@ -61,33 +432,34 @@
                     <label>Date on which Utensils are Required:</label>
                     <input type="date" name="required_date" id="requiredDate" required>
                 </div>
-                <button type="submit" class="submit-btn">Submit to System </button>
-                <div id="loaderBooking" class="loader-text">Processing data stream safely... Please wait.</div>
+                <button type="submit" class="submit-btn" style="background-color: var(--primary-green); color:#fff; border:none; border-radius:6px; padding:14px; width:100%; font-size:1.1rem; font-weight:bold; cursor:pointer; margin-top: 10px;">Submit to System</button>
+                <div id="loaderBooking" class="loader-text" style="display:none; text-align:center; margin-top:12px; color:var(--primary-green); font-weight:700;">Processing data stream safely... Please wait.</div>
             </form>
 
-            <div id="booking-output" class="status-box">
-                <h3 style="color: var(--primary);">Allocation Model Verified</h3>
-                <p><strong>Organizer Name:</strong> <span id="outName"></span> | <strong>Mobile:</strong> <span id="outMobile"></span></p>
-                <p>Calculated reusable items needed for your <span id="outGuests"></span> visitors:</p>
-                <ul>
-                    <li><strong>Requirement Date:</strong> <span id="outDateReq" style="font-weight: bold; color: var(--secondary);"></span></li>
+            <div id="booking-output" class="status-box" style="display:none; margin-top: 25px; border:2px solid #babcbe; padding:20px; border-radius:8px; background-color:#fafafa;">
+                <h3 style="color: var(--primary-green); margin-top:0; font-weight: 700;">Allocation Model Verified</h3>
+                <p style="font-size: 1rem;"><strong>Organizer Name:</strong> <span id="outName"></span> | <strong>Mobile:</strong> <span id="outMobile"></span></p>
+                <p style="font-size: 1rem;">Calculated reusable items needed for your <span id="outGuests"></span> visitors:</p>
+                <ul style="line-height:1.7; margin-bottom:20px; font-size: 1rem; color: #000000;">
+                    <li><strong>Requirement Date:</strong> <span id="outDateReq" style="font-weight: bold; color: #d35400;"></span></li>
                     <li><strong>Stainless Steel Plates (Thalis):</strong> <span id="outPlates"></span> units</li>
                     <li><strong>Stainless Steel Tumbler Glasses:</strong> <span id="outGlasses"></span> units</li>
                     <li><strong>Stainless Steel Catering Spoons:</strong> <span id="outSpoons"></span> units</li>
                     <li><strong>Upcycled Serving Bowls (Donas saved):</strong> <span id="outBowls"></span> units</li>
                 </ul>
-                <div style="background: #e3f2fd; padding: 15px; border-radius: 5px; border-left: 4px solid #2980b9;">
-                    <p style="margin:0; font-weight: bold; color: #145A32;">📋 REGISTRATION RECORDED — PLEASE CONNECT WITH YOUR OUTLET HEAD:</p>
-                    <p style="margin: 8px 0 0 0; font-size: 1.05rem;" id="outBranchContact"></p>
-                    <p style="font-size: 0.85em; margin: 8px 0 0 0; color: #555;"><em>Note: All utensils are provided completely free of charge. Kindly wash and return them safely after use.</em></p>
+                <div style="background: #e8f5e9; padding: 18px; border-radius: 6px; border-left: 5px solid var(--primary-green);">
+                    <p style="margin:0; font-weight: bold; color: #1b5e20; font-size:0.95rem;">📋 REGISTRATION RECORDED — PLEASE CONNECT WITH YOUR OUTLET HEAD:</p>
+                    <p style="margin: 10px 0 0 0; font-size: 1.1rem; color:#202124; line-height: 1.5;" id="outBranchContact"></p>
+                    <p style="font-size: 0.85em; margin: 10px 0 0 0; color: #444; font-weight: 500;"><em>Note: All utensils are provided completely free of charge. Kindly wash and return them safely after use.</em></p>
                 </div>
             </div>
         </div>
+
     </main>
 
     <script>
         document.getElementById('nav-booking').classList.add('active');
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxsyJ19V1Hz0zOMPBsvNnb9DJBFv9LfUIADtlD5znlw1IrgO2rTQxa8wFF46lb_dtHFSQ/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwRdnvZ2xZE74W0VbRMAXE941DINC5KK6bG9EaFH11DD8drP-HNiJpEMhntgeqqBb1juQ/exec';
 
         const contactsDirectory = {
             "Vrindavan Nagar": "<strong>Outlet Hub:</strong> Vrindavan Nagar, Near Sudhir Colony, Akola<br><strong>In-Charge Head:</strong> Dr. Yogesh Paliwal<br><strong>Contact:</strong> 8329990369",
@@ -101,7 +473,7 @@
             e.preventDefault();
             document.getElementById('loaderBooking').style.display = 'block';
             
-            fetch(scriptURL, { method: 'POST', body: new FormData(bookingForm)})
+            fetch(scriptURL, { method: 'POST', body: new FormData(bookingForm) })
               .then(response => {
                   document.getElementById('loaderBooking').style.display = 'none';
                   triggerBookingOutput();
@@ -159,6 +531,7 @@
             <h4>Contact Details</h4>
             <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
             <p><strong>Phone:</strong> +91 8329990369</p>
+            <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
         </div>
     </div>
     <div class="footer-bottom">
