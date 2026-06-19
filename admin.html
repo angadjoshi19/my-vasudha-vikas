@@ -31,7 +31,6 @@
 </head>
 <body style="background-color: #f8f9fa;">
 
-    <!-- 1. AUTHENTICATION SHIELD INTERFACE -->
     <div class="admin-auth-shield-container" id="authGateGuardDisplayView">
         <div style="text-align: center; margin-bottom: 20px;">
             <img src="logo.png" alt="Logo" style="height: 60px; object-fit: contain;">
@@ -55,23 +54,21 @@
         <p style="text-align: center; margin-top: 15px;"><a href="index.html" style="font-size: 0.85rem; color: #5f6368; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Return back to Public Homepage</a></p>
     </div>
 
-    <!-- 2. INTERNAL PROTECTED CONTROL WORKSPACE -->
     <div class="admin-dashboard-layout" id="protectedDashboardWorkspaceDisplayView">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #2e7d32; padding-bottom: 10px;">
             <div>
                 <h2 style="margin: 0; color: #2e7d32;"><i class="fa-solid fa-gauge-high"></i> Administrative Control Terminal</h2>
                 <div style="margin-top: 5px; display: flex; align-items: center;">
-                    <span style="font-size: 0.9rem; color: #5f6368;">Session: <strong id="activeSessionIdentityToken" class="tab-indicator-badge"></strong></span>
+                    <span style="font-size: 0.9rem; color: #5f6368;">Authorized Session: <strong id="activeSessionIdentityToken" class="tab-indicator-badge"></strong></span>
                     <span id="syncIndicator" class="sync-status-indicator status-synced"><i class="fa-solid fa-cloud-check"></i> Connected</span>
                 </div>
             </div>
             <button class="destructive-btn" style="background:#5f6368;" onclick="invalidateActiveSessionTerm()"><i class="fa-solid fa-power-off"></i> Secure Terminal Logout</button>
         </div>
 
-        <!-- CLOUD OPERATIONAL LEDGER LINK -->
         <div class="sheet-external-link-banner">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fa-solid fa-table-list" style="font-size: 2rem; color: #1a73e8;"></i>
+                <i class="fa-solid fa-table-list style-sheet-icon" style="font-size: 2rem; color: #1a73e8;"></i>
                 <div>
                     <h4 style="margin: 0; color: #1a73e8;">Vasudha Vikas Operations Log Allocation Ledger</h4>
                     <p style="margin: 3px 0 0 0; font-size: 0.85rem; color: #5f6368;">Access real-time inventory listings, financial donation track records, and steel utensil reservations database.</p>
@@ -85,7 +82,7 @@
         <!-- HONORS & EXCELLENCE AWARDS MANAGEMENT CELL -->
         <div class="control-panel-grid-card">
             <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-trophy"></i> Honors & Excellence Awards Management</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Add, edit, or remove entries displayed on the public accolades page.</p>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Add, edit, or remove entries displayed on the public accolades page, along with image filenames and expand descriptions.</p>
             
             <div class="management-form-layout">
                 <input type="hidden" id="awardEditId">
@@ -114,7 +111,7 @@
         <!-- PRESS & NEWSPAPER CUTTINGS MANAGEMENT CELL -->
         <div class="control-panel-grid-card">
             <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-newspaper"></i> Newspaper Cuttings & Press Catalog</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Manage publication clips and newspaper cuttings cleanly.</p>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Manage publication clips and newspaper cuttings cleanly without cluttering description contexts.</p>
             
             <div class="management-form-layout">
                 <input type="hidden" id="pressEditId">
@@ -138,24 +135,24 @@
             </table>
         </div>
 
-        <!-- LIVE HOMEPAGE ANNOUNCEMENT MODULE -->
+        <!-- PUBLIC LIVE ANNOUNCEMENT CREATION CONTROLLER MODULE -->
         <div class="control-panel-grid-card">
             <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-bullhorn"></i> Broadcast Live Emergency/Event Announcement Banner</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Disseminate critical environmental updates across the primary homepage interface instantly.</p>
-            <textarea id="announcementInputBodyText" rows="2" style="width:100%; padding:10px; border:1px solid #dadce0; border-radius:4px; box-sizing:border-box;" placeholder="Type announcement message here..."></textarea>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Disseminate critical environmental news feeds or structural schedule alerts updates across the primary public home screen layer interface instantly.</p>
+            <textarea id="announcementInputBodyText" rows="2" style="width:100%; padding:10px; border:1px solid #dadce0; border-radius:4px; box-sizing:border-box;" placeholder="Type new notification copy context framework here..."></textarea>
             <div style="margin-top: 10px; display: flex; gap: 10px;">
                 <button class="interactive-action-btn-primary" style="margin: 0;" onclick="publishLiveAnnouncementItemStream()"><i class="fa-solid fa-paper-plane"></i> Publish To Homepage</button>
                 <button class="destructive-btn" onclick="purgeLiveAnnouncementStream()"><i class="fa-solid fa-eraser"></i> Wipe Active Announcement</button>
             </div>
         </div>
 
-        <!-- MODERATION & COMMENTS MODERATION MATRIX MODULE -->
+        <!-- MODERATION ENGINE -->
         <div class="control-panel-grid-card">
             <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-shield-halved"></i> Moderation Engine: Filter Community Reviews</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Moderate community reviews, handle responses, and clean spam from public visibility profiles.</p>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Prune spam logs, address community feedback comments, and maintain data pipeline sanity.</p>
             <div id="adminReviewManagementTargetWorkspaceFeed">
                 <div style="padding: 20px; text-align: center; color: #7f8c8d;">
-                    <i class="fa-solid fa-spinner fa-spin"></i> Loading live submissions database...
+                    <i class="fa-solid fa-spinner fa-spin"></i> Initializing synchronized cloud databases...
                 </div>
             </div>
         </div>
@@ -207,7 +204,6 @@
             document.getElementById('authGateGuardDisplayView').style.display = "block";
         }
 
-        // UNIFIED FETCH PIPELINE (AWARDS, PRESS, ANNOUNCEMENTS, REVIEWS)
         function pullGlobalDatabaseState() {
             setSyncStatus(false);
             fetch(`${SCRIPT_WEB_APP_URL}?action=getAllData`)
@@ -218,6 +214,7 @@
                     localStorage.setItem('vasudha_reviews_db', JSON.stringify(data.reviews || []));
                     if(data.announcement) {
                         document.getElementById('announcementInputBodyText').value = data.announcement.content || "";
+                        localStorage.setItem('vasudha_live_announcement', JSON.stringify(data.announcement));
                     }
                     
                     renderAwardsDashboardTable();
@@ -226,7 +223,7 @@
                     setSyncStatus(true);
                 })
                 .catch(err => {
-                    console.error("Cloud connection failed, using local caching modules:", err);
+                    console.error("Pipeline breakdown fallback execution initiated:", err);
                     renderAwardsDashboardTable();
                     renderPressDashboardTable();
                     renderAdministrationMasterFeed();
@@ -234,7 +231,6 @@
                 });
         }
 
-        // UNIFIED DATA TRANSACTION MUTATION PIPELINE
         function pushGlobalDatabaseState(targetAction) {
             setSyncStatus(false);
             const awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
@@ -255,15 +251,15 @@
                     announcement: announcement
                 })
             }).then(() => {
-                setTimeout(() => setSyncStatus(true), 1000);
+                setTimeout(() => setSyncStatus(true), 1200);
             }).catch(err => {
-                alert("Data write error into pipeline stream: " + err);
+                alert("Data sync error into pipeline stream: " + err);
                 setSyncStatus(true);
             });
         }
 
         /* ========================================================
-           HONORS & EXCELLENCE AWARDS MANAGEMENT CELL
+           AWARDS LOGIC BLOCKS
            ======================================================== */
         function renderAwardsDashboardTable() {
             const awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
@@ -320,7 +316,7 @@
         }
 
         function deleteAwardRecordItem(id) {
-            if(confirm("Are you sure you want to completely remove this award record?")) {
+            if(confirm("Confirm removal of this award record entry?")) {
                 let awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
                 awards = awards.filter(item => item.id != id);
                 localStorage.setItem('vasudha_awards_db', JSON.stringify(awards));
@@ -338,7 +334,7 @@
         }
 
         /* ========================================================
-           PRESS CLIPPINGS MANAGEMENT CORE LOGICS
+           PRESS CLIPPINGS LOGIC BLOCKS
            ======================================================== */
         function renderPressDashboardTable() {
             const press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
@@ -364,7 +360,7 @@
             const title = document.getElementById('pressTitleInput').value.trim();
             const img = document.getElementById('pressImgInput').value.trim();
 
-            if(!title || !img) return alert("Please specify title and image targets.");
+            if(!title || !img) return alert("Please specify title and image fields.");
 
             let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
 
@@ -392,7 +388,7 @@
         }
 
         function deletePressRecordItem(id) {
-            if(confirm("Wipe this newspaper cutting link directly?")) {
+            if(confirm("Wipe this newspaper cutting asset link?")) {
                 let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
                 press = press.filter(item => item.id != id);
                 localStorage.setItem('vasudha_press_db', JSON.stringify(press));
@@ -409,7 +405,7 @@
         }
 
         /* ========================================================
-           SYSTEM REVIEWS/COMMENTS MODERATION SUITE LOGICS
+           REVIEW REVIEWS MODERATION SUITE LOGICS
            ======================================================== */
         function renderAdministrationMasterFeed() {
             const reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
@@ -417,7 +413,7 @@
             container.innerHTML = "";
 
             if(reviews.length === 0) {
-                container.innerHTML = `<p style="color:#7f8c8d; font-style:italic; font-size:0.9rem;">No feedback comments currently loaded from database layers.</p>`;
+                container.innerHTML = `<p style="color:#7f8c8d; font-style:italic; font-size:0.9rem;">No feedback comments loaded from database layers.</p>`;
                 return;
             }
 
@@ -437,7 +433,7 @@
                 const blockCard = `
                     <div class="management-review-row">
                         <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                            <span><strong style="color:#2e7d32;">${review.author}</strong> <small style="color:#7f8c8d;">(${review.timestamp})</small> — Rating: <strong>${review.rating || 5}/5★</strong></span>
+                            <span><strong style="color:#2e7d32;">${review.author}</strong> <small style="color:#7f8c8d;">(${review.timestamp})</small> — Rating: <strong>${review.rating}/5★</strong></span>
                             <button class="destructive-btn" onclick="executePurgeReviewRow(${review.id})"><i class="fa-solid fa-trash-can"></i> Remove Comment</button>
                         </div>
                         <p style="margin:5px 0; font-size:0.9rem; color:#333; background:#fff; padding:8px; border:1px solid #e0e0e0; border-radius:4px;">${review.text}</p>
@@ -456,7 +452,7 @@
         }
 
         function executePurgeReviewRow(id) {
-            if(confirm("Confirm deletion? This permanently removes the target user submission across public pages.")) {
+            if(confirm("Confirm deletion? This permanently removes the review across public viewports.")) {
                 let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
                 reviews = reviews.filter(r => r.id !== id);
                 localStorage.setItem('vasudha_reviews_db', JSON.stringify(reviews));
@@ -468,11 +464,10 @@
         function executeAdminReplyInjection(id) {
             const inputField = document.getElementById(`adminReplyTextNode-${id}`);
             const text = inputField.value.trim();
-            if(!text) return alert("Please specify a reply message first.");
+            if(!text) return alert("Please specify a reply message.");
 
             let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
             const idx = reviews.findIndex(r => r.id === id);
-            
             if(idx !== -1) {
                 if(!reviews[idx].replies) reviews[idx].replies = [];
                 reviews[idx].replies.push({
@@ -488,7 +483,7 @@
         }
 
         function deleteTargetSubReplyRow(reviewId, replyIndex) {
-            if(confirm("Delete this response item?")) {
+            if(confirm("Delete this response record item?")) {
                 let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
                 const idx = reviews.findIndex(r => r.id === reviewId);
                 if(idx !== -1) {
@@ -505,7 +500,7 @@
            ======================================================== */
         function publishLiveAnnouncementItemStream() {
             const text = document.getElementById('announcementInputBodyText').value.trim();
-            if(!text) return alert("Announcement context cannot stand void during deployment loops.");
+            if(!text) return alert("Announcement message body cannot be empty.");
 
             const transmissionPayload = {
                 content: text,
@@ -514,15 +509,15 @@
             };
 
             localStorage.setItem('vasudha_live_announcement', JSON.stringify(transmissionPayload));
-            alert("New communication profile staging prepared. Sending to cloud infrastructure loop...");
+            alert("New broadcast staged successfully. Synchronizing directly to cloud systems...");
             pushGlobalDatabaseState("syncAnnouncementData");
         }
 
         function purgeLiveAnnouncementStream() {
-            if(confirm("Wipe clear the active homepage announcement display billboard?")) {
+            if(confirm("Wipe clear the active homepage announcement billboard display window?")) {
                 localStorage.removeItem('vasudha_live_announcement');
                 document.getElementById('announcementInputBodyText').value = "";
-                alert("Homepage announcement slate cleared locally. Syncing mutation onto production web cloud...");
+                alert("Staging cleared. Removing notice from production environments...");
                 pushGlobalDatabaseState("syncAnnouncementData");
             }
         }
