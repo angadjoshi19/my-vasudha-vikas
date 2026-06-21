@@ -6,159 +6,198 @@
     <title>Our Environmental Programs | MY वसुधा विकास</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .programs-hero-headline { text-align: center; max-width: 850px; margin: 40px auto; padding: 0 20px; }
+        .programs-hero-headline h2 { color: #1b5e20; font-size: 2.4rem; font-weight: 800; margin-bottom: 12px; }
+        .programs-hero-headline p { color: #4a4a4a; font-size: 1.05rem; line-height: 1.6; }
+        
+        /* Dynamic Reactive Flex Grid Matrix */
+        .initiatives-dynamic-matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; max-width: 1200px; margin: 40px auto; padding: 0 20px; box-sizing: border-box; }
+        .initiative-interactive-card { background: #ffffff; border: 1px solid #dadce0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease; }
+        .initiative-interactive-card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(27,94,32,0.12); border-color: #2e7d32; }
+        
+        .initiative-card-img-wrapper { width: 100%; height: 240px; background-color: #f1f3f4; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+        .initiative-card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .initiative-interactive-card:hover .initiative-card-img-wrapper img { transform: scale(1.04); }
+        
+        .initiative-status-indicator-tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; background: rgba(27,94,32,0.9); color: #fff; font-size: 0.75rem; font-weight: 700; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.15); }
+        .initiative-body-content { padding: 24px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .initiative-body-content h3 { margin: 0 0 10px 0; color: #202124; font-size: 1.35rem; font-weight: 700; }
+        .initiative-body-content p { color: #5f6368; font-size: 0.95rem; line-height: 1.5; margin: 0 0 20px 0; display: -webkit-box; -webkitlineclamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        /* Modernized Lightbox & Structural Modal Layout Styles */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(4px); }
+        .modal-content { background: #ffffff; max-width: 700px; width: 100%; border-radius: 14px; overflow: hidden; position: relative; animation: modalSlideEnter 0.35s cubic-bezier(0.1, 0.9, 0.2, 1); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        @keyframes modalSlideEnter { from { opacity: 0; transform: translateY(30px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        
+        .modal-carousel-container { width: 100%; height: 380px; background: #000; position: relative; display: flex; align-items: center; justify-content: center; }
+        .modal-slide { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; }
+        .modal-slide.active { display: flex; }
+        .modal-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        
+        .mc-nav-arrow-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.25); color: #fff; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; border-radius: 50%; z-index: 10; transition: background 0.2s; }
+        .mc-nav-arrow-btn:hover { background: rgba(255,255,255,0.5); color: #000; }
+        .mc-prev-arrow { left: 15px; } .mc-next-arrow { right: 15px; }
+        
+        .close-btn-trigger { position: absolute; top: 15px; right: 20px; font-size: 2.2rem; color: #ffffff; cursor: pointer; z-index: 10001; mix-blend-mode: difference; background: none; border: none; font-weight: 300; }
+        .modal-body-details-card { padding: 30px; box-sizing: border-box; overflow-y: auto; max-height: 45vh; }
+        .meta-context-label-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; border-top: 1px solid #e8eaed; padding-top: 20px; }
+        
+        @media(max-width: 768px) {
+            .initiatives-dynamic-matrix-grid { grid-template-columns: 1fr; gap: 25px; }
+            .modal-carousel-container { height: 260px; }
+            .meta-context-label-strip { grid-template-columns: 1fr; gap: 15px; }
+        }
+    </style>
 </head>
-<header>
-    <div class="logo" onclick="window.location.href='index.html'">
-        <img src="logo.png" alt="My Vasudha Vikas Logo">
-    </div>
-    <nav>
-        <ul>
-            <li><a href="index.html" id="nav-home">Home</a></li>
-            <li><a href="programs.html" id="nav-programs">Our Programs</a></li>
-            <li><a href="booking.html" id="nav-booking">Book Steel Utensils</a></li>
-            <li><a href="awards.html" id="nav-awards">Awards</a></li>
-            <li><a href="donate.html" id="nav-donate">Donate</a></li>
-            <li><a href="about.html" id="nav-about">About Us</a></li>
-        </ul>
-    </nav>
-</header>
 <body>
 
-    <main class="page-section">
-        <div class="page-intro-header">
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            <img src="logo.png" alt="My Vasudha Vikas Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="nav-home">Home</a></li>
+                <li><a href="programs.html" id="nav-programs" class="active">Our Programs</a></li>
+                <li><a href="booking.html" id="nav-booking">Book Steel Utensils</a></li>
+                <li><a href="awards.html" id="nav-awards">Awards</a></li>
+                <li><a href="donate.html" id="nav-donate">Donate</a></li>
+                <li><a href="about.html" id="nav-about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding-bottom: 60px; background-color: #f8f9fa;">
+        <div class="programs-hero-headline">
             <h2>Our Environmental Action Programs</h2>
-            <p>Welcome to our initiatives gallery. This panel documents the primary operational modules run across Maharashtra to foster a circular economy and completely eliminate disposable packaging structures. Click any module below to check its full description, structural public benefits, and verified community impact records.</p>
+            <p>Welcome to our live operations portal. This screen interfaces directly with our cloud storage grids to pull verified ecological milestones, field execution portfolios, and resource circularity results maintained across Maharashtra.</p>
         </div>
 
-        <div class="grid">
-            <div class="card">
-                <img src="WhatsApp Image 2026-05-30 at 21.39.14.jpeg" alt="Steel Utensil Bank">
-                <h3>Steel Utensil Bank</h3>
-                <button class="card-btn" onclick="openModal('steel')">View Gallery & Full Report</button>
-            </div>
-            <div class="card">
-                <img src="WhatsApp Image 2026-05-30 at 21.38.22.jpeg" alt="Cloth Bag Initiative">
-                <h3>Cloth Bag & Sapling Initiative</h3>
-                <button class="card-btn" onclick="openModal('cloth')">View Gallery & Full Report</button>
-            </div>
-            <div class="card">
-                <img src="WhatsApp Image 2026-06-02 at 22.31.57.jpeg" alt="Eco-Friendly Haldi Kumkum">
-                <h3>Eco-Friendly Haldi Kumkum</h3>
-                <button class="card-btn" onclick="openModal('haldi')">View Gallery & Full Report</button>
-            </div>
-            <div class="card">
-                <img src="WhatsApp Image 2026-06-01 at 05.17.54.jpeg" alt="Plastic-Free Bhandaras">
-                <h3>Plastic-Free Bhandaras</h3>
-                <button class="card-btn" onclick="openModal('bhandara')">View Gallery & Full Report</button>
-            </div>
-            <div class="card">
-                <img src="WhatsApp Image 2026-05-31 at 08.25.27.jpeg" alt="School Awareness Drives">
-                <h3>School Awareness Drives</h3>
-                <button class="card-btn" onclick="openModal('school')">View Gallery & Full Report</button>
-            </div>
-            <div class="card">
-                <img src="WhatsApp Image 2026-05-30 at 21.08.40.jpeg" alt="Bicycle Awareness Drives">
-                <h3>Bicycle Awareness Drives</h3>
-                <button class="card-btn" onclick="openModal('bicycle')">View Gallery & Full Report</button>
+        <div class="initiatives-dynamic-matrix-grid" id="publicProgramsGridContainer">
+            <div style="text-align: center; color: #5f6368; padding: 60px; grid-column: 1/-1;">
+                <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:#1b5e20;"></i>
+                <br><span style="margin-top:12px; display:inline-block; font-weight:600;">Establishing safe secure link to cloud data ledgers...</span>
             </div>
         </div>
     </main>
 
-    <div id="programModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" class="modal-header">Title</h2>
-            <div class="modal-carousel" id="modalCarouselInner"></div>
-            <button class="mc-prev" onclick="changeModalSlide(-1)">&#10094;</button>
-            <button class="mc-next" onclick="changeModalSlide(1)">&#10095;</button>
-            <div style="background: var(--light-bg); padding: 15px; border-radius: 5px; margin-top:15px; margin-bottom: 15px;">
-                <strong>Program Description:</strong>
-                <p id="modalDesc" style="margin-top:5px; text-align:justify;"></p>
+    <div id="programModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-btn-trigger" onclick="closeModal()">&times;</button>
+            
+            <div class="modal-carousel-container">
+                <div id="modalCarouselInner" style="width:100%; height:100%;"></div>
+                <button class="mc-nav-arrow-btn mc-prev-arrow" onclick="changeModalSlide(-1)">&#10094;</button>
+                <button class="mc-nav-arrow-btn mc-next-arrow" onclick="changeModalSlide(1)">&#10095;</button>
             </div>
-            <div style="margin-bottom: 12px;">
-                <strong>Key Community Benefits:</strong> <span id="modalBenefits" style="color: var(--primary); display:block; margin-top:3px;"></span>
-            </div>
-            <div>
-                <strong>Strategic Environmental Impacts:</strong> <span id="modalImpacts" style="font-weight: bold; color: var(--secondary); display:block; margin-top:3px;"></span>
+            
+            <div class="modal-body-details-card">
+                <h2 id="modalTitle" style="margin:0 0 12px 0; color:#1b5e20; font-size:1.5rem; font-weight:800;">Initiative Title</h2>
+                <p id="modalDesc" style="margin:0; color:#3c4043; font-size:0.98rem; line-height:1.6; text-align:justify;"></p>
+                
+                <div class="meta-context-label-strip">
+                    <div>
+                        <strong style="color:#2e7d32; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:4px;"><i class="fa-solid fa-circle-check"></i> Key Community Benefits</strong>
+                        <span id="modalBenefits" style="color:#202124; font-size:0.95rem; line-height:1.4;">Benefit information placeholder context details.</span>
+                    </div>
+                    <div>
+                        <strong style="color:#e67e22; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:4px;"><i class="fa-solid fa-chart-line"></i> Strategic Environmental Impacts</strong>
+                        <span id="modalImpacts" style="color:#202124; font-size:0.95rem; font-weight:600; line-height:1.4;">Impact indicators report statement data placeholder.</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('nav-programs').classList.add('active');
-        
-        const programData = {
-            'steel': {
-                title: "Late Shri Hargovind Paliwal Memorial Steel Utensil Bank",
-                images: ["WhatsApp Image 2026-05-30 at 21.39.jpeg","WhatsApp Image 2026-05-30 at 21.39.14.jpeg","WhatsApp Image 2026-05-18 at 21.32.30.jpeg","WhatsApp Image 2026-06-01 at 05.20.21.jpeg","WhatsApp Image 2026-05-30 at 21.08.51.jpeg"],
-                desc: "A completely free equipment rental engine lending medical-grade steel utilities (plates, tumblers, bowls) to public banquet entities, minimizing consumer ingestion of plastic toxins. It addresses microplastic shedding risks. Operations function via 4 nodes across Akola city.",
-                benefits: "Eliminates substantial catering waste investments for low-income brackets and religious institutions.",
-                impacts: "Successfully intercepted and prevented 6,000,000 plastic trash variations across 300+ events scaling into 120 villages in Maharashtra."
-            },
-            'cloth': {
-                title: "Free Cloth Bag & Sapling Distribution Framework",
-                images: ["WhatsApp Image 2026-05-30 at 21.38.22.jpeg","WhatsApp Image 2026-05-31 at 08.25..jpeg","WhatsApp Image 2026-05-31 at 08.25.31.jpeg"],
-                desc: "Processes consumer clothing residues (old sarees, curtains, bedsheets) into long-lasting green storage bags carrying environmental messaging. Features a permanent public stand outside our property for shoppers.",
-                benefits: "Enforces direct textile circular economies, saving raw garment pieces from trash dumps.",
-                impacts: "Distributed over 42,000 carriers across municipal zones, mobilizing massive public textile donations from local families."
-            },
-            'haldi': {
-                title: "Eco-Friendly Haldi Kumkum (Plant Distribution Drives)",
-                images: ["WhatsApp Image 2026-06-02 at 22.31.57.jpeg","WhatsApp Image 2026-06-02 at 22.52.42.jpeg","WhatsApp Image 2026-06-02 at 22.31.58.jpeg","WhatsApp Image 2026-06-02 at 22.37.20.jpeg"],
-                desc: "Transforms standard festive gifting cycles by substituting cheap plastic variables with healthy living, home-nurtured plant containers cultivated by our volunteers for a month prior to distribution.",
-                benefits: "Integrates clean environmental stewardship directly inside classic cultural celebrations.",
-                impacts: "Nurtured and gifted 51 home plant variants per cycle, boosting domestic neighborhood green oxygen footprints."
-            },
-            'bhandara': {
-                title: "Hanuman Jayanti Plastic-Free Bhandara Management",
-                images: ["WhatsApp Image 2026-06-01 at 05.17.54.jpeg","WhatsApp Image 2026-06-01 at 05.18.17.jpeg","WhatsApp Image 2026-06-01 at 05.20.21.jpeg"],
-                desc: "Provides logistics deployment mapping across town mass feeding conventions during holy peaks to suppress single-use thermocol systems.",
-                benefits: "Proves high-volume public dining can successfully function via clean steel recycling loops.",
-                impacts: "Enforced zero-waste execution across 8 concurrent city nodes, creating digital models copied across states."
-            },
-            'school': {
-                title: "School Student Awareness Initiatives",
-                images: ["WhatsApp Image 2026-05-31 at 08.25.27.jpeg","WhatsApp Image 2026-05-31 at 08.25.28.jpeg","WhatsApp Image 2026-05-30 at 21.08.501.jpeg","WhatsApp Image 2026-06-02 at 23.13.48.jpeg","WhatsApp Image 2026-06-02 at 23.13.49.jpeg"],
-                desc: "Conducts lifecycle workshops and educational interaction circuits directly inside academic structures like Bharat Vidyalay and Prabhat Kids School.",
-                benefits: "Builds core ecological conservation habits in young minds, turning them into home environmental ambassadors.",
-                impacts: "Enrolled thousands of youngsters who signed pledges to refuse single-use plastic elements."
-            },
-            'bicycle': {
-                title: "Bicycle Awareness Drives",
-                images: ["WhatsApp Image 2026-06-02 at 23.04.01.jpeg","WhatsApp Image 2026-05-30 at 21.08..jpeg"],
-                desc: "Mobilizes zero-emission publicity via street visibility operations using a custom tandem bicycle frame showing bilingual placards.",
-                benefits: "Acts as a mobile, non-intrusive advertisement mechanism targeting motorists in high-density transit corridors.",
-                impacts: "14+ continuous years of persistent public presence driving deep individual accountability dialogues."
-            }
-        };
+        const PROGRAMS_DEDICATED_URL = 'https://script.google.com/macros/s/AKfycby15VnsjnFDRhTLp1-o8JQMl5E5yxO0n-H3jxvzjq24S7guxAGbG7tiw1AtmC-Xt7Fo/exec';
+
+        // COMPREHENSIVE STATIC FALLBACK ARCHIVE FOR INDEPENDENT RECOVERY CONTEXT
+        const recoveryHardcodedArchive = [
+            { id: 1, key: "steel", title: "Late Shri Hargovind Paliwal Memorial Steel Utensil Bank", primaryImg: "WhatsApp Image 2026-05-30 at 21.39.14.jpeg", images: ["WhatsApp Image 2026-05-30 at 21.39.jpeg","WhatsApp Image 2026-05-30 at 21.39.14.jpeg"], desc: "A free equipment rental engine lending medical-grade steel utilities (plates, tumblers, bowls) to public banquet entities, minimizing consumer ingestion of plastic toxins.", benefits: "Eliminates substantial catering waste investments for low-income brackets.", impacts: "Successfully intercepted and prevented 6,000,000 plastic trash variations." },
+            { id: 2, key: "cloth", title: "Free Cloth Bag & Sapling Distribution Framework", primaryImg: "WhatsApp Image 2026-05-30 at 21.38.22.jpeg", images: ["WhatsApp Image 2026-05-30 at 21.38.22.jpeg"], desc: "Processes consumer clothing residues into long-lasting green storage bags carrying environmental messaging.", benefits: "Enforces direct textile circular economies, saving garments from trash dumps.", impacts: "Distributed over 42,000 carriers across municipal zones." }
+        ];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            synchronizeCloudInitiativesStream();
+        });
+
+        function synchronizeCloudInitiativesStream() {
+            fetch(`${PROGRAMS_DEDICATED_URL}?action=getAllData`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.programs && data.programs.length > 0) {
+                        localStorage.setItem('vasudha_programs_db', JSON.stringify(data.programs));
+                    }
+                    renderPublicProgramsGrid();
+                })
+                .catch(err => {
+                    console.warn("Pipeline offline, loading localized fallback arrays:", err);
+                    if(!localStorage.getItem('vasudha_programs_db')) {
+                        localStorage.setItem('vasudha_programs_db', JSON.stringify(recoveryHardcodedArchive));
+                    }
+                    renderPublicProgramsGrid();
+                });
+        }
+
+        function renderPublicProgramsGrid() {
+            const programs = JSON.parse(localStorage.getItem('vasudha_programs_db')) || recoveryHardcodedArchive;
+            const container = document.getElementById('publicProgramsGridContainer');
+            container.innerHTML = "";
+
+            programs.forEach(prog => {
+                container.innerHTML += `
+                    <div class="initiative-interactive-card">
+                        <div class="initiative-card-img-wrapper">
+                            <span class="initiative-status-indicator-tag"><i class="fa-solid fa-bolt"></i> Active Initiative</span>
+                            <img src="${prog.primaryImg}" alt="${prog.title}" onerror="this.src='logo.png';">
+                        </div>
+                        <div class="initiative-body-content">
+                            <h3>${prog.title}</h3>
+                            <p>${prog.desc}</p>
+                            <button class="interactive-action-btn-primary" style="margin:0; width:100%; justify-content:center;" onclick="openCloudProgramModal('${prog.key}')">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Field Report Gallery
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
 
         let currentModalSlide = 0;
         let modalSlideElements = [];
 
-        function openModal(key) {
-            const data = programData[key];
+        function openCloudProgramModal(keySlug) {
+            const programs = JSON.parse(localStorage.getItem('vasudha_programs_db')) || recoveryHardcodedArchive;
+            const data = programs.find(p => p.key === keySlug);
+            if(!data) return;
+
             document.getElementById("modalTitle").innerText = data.title;
             document.getElementById("modalDesc").innerText = data.desc;
-            document.getElementById("modalBenefits").innerText = data.benefits;
-            document.getElementById("modalImpacts").innerText = data.impacts;
+            document.getElementById("modalBenefits").innerText = data.benefits || "Community eco-stewardship support assignment metric.";
+            document.getElementById("modalImpacts").innerText = data.impacts || "Direct prevention metrics logged into environmental balance sheet.";
             
             const wrapper = document.getElementById("modalCarouselInner");
             wrapper.innerHTML = "";
+            const list = data.images && data.images.length > 0 ? data.images : [data.primaryImg];
             
-            data.images.forEach((src, idx) => {
+            list.forEach((src, idx) => {
                 let div = document.createElement("div");
                 div.className = "modal-slide";
                 if(idx === 0) div.classList.add("active");
-                div.innerHTML = `<img src="${src}" alt="Field Operational Picture">`;
+                div.innerHTML = `<img src="${src}" alt="Operational Field Image" onerror="this.src='logo.png';">`;
                 wrapper.appendChild(div);
             });
 
             modalSlideElements = document.querySelectorAll('.modal-slide');
             currentModalSlide = 0;
-            document.getElementById("programModal").style.display = "block";
+            document.getElementById("programModal").style.display = "flex";
         }
 
-        function closeModal() { document.getElementById("programModal").style.display = "none"; }
+        function closeModal() { 
+            document.getElementById("programModal").style.display = "none"; 
+        }
 
         function changeModalSlide(dir) {
             if(modalSlideElements.length === 0) return;
@@ -193,6 +232,7 @@
             <h4>Contact Details</h4>
             <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
             <p><strong>Phone:</strong> +91 8329990369</p>
+            <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
         </div>
     </div>
     <div class="footer-bottom">
