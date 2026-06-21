@@ -451,7 +451,7 @@
         function executeAdminReplyInjection(id) {
             const txt = document.getElementById(`adminReplyTextNode-${id}`).value.trim(); if(!txt) return;
             const db = loadDatabaseStorageState(); const idx = db.findIndex(r => r.id === id);
-            if(idx !== -1) { if(!db[idx].replies) db[idx].replies = []; db[idx].replies.push({ id: Date.now(), author: currentAuthenticatedRoleType === "owner" ? "Office (Owner)" : "Office (Manager)", text: txt }); writeDatabaseStorageState(db); }
+            if(idx !== -1) { if(!db[idx].replies) db[idx].replies = []; db[idx].replies.push({ id: Date.now(), author: currentAuthenticatedRoleType === "owner" ? "MY वसुधा विकास (Owner)" : "MY वसुधा विकास (Owner)", text: txt }); writeDatabaseStorageState(db); }
         }
         function deleteTargetSubReplyRow(reviewId, replyIndex) { const db = loadDatabaseStorageState(); const idx = db.findIndex(r => r.id === reviewId); if(idx !== -1) { db[idx].replies.splice(replyIndex, 1); writeDatabaseStorageState(db); } }
         function publishLiveAnnouncementItemStream() { const text = document.getElementById('announcementInputBodyText').value.trim(); if(!text) return; localStorage.setItem('vasudha_live_announcement', JSON.stringify({ content: text, role: "Management", date: new Date().toLocaleDateString('en-IN') })); pushPrimaryDatabaseState("syncAnnouncementData"); alert("Published Announcement."); }
