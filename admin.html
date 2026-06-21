@@ -79,16 +79,47 @@
             </a>
         </div>
 
-        <!-- HONORS & EXCELLENCE AWARDS MANAGEMENT CELL -->
         <div class="control-panel-grid-card">
-            <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-trophy"></i> Honors & Excellence Awards Management</h3>
+            <h3><i class="fa-solid fa-earth-americas"></i> Environmental Programs & Initiatives Matrix</h3>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Add, adjust, or completely configure action portfolios synced with your secondary sheets server pipeline.</p>
+            
+            <div class="management-form-layout" style="grid-template-columns: 1fr 1fr;">
+                <input type="hidden" id="programEditId">
+                <input type="text" id="programKeyInput" placeholder="Unique Key/Slug (e.g., steel, cloth, school)">
+                <input type="text" id="programTitleInput" placeholder="Program Official Title">
+                <input type="text" id="programPrimaryImgInput" placeholder="Thumbnail Main Image (e.g., steel_main.jpg)">
+                <input type="text" id="programCarouselInput" placeholder="Gallery Images Array (Comma-separated: img1.jpg, img2.jpg)">
+                <textarea id="programDescInput" rows="2" style="grid-column: span 2;" placeholder="Comprehensive Program Description Narrative..."></textarea>
+                <input type="text" id="programBenefitsInput" placeholder="Key Community Benefits Summary">
+                <input type="text" id="programImpactsInput" placeholder="Strategic Metrical Environmental Impacts">
+                <div style="grid-column: span 2;">
+                    <button class="interactive-action-btn-primary" style="margin:0; width:100%; padding:12px;" onclick="saveProgramRecordItem()"><i class="fa-solid fa-floppy-disk"></i> Synchronize Program Data to Cloud</button>
+                    <button class="destructive-btn" style="margin-top:5px; width:100%; display:none;" id="cancelProgramEditBtn" onclick="clearProgramFormInputs()">Cancel Edit</button>
+                </div>
+            </div>
+
+            <table class="data-table-view">
+                <thead>
+                    <tr>
+                        <th>Preview</th>
+                        <th>Slug/Title</th>
+                        <th>Metrics & Impact Context Data</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="programsManagementTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="control-panel-grid-card">
+            <h3><i class="fa-solid fa-trophy"></i> Honors & Excellence Awards Management</h3>
             <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Add, edit, or remove entries displayed on the public accolades page.</p>
             
             <div class="management-form-layout">
                 <input type="hidden" id="awardEditId">
                 <input type="text" id="awardTitleInput" placeholder="Award Title (e.g., Eco-Warrior Medal)">
                 <input type="text" id="awardImgInput" placeholder="Image Filename (e.g., award1.jpeg)">
-                <textarea id="awardDescInput" rows="2" placeholder="Detailed Description Copy..."></textarea>
+                <textarea id="awardDescInput" rows="2" placeholder="Detailed Expandable Description Copy..."></textarea>
                 <div>
                     <button class="interactive-action-btn-primary" style="margin: 0; width: 100%; padding: 10px;" onclick="saveAwardRecordItem()"><i class="fa-solid fa-floppy-disk"></i> Save Award</button>
                     <button class="destructive-btn" style="margin-top: 5px; width: 100%; display: none;" id="cancelAwardEditBtn" onclick="clearAwardFormInputs()">Cancel Edit</button>
@@ -108,10 +139,9 @@
             </table>
         </div>
 
-        <!-- PRESS & NEWSPAPER CUTTINGS MANAGEMENT CELL -->
         <div class="control-panel-grid-card">
-            <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-newspaper"></i> Newspaper Cuttings & Press Catalog</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Manage publication clips cleanly without cluttering descriptions.</p>
+            <h3><i class="fa-solid fa-newspaper"></i> Newspaper Cuttings & Press Catalog</h3>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Manage publication clips and newspaper cuttings cleanly.</p>
             
             <div class="management-form-layout">
                 <input type="hidden" id="pressEditId">
@@ -135,31 +165,26 @@
             </table>
         </div>
 
-        <!-- PUBLIC LIVE ANNOUNCEMENT CREATION CONTROLLER MODULE -->
         <div class="control-panel-grid-card">
-            <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-bullhorn"></i> Broadcast Live Emergency/Event Announcement Banner</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Update environmental alerts across the public home interface instantly.</p>
-            <textarea id="announcementInputBodyText" rows="2" style="width:100%; padding:10px; border:1px solid #dadce0; border-radius:4px; box-sizing:border-box;" placeholder="Type announcement message here..."></textarea>
+            <h3><i class="fa-solid fa-bullhorn"></i> Broadcast Live Homepage Announcement Banner</h3>
+            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Disseminate critical environmental news updates instantly.</p>
+            <textarea id="announcementInputBodyText" rows="2" style="width:100%; padding:10px; border:1px solid #dadce0; border-radius:4px; box-sizing:border-box;" placeholder="Type new announcement message context here..."></textarea>
             <div style="margin-top: 10px; display: flex; gap: 10px;">
                 <button class="interactive-action-btn-primary" style="margin: 0;" onclick="publishLiveAnnouncementItemStream()"><i class="fa-solid fa-paper-plane"></i> Publish To Homepage</button>
                 <button class="destructive-btn" onclick="purgeLiveAnnouncementStream()"><i class="fa-solid fa-eraser"></i> Wipe Active Announcement</button>
             </div>
         </div>
 
-        <!-- MODERATION ENGINE -->
         <div class="control-panel-grid-card">
-            <h3 style="margin-top: 0; color: #202124;"><i class="fa-solid fa-shield-halved"></i> Moderation Engine: Filter Community Reviews</h3>
-            <p style="font-size: 0.85rem; color: #5f6368; margin-top: -5px;">Prune spam logs and manage community feedback comments safely.</p>
-            <div id="adminReviewManagementTargetWorkspaceFeed">
-                <div style="padding: 20px; text-align: center; color: #7f8c8d;">
-                    <i class="fa-solid fa-spinner fa-spin"></i> Initializing synchronized cloud databases...
-                </div>
-            </div>
+            <h3><i class="fa-solid fa-shield-halved"></i> Moderation Engine: Filter Community Reviews</h3>
+            <div id="adminReviewManagementTargetWorkspaceFeed"></div>
         </div>
     </div>
 
     <script>
-        const SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz3k0dW1WNOl0aYeNmy1T0OaWqVb5Gn8gIjbhkzdkyUK3nKk5uQjmkmK_Er62ug_q2BOQ/exec';
+        // PRIMARY APP OBJECTS BACKEND HOOK ENDPOINTS
+        const PRIMARY_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3k0dW1WNOl0aYeNmy1T0OaWqVb5Gn8gIjbhkzdkyUK3nKk5uQjmkmK_Er62ug_q2BOQ/exec';
+        const PROGRAMS_DEDICATED_URL = 'https://script.google.com/macros/s/AKfycby15VnsjnFDRhTLp1-o8JQMl5E5yxO0n-H3jxvzjq24S7guxAGbG7tiw1AtmC-Xt7Fo/exec';
 
         const MASTER_AUTH_REGISTRY = {
             owner: { id: "owner@akola", pass: "vasudhaOwner2026" },
@@ -192,21 +217,15 @@
                 
                 pullGlobalDatabaseState();
             } else {
-                alert("Invalid configuration credentials.");
+                alert("Invalid configuration authorization parameters.");
             }
-        }
-
-        function invalidateActiveSessionTerm() {
-            currentAuthenticatedRoleType = null;
-            document.getElementById('authProfileIdentificationString').value = "";
-            document.getElementById('authProfilePassphraseKey').value = "";
-            document.getElementById('protectedDashboardWorkspaceDisplayView').style.display = "none";
-            document.getElementById('authGateGuardDisplayView').style.display = "block";
         }
 
         function pullGlobalDatabaseState() {
             setSyncStatus(false);
-            fetch(`${SCRIPT_WEB_APP_URL}?action=getAllData`)
+            
+            // 1. Pull core segments from Primary Router URL
+            fetch(`${PRIMARY_SCRIPT_URL}?action=getAllData`)
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem('vasudha_awards_db', JSON.stringify(data.awards || []));
@@ -216,22 +235,26 @@
                         document.getElementById('announcementInputBodyText').value = data.announcement.content || "";
                         localStorage.setItem('vasudha_live_announcement', JSON.stringify(data.announcement));
                     }
-                    
                     renderAwardsDashboardTable();
                     renderPressDashboardTable();
                     renderAdministrationMasterFeed();
+                    
+                    // 2. Fetch specialized program modules from Dedicated Programs URL
+                    return fetch(`${PROGRAMS_DEDICATED_URL}?action=getAllData`);
+                })
+                .then(res => res.json())
+                .then(progData => {
+                    localStorage.setItem('vasudha_programs_db', JSON.stringify(progData.programs || []));
+                    renderProgramsDashboardTable();
                     setSyncStatus(true);
                 })
                 .catch(err => {
-                    console.error("Local recovery arrays activated:", err);
-                    renderAwardsDashboardTable();
-                    renderPressDashboardTable();
-                    renderAdministrationMasterFeed();
+                    console.error("Local caching fallback layout activated:", err);
                     setSyncStatus(true);
                 });
         }
 
-        function pushGlobalDatabaseState(targetAction) {
+        function pushPrimaryDatabaseState(targetAction) {
             setSyncStatus(false);
             const awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
             const press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
@@ -239,8 +262,7 @@
             const announcement = localStorage.getItem('vasudha_live_announcement') ? 
                                  JSON.parse(localStorage.getItem('vasudha_live_announcement')) : null;
 
-            // Transmitted as text/plain to circumvent multi-level JSON structure stripping in Apps Script
-            fetch(SCRIPT_WEB_APP_URL, {
+            fetch(PRIMARY_SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
                 headers: { "Content-Type": "text/plain" },
@@ -251,284 +273,197 @@
                     reviews: reviews,
                     announcement: announcement
                 })
-            }).then(() => {
-                setTimeout(() => setSyncStatus(true), 1200);
-            }).catch(err => {
-                console.error("Pipeline failure:", err);
-                setSyncStatus(true);
-            });
+            }).then(() => setTimeout(() => setSyncStatus(true), 1200));
         }
 
         /* ========================================================
-           AWARDS SUBSYSTEM ENGINE
+           ENVIRONMENTAL INITIATIVES CORE METHODS
+           ======================================================== */
+        function renderProgramsDashboardTable() {
+            const programs = JSON.parse(localStorage.getItem('vasudha_programs_db')) || [];
+            const tbody = document.getElementById('programsManagementTableBody');
+            tbody.innerHTML = '';
+            
+            programs.forEach(item => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><img src="${item.primaryImg}" class="thumb-preview" onerror="this.src='logo.png';"></td>
+                        <td><span class="tab-indicator-badge" style="background:#1a73e8;">${item.key}</span><br><strong>${item.title}</strong></td>
+                        <td><small><strong>Benefits:</strong> ${item.benefits}<br><strong>Impact:</strong> ${item.impacts}</small></td>
+                        <td>
+                            <button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px; font-size:0.8rem;" onclick="editProgramRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="destructive-btn" style="padding:4px 8px; font-size:0.8rem;" onclick="deleteProgramRecordItem(${item.id})"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function saveProgramRecordItem() {
+            const id = document.getElementById('programEditId').value;
+            const key = document.getElementById('programKeyInput').value.trim().toLowerCase();
+            const title = document.getElementById('programTitleInput').value.trim();
+            const primaryImg = document.getElementById('programPrimaryImgInput').value.trim();
+            const carouselStr = document.getElementById('programCarouselInput').value.trim();
+            const desc = document.getElementById('programDescInput').value.trim();
+            const benefits = document.getElementById('programBenefitsInput').value.trim();
+            const impacts = document.getElementById('programImpactsInput').value.trim();
+
+            if(!key || !title || !primaryImg || !desc) return alert("Please fill mandatory program parameters completely.");
+
+            const imagesArray = carouselStr ? carouselStr.split(',').map(s => s.trim()) : [primaryImg];
+            const targetId = id ? parseInt(id) : Date.now();
+
+            const programPayload = { id: targetId, key, title, primaryImg, images: imagesArray, desc, benefits, impacts };
+
+            setSyncStatus(false);
+            fetch(PROGRAMS_DEDICATED_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify({ action: 'saveProgram', data: programPayload })
+            }).then(() => {
+                clearProgramFormInputs();
+                alert("Initiative profile synced into dedicated spreadsheet database successfully!");
+                pullGlobalDatabaseState();
+            });
+        }
+
+        function editProgramRecordItem(id) {
+            const programs = JSON.parse(localStorage.getItem('vasudha_programs_db')) || [];
+            const match = programs.find(p => p.id == id);
+            if(match) {
+                document.getElementById('programEditId').value = match.id;
+                document.getElementById('programKeyInput').value = match.key;
+                document.getElementById('programTitleInput').value = match.title;
+                document.getElementById('programPrimaryImgInput').value = match.primaryImg;
+                document.getElementById('programCarouselInput').value = match.images ? match.images.join(', ') : '';
+                document.getElementById('programDescInput').value = match.desc;
+                document.getElementById('programBenefitsInput').value = match.benefits;
+                document.getElementById('programImpactsInput').value = match.impacts;
+                document.getElementById('cancelProgramEditBtn').style.display = 'inline-block';
+            }
+        }
+
+        function deleteProgramRecordItem(id) {
+            if(confirm("Permanently delete this program profile entry across sheets servers?")) {
+                setSyncStatus(false);
+                fetch(PROGRAMS_DEDICATED_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify({ action: 'deleteProgram', id: id })
+                }).then(() => {
+                    alert("Entry deleted successfully.");
+                    pullGlobalDatabaseState();
+                });
+            }
+        }
+
+        function clearProgramFormInputs() {
+            document.getElementById('programEditId').value = '';
+            document.getElementById('programKeyInput').value = '';
+            document.getElementById('programTitleInput').value = '';
+            document.getElementById('programPrimaryImgInput').value = '';
+            document.getElementById('programCarouselInput').value = '';
+            document.getElementById('programDescInput').value = '';
+            document.getElementById('programBenefitsInput').value = '';
+            document.getElementById('programImpactsInput').value = '';
+            document.getElementById('cancelProgramEditBtn').style.display = 'none';
+        }
+
+        /* ========================================================
+           AWARDS & PRESS CORE IMPLEMENTATION
            ======================================================== */
         function renderAwardsDashboardTable() {
             const awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
             const tbody = document.getElementById('awardsManagementTableBody');
             tbody.innerHTML = '';
-            
             awards.forEach(item => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td><img src="${item.img}" class="thumb-preview" onerror="this.src='logo.png';"></td>
-                        <td><strong>${item.title}</strong><br><small style="color:#7f8c8d;">Image: ${item.img}</small></td>
-                        <td>${item.desc}</td>
-                        <td>
-                            <button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px; font-size:0.8rem;" onclick="editAwardRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="destructive-btn" style="padding:4px 8px; font-size:0.8rem;" onclick="deleteAwardRecordItem(${item.id})"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
+                tbody.innerHTML += `<tr><td><img src="${item.img}" class="thumb-preview" onerror="this.src='logo.png';"></td><td><strong>${item.title}</strong></td><td>${item.desc}</td><td><button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px;" onclick="editAwardRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button><button class="destructive-btn" style="padding:4px 8px;" onclick="deleteAwardRecordItem(${item.id})"><i class="fa-solid fa-trash"></i></button></td></tr>`;
             });
         }
-
         function saveAwardRecordItem() {
             const id = document.getElementById('awardEditId').value;
             const title = document.getElementById('awardTitleInput').value.trim();
             const img = document.getElementById('awardImgInput').value.trim();
             const desc = document.getElementById('awardDescInput').value.trim();
-
-            if(!title || !img || !desc) return alert("Please fill out all award text entries.");
-
+            if(!title || !img || !desc) return alert("Fill all fields.");
             let awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
-
-            if(id) {
-                awards = awards.map(item => item.id == id ? { id: parseInt(id), title, img, desc } : item);
-            } else {
-                awards.push({ id: Date.now(), title, img, desc });
-            }
-
+            if(id) { awards = awards.map(i => i.id == id ? { id: parseInt(id), title, img, desc } : i); } 
+            else { awards.push({ id: Date.now(), title, img, desc }); }
             localStorage.setItem('vasudha_awards_db', JSON.stringify(awards));
-            clearAwardFormInputs();
-            renderAwardsDashboardTable();
-            pushGlobalDatabaseState("syncAwardsData");
+            clearAwardFormInputs(); renderAwardsDashboardTable(); pushPrimaryDatabaseState("syncAwardsData");
         }
-
         function editAwardRecordItem(id) {
             const awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
-            const match = awards.find(item => item.id == id);
-            if(match) {
-                document.getElementById('awardEditId').value = match.id;
-                document.getElementById('awardTitleInput').value = match.title;
-                document.getElementById('awardImgInput').value = match.img;
-                document.getElementById('awardDescInput').value = match.desc;
-                document.getElementById('cancelAwardEditBtn').style.display = 'inline-block';
-            }
+            const match = awards.find(i => i.id == id);
+            if(match) { document.getElementById('awardEditId').value = match.id; document.getElementById('awardTitleInput').value = match.title; document.getElementById('awardImgInput').value = match.img; document.getElementById('awardDescInput').value = match.desc; document.getElementById('cancelAwardEditBtn').style.display = 'inline-block'; }
         }
-
         function deleteAwardRecordItem(id) {
-            if(confirm("Permanently wipe this award entry?")) {
-                let awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || [];
-                awards = awards.filter(item => item.id != id);
-                localStorage.setItem('vasudha_awards_db', JSON.stringify(awards));
-                renderAwardsDashboardTable();
-                pushGlobalDatabaseState("syncAwardsData");
-            }
+            if(confirm("Delete award?")) { let awards = JSON.parse(localStorage.getItem('vasudha_awards_db')) || []; awards = awards.filter(i => i.id != id); localStorage.setItem('vasudha_awards_db', JSON.stringify(awards)); renderAwardsDashboardTable(); pushPrimaryDatabaseState("syncAwardsData"); }
         }
+        function clearAwardFormInputs() { document.getElementById('awardEditId').value = ''; document.getElementById('awardTitleInput').value = ''; document.getElementById('awardImgInput').value = ''; document.getElementById('awardDescInput').value = ''; document.getElementById('cancelAwardEditBtn').style.display = 'none'; }
 
-        function clearAwardFormInputs() {
-            document.getElementById('awardEditId').value = '';
-            document.getElementById('awardTitleInput').value = '';
-            document.getElementById('awardImgInput').value = '';
-            document.getElementById('awardDescInput').value = '';
-            document.getElementById('cancelAwardEditBtn').style.display = 'none';
-        }
-
-        /* ========================================================
-           PRESS SUBSYSTEM ENGINE
-           ======================================================== */
         function renderPressDashboardTable() {
             const press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
             const tbody = document.getElementById('pressManagementTableBody');
             tbody.innerHTML = '';
-            
             press.forEach(item => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td><img src="${item.img}" class="thumb-preview" onerror="this.src='logo.png';"></td>
-                        <td><strong>${item.title}</strong><br><small style="color:#7f8c8d;">Image: ${item.img}</small></td>
-                        <td>
-                            <button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px; font-size:0.8rem;" onclick="editPressRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="destructive-btn" style="padding:4px 8px; font-size:0.8rem;" onclick="deletePressRecordItem(${item.id})"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
+                tbody.innerHTML += `<tr><td><img src="${item.img}" class="thumb-preview" onerror="this.src='logo.png';"></td><td><strong>${item.title}</strong></td><td><button class="interactive-action-btn-primary" style="margin:0; padding:4px 8px;" onclick="editPressRecordItem(${item.id})"><i class="fa-solid fa-pen-to-square"></i></button><button class="destructive-btn" style="padding:4px 8px;" onclick="deletePressRecordItem(${item.id})"><i class="fa-solid fa-trash"></i></button></td></tr>`;
             });
         }
-
         function savePressRecordItem() {
             const id = document.getElementById('pressEditId').value;
             const title = document.getElementById('pressTitleInput').value.trim();
             const img = document.getElementById('pressImgInput').value.trim();
-
-            if(!title || !img) return alert("Please fill out both press fields.");
-
+            if(!title || !img) return alert("Fill fields.");
             let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
-
-            if(id) {
-                press = press.map(item => item.id == id ? { id: parseInt(id), title, img } : item);
-            } else {
-                press.push({ id: Date.now(), title, img });
-            }
-
+            if(id) { press = press.map(i => i.id == id ? { id: parseInt(id), title, img } : i); } 
+            else { press.push({ id: Date.now(), title, img }); }
             localStorage.setItem('vasudha_press_db', JSON.stringify(press));
-            clearPressFormInputs();
-            renderPressDashboardTable();
-            pushGlobalDatabaseState("syncAwardsData");
+            clearPressFormInputs(); renderPressDashboardTable(); pushPrimaryDatabaseState("syncAwardsData");
         }
-
         function editPressRecordItem(id) {
             const press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
-            const match = press.find(item => item.id == id);
-            if(match) {
-                document.getElementById('pressEditId').value = match.id;
-                document.getElementById('pressTitleInput').value = match.title;
-                document.getElementById('pressImgInput').value = match.img;
-                document.getElementById('cancelPressEditBtn').style.display = 'inline-block';
-            }
+            const match = press.find(i => i.id == id);
+            if(match) { document.getElementById('pressEditId').value = match.id; document.getElementById('pressTitleInput').value = match.title; document.getElementById('pressImgInput').value = match.img; document.getElementById('cancelPressEditBtn').style.display = 'inline-block'; }
         }
-
         function deletePressRecordItem(id) {
-            if(confirm("Delete this press item?")) {
-                let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || [];
-                press = press.filter(item => item.id != id);
-                localStorage.setItem('vasudha_press_db', JSON.stringify(press));
-                renderPressDashboardTable();
-                pushGlobalDatabaseState("syncAwardsData");
-            }
+            if(confirm("Delete press item?")) { let press = JSON.parse(localStorage.getItem('vasudha_press_db')) || []; press = press.filter(i => i.id != id); localStorage.setItem('vasudha_press_db', JSON.stringify(press)); renderPressDashboardTable(); pushPrimaryDatabaseState("syncAwardsData"); }
         }
-
-        function clearPressFormInputs() {
-            document.getElementById('pressEditId').value = '';
-            document.getElementById('pressTitleInput').value = '';
-            document.getElementById('pressImgInput').value = '';
-            document.getElementById('cancelPressEditBtn').style.display = 'none';
-        }
+        function clearPressFormInputs() { document.getElementById('pressEditId').value = ''; document.getElementById('pressTitleInput').value = ''; document.getElementById('pressImgInput').value = ''; document.getElementById('cancelPressEditBtn').style.display = 'none'; }
 
         /* ========================================================
-           REVIEW MODERATION LOGIC ENGINE
+           REVIEWS MODERATION SUITE
            ======================================================== */
+        function loadDatabaseStorageState() { return JSON.parse(localStorage.getItem('vasudha_reviews_db')) || []; }
+        function writeDatabaseStorageState(arr) { localStorage.setItem('vasudha_reviews_db', JSON.stringify(arr)); renderAdministrationMasterFeed(); pushPrimaryDatabaseState("syncReviewsData"); }
         function renderAdministrationMasterFeed() {
-            const reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
-            const container = document.getElementById('adminReviewManagementTargetWorkspaceFeed');
-            container.innerHTML = "";
-
-            if(reviews.length === 0) {
-                container.innerHTML = `<p style="color:#7f8c8d; font-style:italic; font-size:0.9rem;">No reviews logged in database layers.</p>`;
-                return;
-            }
-
+            const reviews = loadDatabaseStorageState(); const container = document.getElementById('adminReviewManagementTargetWorkspaceFeed'); container.innerHTML = "";
+            if(reviews.length === 0) { container.innerHTML = `<p style="color:#7f8c8d; font-style:italic;">No customer logs found.</p>`; return; }
             reviews.forEach(review => {
-                let existingRepliesHtml = "";
-                if(review.replies) {
-                    review.replies.forEach((rep, rIdx) => {
-                        existingRepliesHtml += `
-                            <div style="background:#f1f3f4; padding:6px 10px; margin-top:5px; border-radius:4px; font-size:0.85rem; display:flex; justify-content:space-between; align-items:center;">
-                                <span><strong>${rep.author}:</strong> ${rep.text}</span>
-                                <button style="background:none; border:none; color:#c0392b; cursor:pointer;" onclick="deleteTargetSubReplyRow(${review.id}, ${rIdx})"><i class="fa-solid fa-circle-xmark"></i> Delete</button>
-                            </div>
-                        `;
-                    });
-                }
-
-                const blockCard = `
-                    <div class="management-review-row">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                            <span><strong style="color:#2e7d32;">${review.author}</strong> <small style="color:#7f8c8d;">(${review.timestamp})</small> — Rating: <strong>${review.rating}/5★</strong></span>
-                            <button class="destructive-btn" onclick="executePurgeReviewRow(${review.id})"><i class="fa-solid fa-trash-can"></i> Remove Comment</button>
-                        </div>
-                        <p style="margin:5px 0; font-size:0.9rem; color:#333; background:#fff; padding:8px; border:1px solid #e0e0e0; border-radius:4px;">${review.text}</p>
-                        
-                        <div style="margin-top:8px; padding-left:15px; border-left:2px dashed #bdc3c7;">
-                            <div style="display:flex; gap:8px; margin-bottom:8px;">
-                                <input type="text" id="adminReplyTextNode-${review.id}" placeholder="Type message reply..." style="flex-grow:1; padding:5px; font-size:0.85rem; border:1px solid #dadce0; border-radius:4px;">
-                                <button class="interactive-action-btn-primary" style="margin:0; padding:4px 12px; font-size:0.85rem;" onclick="executeAdminReplyInjection(${review.id})">Reply As System Office</button>
-                            </div>
-                            ${existingRepliesHtml}
-                        </div>
-                    </div>
-                `;
-                container.insertAdjacentHTML('beforeend', blockCard);
+                let repliesHtml = ""; if(review.replies) { review.replies.forEach((rep, rIdx) => { repliesHtml += `<div style="background:#f1f3f4; padding:6px; margin-top:5px; border-radius:4px; font-size:0.85rem; display:flex; justify-content:space-between;"><span><strong>${rep.author}:</strong> ${rep.text}</span><button style="background:none; border:none; color:#c0392b;" onclick="deleteTargetSubReplyRow(${review.id}, ${rIdx})">Delete</button></div>`; }); }
+                container.innerHTML += `<div class="management-review-row"><div style="display:flex; justify-content:space-between;"><span><strong>${review.author}</strong> (${review.timestamp}) - ${review.rating}★</span><button class="destructive-btn" onclick="executePurgeReviewRow(${review.id})">Remove</button></div><p style="background:#fff; padding:8px; border:1px solid #e0e0e0; margin:5px 0;">${review.text}</p><div style="margin-top:5px; padding-left:10px; border-left:2px solid #ccc;"><div style="display:flex; gap:5px;"><input type="text" id="adminReplyTextNode-${review.id}" placeholder="Reply..." style="flex-grow:1; padding:4px;"><button class="interactive-action-btn-primary" style="margin:0; padding:4px;" onclick="executeAdminReplyInjection(${review.id})">Post</button></div>${repliesHtml}</div></div>`;
             });
         }
-
-        function executePurgeReviewRow(id) {
-            if(confirm("Confirm user commentary node deletion?")) {
-                let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
-                reviews = reviews.filter(r => r.id !== id);
-                localStorage.setItem('vasudha_reviews_db', JSON.stringify(reviews));
-                renderAdministrationMasterFeed();
-                pushGlobalDatabaseState("syncReviewsData");
-            }
-        }
-
+        function executePurgeReviewRow(id) { if(confirm("Remove review?")) { let db = loadDatabaseStorageState(); db = db.filter(r => r.id !== id); writeDatabaseStorageState(db); } }
         function executeAdminReplyInjection(id) {
-            const inputField = document.getElementById(`adminReplyTextNode-${id}`);
-            const text = inputField.value.trim();
-            if(!text) return alert("Message box cannot stay blank.");
-
-            let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
-            const idx = reviews.findIndex(r => r.id === id);
-            if(idx !== -1) {
-                if(!reviews[idx].replies) reviews[idx].replies = [];
-                reviews[idx].replies.push({
-                    id: Date.now(),
-                    author: currentAuthenticatedRoleType === "owner" ? "MY वसुधा विकास (Owner)" : "MY वसुधा विकास (Manager)",
-                    text: text
-                });
-                inputField.value = "";
-                localStorage.setItem('vasudha_reviews_db', JSON.stringify(reviews));
-                renderAdministrationMasterFeed();
-                pushGlobalDatabaseState("syncReviewsData");
-            }
+            const txt = document.getElementById(`adminReplyTextNode-${id}`).value.trim(); if(!txt) return;
+            const db = loadDatabaseStorageState(); const idx = db.findIndex(r => r.id === id);
+            if(idx !== -1) { if(!db[idx].replies) db[idx].replies = []; db[idx].replies.push({ id: Date.now(), author: currentAuthenticatedRoleType === "owner" ? "Office (Owner)" : "Office (Manager)", text: txt }); writeDatabaseStorageState(db); }
         }
-
-        function deleteTargetSubReplyRow(reviewId, replyIndex) {
-            if(confirm("Remove this response entry?")) {
-                let reviews = JSON.parse(localStorage.getItem('vasudha_reviews_db')) || [];
-                const idx = reviews.findIndex(r => r.id === reviewId);
-                if(idx !== -1) {
-                    reviews[idx].replies.splice(replyIndex, 1);
-                    localStorage.setItem('vasudha_reviews_db', JSON.stringify(reviews));
-                    renderAdministrationMasterFeed();
-                    pushGlobalDatabaseState("syncReviewsData");
-                }
-            }
-        }
-
-        /* ========================================================
-           ANNOUNCEMENT PUBLISHER SYSTEM
-           ======================================================== */
-        function publishLiveAnnouncementItemStream() {
-            const text = document.getElementById('announcementInputBodyText').value.trim();
-            if(!text) return alert("Announcement context cannot stay empty.");
-
-            const transmissionPayload = {
-                content: text,
-                role: currentAuthenticatedRoleType === "owner" ? "Director/Owner Panel" : "Management Desk",
-                date: new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-            };
-
-            localStorage.setItem('vasudha_live_announcement', JSON.stringify(transmissionPayload));
-            alert("Broadcast saved locally. Syncing to cloud layers...");
-            pushGlobalDatabaseState("syncAnnouncementData");
-        }
-
-        function purgeLiveAnnouncementStream() {
-            if(confirm("Wipe clear the homepage notification ticker?")) {
-                localStorage.removeItem('vasudha_live_announcement');
-                document.getElementById('announcementInputBodyText').value = "";
-                alert("Billboard cleared. Dispatching deletions to database endpoints...");
-                pushGlobalDatabaseState("syncAnnouncementData");
-            }
-        }
+        function deleteTargetSubReplyRow(reviewId, replyIndex) { const db = loadDatabaseStorageState(); const idx = db.findIndex(r => r.id === reviewId); if(idx !== -1) { db[idx].replies.splice(replyIndex, 1); writeDatabaseStorageState(db); } }
+        function publishLiveAnnouncementItemStream() { const text = document.getElementById('announcementInputBodyText').value.trim(); if(!text) return; localStorage.setItem('vasudha_live_announcement', JSON.stringify({ content: text, role: "Management", date: new Date().toLocaleDateString('en-IN') })); pushPrimaryDatabaseState("syncAnnouncementData"); alert("Published Announcement."); }
+        function purgeLiveAnnouncementStream() { localStorage.removeItem('vasudha_live_announcement'); pushPrimaryDatabaseState("syncAnnouncementData"); alert("Cleared Announcement."); }
+        function invalidateActiveSessionTerm() { currentAuthenticatedRoleType = null; document.getElementById('protectedDashboardWorkspaceDisplayView').style.display = "none"; document.getElementById('authGateGuardDisplayView').style.display = "block"; }
     </script>
 </body>
 <footer>
     <div class="footer-grid">
         <div class="footer-col">
             <h4>MY वसुधा विकास</h4>
-            <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
+            <p>Grassroots environmental conservation movement dedicated to single-use plastic eradication and sustainable circular economies.</p>
         </div>
     </div>
 </footer>
