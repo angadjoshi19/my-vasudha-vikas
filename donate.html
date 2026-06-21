@@ -6,6 +6,103 @@
     <title>Support Us / Donate | MY वसुधा विकास</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Modern Donor Page Custom Enhancements */
+        .page-intro-header { text-align: center; max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .page-intro-header h2 { color: #27AE60; font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+        
+        /* Legacy Pillar Honor Feature Card Layout */
+        .pillar-tribute-hero-container { 
+            max-width: 1000px; 
+            margin: 30px auto 50px auto; 
+            background: linear-gradient(135deg, #ffffff 0%, #f4fbf7 100%); 
+            border: 1px solid #ccebd6; 
+            border-radius: 16px; 
+            padding: 40px; 
+            box-shadow: 0 10px 30px rgba(39,174,96,0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .tribute-profile-showcase-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            justify-content: center;
+        }
+        .tribute-portrait-frame-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .tribute-portrait-frame-card .portrait-image-wrapper {
+            width: 100%;
+            height: 240px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .tribute-portrait-frame-card .portrait-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .tribute-portrait-frame-card h4 {
+            margin: 8px 0 4px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .tribute-portrait-frame-card p {
+            margin: 0;
+            color: #718096;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tribute-narrative-block {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .tribute-narrative-block p {
+            font-size: 1.15rem;
+            color: #2d3748;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .tribute-impact-badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .impact-counter-pill {
+            background: #27AE60;
+            color: #ffffff;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(39,174,96,0.2);
+        }
+
+        @media(max-width: 768px) {
+            .tribute-profile-showcase-matrix { grid-template-columns: 1fr; gap: 20px; }
+            .pillar-tribute-hero-container { padding: 20px; }
+            .tribute-portrait-frame-card .portrait-image-wrapper { height: 280px; }
+        }
+    </style>
 </head>
 <header>
     <div class="logo" onclick="window.location.href='index.html'">
@@ -22,19 +119,65 @@
         </ul>
     </nav>
 </header>
-<body>
+<body style="background-color: #f8fafc; padding-bottom: 60px;">
 
     <main class="page-section">
         <div class="page-intro-header" style="border-bottom-color: #27AE60;">
             <h2>Resource Contribution Dashboard</h2>
             <p>Welcome to our dedicated Donation Dashboard. Every contribution is securely managed and strictly routed into our resource lifecycles:
+            <br>• <strong>Financial Support:</strong> 100% of funds directly finance automated maintenance systems and fuel local resource transport networks crossways to 120 villages in Maharashtra.
             <br>• <strong>Fabric Waste:</strong> Upcycled by our volunteers into free, durable cloth carrier bags.
-            <br>• <strong>Milk Packets:</strong> Down-cut and upcycled into protective nursery pots to grow young afforestation saplings.
-            <br>• <strong>Financial Dropbox Support:</strong> 100% of funds directly finance automated maintenance systems and fuel local resource transport networks crossways to 120 villages in Maharashtra.
+            <br>• <strong>Milk Packets/Oil Packets:</strong> Down-cut and upcycled into protective nursery pots to grow young afforestation saplings.
             </p>
         </div>
+
+        <!-- INSPIRATIONAL LEGACY PILLARS PROFILE SPOTLIGHT -->
+        <div class="pillar-tribute-hero-container">
+            <h1 align="center">Our Core Contributors</h1>
+            <div class="tribute-profile-showcase-matrix">
+                <!-- Profile Frame 01 -->
+                <div class="tribute-portrait-frame-card">
+                    <div class="portrait-image-wrapper">
+                        <img src="Ashish Paliwal.jpeg" alt="Mr. Ashish Paliwal">
+                    </div>
+                    <h4>Mr. Ashish Ji Paliwal</h4>
+                    <p>Pillar of Support</p>
+                </div>
+                <!-- Profile Frame 02 -->
+                <div class="tribute-portrait-frame-card" style="border-color: #27AE60; box-shadow: 0 6px 16px rgba(39,174,96,0.1);">
+                    <div class="portrait-image-wrapper" style="border: 2px solid #27AE60;">
+                        <img src="hargobind paliwal.jpeg" alt="Late Shri Hargovind Paliwal Ji">
+                    </div>
+                    <h4 style="color: #27AE60;">Late Shri Hargovind Paliwal Ji</h4>
+                    <p style="color: #27AE60; font-weight: 700;">In Loving Memory</p>
+                </div>
+                <!-- Profile Frame 03 -->
+                <div class="tribute-portrait-frame-card">
+                    <div class="portrait-image-wrapper">
+                        <img src="Mrs. Kartika Paliwal.jpeg" alt="Sou. Kartika Paliwal">
+                    </div>
+                    <h4>Mrs. Kartika Paliwal</h4>
+                    <p>Pillar of Support</p>
+                </div>
+            </div>
+
+            <div class="tribute-narrative-block">
+                <p>
+                    Our pillars of support, <strong>Mr. Ashish Paliwal</strong> and <strong>Mrs. Kartika Paliwal</strong>, have generously provided financial support in loving memory of the <strong>Late Shri Hargovind Paliwal Ji</strong>. This contribution enabled us to arrange an essential toolkit for the ongoing execution of the <strong>"Plastic Disposable-Free Akola/Maharashtra"</strong> campaign.
+                </p>
+                <p style="font-style: italic; color: #4a5568; font-size: 1.05rem;">
+                    <strong>MY वसुधा विकास</strong> expresses its heartfelt gratitude to them for this valuable assistance and looks forward to their continued association and support in the future.
+                </p>
+                <div class="tribute-impact-badge-row">
+                    <div class="impact-counter-pill"><i class="fa-solid fa-utensils"></i> 300 Plates Equipped</div>
+                    <div class="impact-counter-pill"><i class="fa-solid fa-glass-water"></i> 300 Glasses Equipped</div>
+                    <div class="impact-counter-pill"><i class="fa-solid fa-spoon"></i> 300 Spoons Equipped</div>
+                </div>
+            </div>
+        </div>
         
-        <div class="booking-container" style="border-color: #27AE60; background-color: #f7fff7;">
+        <!-- REGISTRY INTERFACE FOOTPRINT CONTAINER -->
+        <div class="booking-container" style="border-color: #27AE60; background-color: #f7fff7; margin-top: 20px;">
             <h2>Donation Registry Form</h2>
             <form id="donationForm" name="donationForm">
                 <input type="hidden" name="targetSheet" value="Sheet2">
@@ -230,6 +373,7 @@
             <h4>Contact Details</h4>
             <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
             <p><strong>Phone:</strong> +91 8329990369</p>
+            <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
         </div>
     </div>
     <div class="footer-bottom">
