@@ -7,11 +7,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        .awards-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        /* ========================================================
+           STRUCTURAL LAYOUT CORE (Forces Edge-to-Edge Rows)
+           ======================================================== */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f9fa;
+        }
+        
+        /* Main page wrapper constraint */
+        .page-content-wrapper { 
+            flex: 1 0 auto; 
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .awards-container { 
+            max-width: 1200px; 
+            margin: 40px auto; 
+            padding: 0 20px; 
+            box-sizing: border-box;
+        }
+
         .section-title { text-align: center; color: #2e7d32; margin-bottom: 30px; font-size: 2.2rem; position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: #e67e22; margin: 10px auto 0 auto; border-radius: 2px; }
         
-        /* 2-Column Desktop Grid Infrastructure */
+        /* Grid Infrastructure */
         .awards-display-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 50px; }
         .award-item-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.06); border-top: 4px solid #2e7d32; transition: transform 0.3s; display: flex; flex-direction: column; }
         .award-item-card:hover { transform: translateY(-4px); }
@@ -22,7 +49,6 @@
         .award-meta-details h4 { margin: 0 0 10px 0; font-size: 1.25rem; color: #202124; }
         .award-meta-details p { margin: 0; color: #5f6368; font-size: 0.95rem; line-height: 1.5; }
 
-        /* Press Display Strip Rules (Removes standard block paragraphs cleanly) */
         .press-display-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .press-item-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; transition: transform 0.2s; }
         .press-item-card:hover { transform: scale(1.02); }
@@ -31,19 +57,112 @@
         .press-meta-bar { padding: 12px; background: #f8f9fa; border-top: 1px solid #e0e0e0; text-align: center; }
         .press-meta-bar h5 { margin: 0; font-size: 1rem; color: #3c4043; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* Lightbox Overlay System Modal */
-        .lightbox-overlay-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        /* ========================================================
+           ENHANCED LIGHTBOX OVERLAY WITH METADATA TEXT CARD
+           ======================================================== */
+        .lightbox-overlay-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; padding: 20px; box-sizing: border-box; }
         .lightbox-overlay-modal.activated-visible { display: flex; opacity: 1; }
-        .lightbox-content-viewport { max-width: 85%; max-height: 85%; position: relative; }
-        .lightbox-content-viewport img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .lightbox-close-trigger { position: absolute; top: -45px; right: 0; color: #fff; font-size: 2rem; cursor: pointer; background: none; border: none; }
+        
+        .lightbox-content-viewport { max-width: 650px; width: 100%; position: relative; background: #fff; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .lightbox-image-wrapper { width: 100%; background: #000; display: flex; align-items: center; justify-content: center; max-height: 60vh; }
+        .lightbox-content-viewport img { max-width: 100%; max-height: 60vh; object-fit: contain; }
+        
+        /* Text box beneath image inside lightbox */
+        .lightbox-text-caption-card { padding: 20px; background: #fff; border-top: 1px solid #e8eaed; }
+        .lightbox-text-caption-card h4 { margin: 0 0 8px 0; font-size: 1.3rem; color: #2e7d32; }
+        .lightbox-text-caption-card p { margin: 0; color: #3c4043; font-size: 0.95rem; line-height: 1.5; }
+        
+        .lightbox-close-trigger { position: absolute; top: 10px; right: 15px; color: #fff; font-size: 2.5rem; cursor: pointer; background: none; border: none; z-index: 10001; mix-blend-mode: difference; }
 
         @media(max-width: 868px) {
             .awards-display-grid { grid-template-columns: 1fr; }
             .press-display-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .lightbox-content-viewport { max-width: 95%; }
         }
         @media(max-width: 580px) {
             .press-display-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ========================================================
+           FIXED FULL-WIDTH FOOTER SYSTEM STYLES
+           ======================================================== */
+        footer {
+            flex-shrink: 0;
+            width: 100% !important; 
+            background-color: var(--gray-fill, #222) !important; 
+            color: var(--white, #fff);
+            padding: 40px 0 20px 0; 
+            margin-top: 60px;
+            box-sizing: border-box !important;
+        }
+        .footer-container-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-col h4 {
+            color: #F1C40F;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--primary, #2e7d32);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+        .footer-col p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+            color: #bdc3c7;
+            line-height: 1.6;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-col ul li a:hover {
+            color: var(--primary, #2e7d32);
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-links a {
+            color: var(--white, #fff);
+            font-size: 1.5rem;
+            transition: transform 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+        .social-links a.insta-icon:hover { color: #E1306C; }
+        .social-links a.youtube-icon:hover { color: #FF0000; }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #2C3E50;
+            padding-top: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
         }
     </style>
 </head>
@@ -64,38 +183,80 @@
             </ul>
         </nav>
     </header>
-    <main class="page-section" style="padding-bottom: 60px;">
-        <div class="page-intro-header">
-            <h2>Milestones, Accolades & Press Citations</h2>
-            <p>True environmental transformation demands relentless, consistent dedication. This platform tracks the various state-level awards, academic citations, media features, and newspaper cuttings received during our plastic eradication campaign.</p>
-        </div>
-
-    <main class="awards-container">
-        <h2 class="section-title"><i class="fa-solid fa-trophy"></i> Honors & Excellence Awards</h2>
-        <div class="awards-display-grid" id="publicAwardsGridContainer">
-            <div style="grid-column: 1/-1; text-align: center; color: #7f8c8d; padding: 40px;">
-                <i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><span style="margin-top:10px; display:inline-block;">Fetching accolades from cloud core...</span>
+    
+    <div class="page-content-wrapper">
+        <main class="awards-container">
+            <div style="text-align: center; margin-bottom: 40px; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                <h2 style="color: #2e7d32; margin-top: 0;">Milestones, Awards & Press Coverage</h2>
+                <p style="color: #5f6368; max-width: 800px; margin: 10px auto 0 auto; line-height: 1.6;">True environmental transformation demands relentless, consistent dedication. This platform tracks the various state-level awards, academic citations, media features, and newspaper cuttings received during our plastic eradication campaign.</p>
             </div>
-        </div>
 
-        <h2 class="section-title" style="margin-top: 60px;"><i class="fa-solid fa-newspaper"></i> Newspaper Cuttings & Media Coverage</h2>
-        <div class="press-display-grid" id="publicPressGridContainer">
-            <!-- Rendered smoothly without cluttering context boxes -->
-        </div>
-    </main>
+            <h2 class="section-title"><i class="fa-solid fa-trophy"></i> Honors & Excellence Awards</h2>
+            <div class="awards-display-grid" id="publicAwardsGridContainer">
+                <div style="grid-column: 1/-1; text-align: center; color: #7f8c8d; padding: 40px;">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><span style="margin-top:10px; display:inline-block;">Fetching accolades from cloud core...</span>
+                </div>
+            </div>
 
-    <!-- Master Lightbox Layer Component -->
+            <h2 class="section-title" style="margin-top: 60px;"><i class="fa-solid fa-newspaper"></i> Newspaper Cuttings & Media Coverage</h2>
+            <div class="press-display-grid" id="publicPressGridContainer">
+                <!-- Dynamic Press Database Injection -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Master Lightbox Layer Component (With dynamic text nodes built-in) -->
     <div class="lightbox-overlay-modal" id="masterGlobalLightboxComponent" onclick="dismissMasterLightboxView()">
         <div class="lightbox-content-viewport" onclick="event.stopPropagation()">
             <button class="lightbox-close-trigger" onclick="dismissMasterLightboxView()">&times;</button>
-            <img id="lightboxTargetMediaSource" src="" alt="Expanded View Asset">
+            <div class="lightbox-image-wrapper">
+                <img id="lightboxTargetMediaSource" src="" alt="Expanded View Asset">
+            </div>
+            <div class="lightbox-text-caption-card">
+                <h4 id="lightboxTargetTitleNode">Award Title Placeholder</h4>
+                <p id="lightboxTargetDescNode">Award description text placeholder details go here.</p>
+            </div>
         </div>
     </div>
 
+    <footer>
+        <div class="footer-container-inner">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>MY वसुधा विकास</h4>
+                    <p>Grassroots environmental conservation movement dedicated to single-use plastic eradication and sustainable circular economies.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/myvasudhavikas/" target="_blank" class="insta-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@Myवसुधाविकास" target="_blank" class="youtube-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home Dashboard</a></li>
+                        <li><a href="programs.html">Our Initiatives</a></li>
+                        <li><a href="booking.html">Utensil Bank</a></li>
+                        <li><a href="awards.html">Awards</a></li>
+                        <li><a href="donate.html">Donate Support</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Details</h4>
+                    <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
+                    <p><strong>Phone:</strong> +91 8329990369</p>
+                    <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p><strong>"प्लॅस्टिक कॅरीबॅगची सवय सोडा, जीवनाशी नाते जोडा"</strong></p>
+                <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         const SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz3k0dW1WNOl0aYeNmy1T0OaWqVb5Gn8gIjbhkzdkyUK3nKk5uQjmkmK_Er62ug_q2BOQ/exec';
-
-        document.getElementById('nav-awards').classList.add('active');
 
         document.addEventListener("DOMContentLoaded", function() {
             loadSynchronizedCloudPortfolios();
@@ -128,10 +289,13 @@
                 return;
             }
 
+            // Escaping single quotes safely inside data strings
             awards.forEach(item => {
+                const cleanTitle = item.title.replace(/'/g, "\\'");
+                const cleanDesc = item.desc.replace(/'/g, "\\'");
                 container.innerHTML += `
                     <div class="award-item-card">
-                        <div class="award-media-frame" onclick="launchMasterLightboxView('${item.img}')">
+                        <div class="award-media-frame" onclick="launchMasterLightboxView('${item.img}', '${cleanTitle}', '${cleanDesc}')">
                             <img src="${item.img}" alt="${item.title}" onerror="this.src='logo.png';">
                         </div>
                         <div class="award-meta-details">
@@ -154,9 +318,10 @@
             }
 
             press.forEach(item => {
+                const cleanTitle = item.title.replace(/'/g, "\\'");
                 container.innerHTML += `
                     <div class="press-item-card">
-                        <div class="press-media-frame" onclick="launchMasterLightboxView('${item.img}')">
+                        <div class="press-media-frame" onclick="launchMasterLightboxView('${item.img}', '${cleanTitle}', 'Media clipping publication tracking entry.')">
                             <img src="${item.img}" alt="${item.title}" onerror="this.src='logo.png';">
                         </div>
                         <div class="press-meta-bar">
@@ -167,11 +332,14 @@
             });
         }
 
-        /* Lightbox Mechanics */
-        function launchMasterLightboxView(imgSrc) {
+        /* Enhanced Lightbox Mechanics to accept Titles and Descriptions */
+        function launchMasterLightboxView(imgSrc, title, desc) {
             const modal = document.getElementById('masterGlobalLightboxComponent');
-            const target = document.getElementById('lightboxTargetMediaSource');
-            target.src = imgSrc;
+            
+            document.getElementById('lightboxTargetMediaSource').src = imgSrc;
+            document.getElementById('lightboxTargetTitleNode').innerText = title;
+            document.getElementById('lightboxTargetDescNode').innerText = desc;
+            
             modal.classList.add('activated-visible');
         }
 
@@ -181,37 +349,4 @@
         }
     </script>
 </body>
-<footer>
-    <div class="footer-grid">
-        <div class="footer-col">
-            <h4>MY वसुधा विकास</h4>
-            <p>Grassroots environmental conservation movement dedicated to single-use plastic eradication and sustainable circular economies.</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/myvasudhavikas/" target="_blank" class="insta-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@Myवसुधाविकास" target="_blank" class="youtube-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Quick Navigation</h4>
-            <ul>
-                <li><a href="index.html">Home Dashboard</a></li>
-                <li><a href="programs.html">Our Initiatives</a></li>
-                <li><a href="booking.html">Utensil Bank</a></li>
-                <li><a href="awards.html">Awards</a></li>
-                <li><a href="donate.html">Donate Support</a></li>
-                <li><a href="about.html">About Us</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Contact Details</h4>
-            <p><strong>Central Hub:</strong> 19, वृंदावन नगर, सुधीर कॉलनी राम मंदिरा जवळ, अकोला | Pincode-444001</p>
-            <p><strong>Phone:</strong> +91 8329990369</p>
-            <p style="margin-top: 15px;"><a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem;"><i class="fa-solid fa-lock-open"></i> Internal System Console Login</a></p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p><strong>"प्लॅस्टिक कॅरीबॅगची सवय सोडा, जीवनाशी नाते जोडा"</strong></p>
-        <p>&copy; 2026 MY वसुधा विकास | Directed to Sustainable Resource Circularity | Developed by Angad</p>
-    </div>
-</footer>
 </html>
